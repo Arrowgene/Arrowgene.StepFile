@@ -1,0 +1,43 @@
+﻿<tab:TabUserControl x:Class="Arrowgene.StepFile.Control.LogTab.LogTabControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:tab="clr-namespace:Arrowgene.StepFile.Control.Tab"
+             xmlns:dynamicGridView="clr-namespace:Arrowgene.StepFile.Core.DynamicGridView"
+            >
+    <tab:TabUserControl.Resources>
+        <ResourceDictionary>
+            <dynamicGridView:DynamicGridViewConverter x:Key="DynamicGridViewConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../ControlTemplate/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="../../ControlTemplate/MenuButtonStyle.xaml"/>
+                <ResourceDictionary Source="../../ControlTemplate/LanguageButtonStyle.xaml"/>
+                <ResourceDictionary Source="../../ControlTemplate/ComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="../../ControlTemplate/ListBoxStyle.xaml"/>
+                <ResourceDictionary Source="../../ControlTemplate/CheckBoxStyle.xaml"/>
+                <ResourceDictionary Source="../../ControlTemplate/TextBoxStyle.xaml"/>
+                <ResourceDictionary Source="../../ControlTemplate/ProgressBarStyle.xaml"/>
+                <ResourceDictionary Source="../../ControlTemplate/LabelStyle.xaml"/>
+                <ResourceDictionary Source="../../ControlTemplate/TabControlStyle.xaml"/>
+                <ResourceDictionary Source="../../ControlTemplate/MenuImageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </tab:TabUserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Command="{Binding ClearCommand}" Style="{StaticResource CustomMenuButtonStyle}">
+                <Image Source="pack://application:,,,/icons/PastelSVG/brush.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
+            <Button Command="{Binding SaveCommand}" Style="{StaticResource CustomMenuButtonStyle}">
+                <Image Source="pack://application:,,,/icons/PastelSVG/disk.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
+        </StackPanel>
+        <ListView Grid.Row="1" x:Name="listViewItems" ItemsSource="{Binding Items}" View="{Binding ColumnConfig, Converter={StaticResource DynamicGridViewConverter}}"/>
+    </Grid>
+</tab:TabUserControl>

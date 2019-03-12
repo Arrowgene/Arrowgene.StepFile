@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1407C236-BE6D-4B2D-B1B8-6D02A6BC55C6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Arrowgene.StepFile</RootNamespace>
+    <AssemblyName>Arrowgene.StepFile</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Arrowgene.StepFile.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Arrowgene.StepFile.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Arrowgene.Services" Version="1.11.1" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.cs" />
+    <Compile Include="Control\ArchiveTab\ArchiveTabItemName.xaml.cs">
+      <DependentUpon>ArchiveTabItemName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Ez2On\Archive\Ez2OnArchiveTabFile.cs" />
+    <Compile Include="Control\Ez2On\Archive\Ez2OnArchiveTabFolder.cs" />
+    <Compile Include="Control\Ez2On\StepFile\Ez2OnStepFileTabControl.xaml.cs">
+      <DependentUpon>Ez2OnStepFileTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Ez2On\StepFile\Ez2OnStepFileTabController.cs" />
+    <Compile Include="Control\LogTab\LogTabController.cs" />
+    <Compile Include="Control\LogTab\LogTabControl.xaml.cs">
+      <DependentUpon>LogTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\LogTab\LogTabItem.cs" />
+    <Compile Include="Control\SettingTab\PluginSettingTabItem.cs" />
+    <Compile Include="Control\SettingTab\SettingTabControl.xaml.cs">
+      <DependentUpon>SettingTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\SettingTab\SettingTabController.cs" />
+    <Compile Include="Core\Ez2On\Archive\Ez2OnArchiveCrypto.cs" />
+    <Compile Include="Core\Ez2On\Archive\Ez2OnArchiveCryptoDetector.cs" />
+    <Compile Include="Core\Ez2On\Archive\Ez2OnArchiveFolder.cs" />
+    <Compile Include="Core\Ez2On\Archive\Ez2OnCrypto\Ez2OnCryptoPlugin.cs" />
+    <Compile Include="Core\Ez2On\DotBin\BinFile.cs" />
+    <Compile Include="Core\Ez2On\DotBin\IdFilterData.cs" />
+    <Compile Include="Core\Ez2On\DotBin\ItemDataBin.cs" />
+    <Compile Include="Core\Ez2On\DotBin\ItemDataBinR14.cs" />
+    <Compile Include="Core\Ez2On\DotBin\MusicDataBin.cs" />
+    <Compile Include="Core\Ez2On\DotBin\MusicDataBinR14.cs" />
+    <Compile Include="Core\Ez2On\DotBin\QuestDataBin.cs" />
+    <Compile Include="Control\ArchiveTab\ArchiveTabItem.cs" />
+    <Compile Include="Core\Ez2On\Archive\Ez2OnCrypto\Ez2OnCryptoExtension.cs" />
+    <Compile Include="Core\Ez2On\Archive\Ez2OnCrypto\Ez2OnCryptoKey.cs" />
+    <Compile Include="Core\Ez2On\Archive\Ez2OnCrypto\Ez2OnCryptoKeyState.cs" />
+    <Compile Include="Core\Ez2On\Model\DifficultType.cs" />
+    <Compile Include="Core\Ez2On\Model\Item.cs" />
+    <Compile Include="Core\Ez2On\Model\ItemType.cs" />
+    <Compile Include="Core\Ez2On\Model\ModeType.cs" />
+    <Compile Include="Core\Ez2On\Model\Quest.cs" />
+    <Compile Include="Core\Ez2On\Model\Song.cs" />
+    <Compile Include="Core\Ez2On\Model\SongCategoryType.cs" />
+    <Compile Include="Core\Format\IStepFileReader.cs" />
+    <Compile Include="Core\Format\IStepFileWriter.cs" />
+    <Compile Include="Core\Format\Sdo\SdoCrypto.cs" />
+    <Compile Include="Core\Format\Sdo\SdoReader.cs" />
+    <Compile Include="Core\Format\Sdo\SdoWriter.cs" />
+    <Compile Include="Core\Format\Sim\SimFileReader.cs" />
+    <Compile Include="Core\Format\Sim\SimFileWriter.cs" />
+    <Compile Include="Core\Format\StepFileReader.cs" />
+    <Compile Include="Core\Format\StepFileWriter.cs" />
+    <Compile Include="Core\Format\Stp\StpReader.cs" />
+    <Compile Include="Core\Format\Stp\StpWriter.cs" />
+    <Compile Include="Core\Model\Beat.cs" />
+    <Compile Include="Core\Model\Difficulty.cs" />
+    <Compile Include="Core\Model\Enums.cs" />
+    <Compile Include="Core\Model\Line.cs" />
+    <Compile Include="Core\Model\Measure.cs" />
+    <Compile Include="Core\Model\Step.cs" />
+    <Compile Include="Core\Model\StpFile.cs" />
+    <Compile Include="Control\ArchiveTab\ArchiveTabUserControl.cs" />
+    <Compile Include="Core\DynamicGridView\DynamicGridViewColumn.cs" />
+    <Compile Include="Core\CommandHandler.cs" />
+    <Compile Include="Core\DynamicGridView\DynamicGridViewColumnConfig.cs" />
+    <Compile Include="Core\DynamicGridView\DynamicGridViewConverter.cs" />
+    <Compile Include="Core\DynamicGridView\DynamicGridViewItem.cs" />
+    <Compile Include="Core\SaveFileBuilder.cs" />
+    <Compile Include="Core\SelectFolderBuilder.cs" />
+    <Compile Include="Core\SelectFileBuilder.cs" />
+    <Compile Include="Plugin\PluginLoader.cs" />
+    <Compile Include="Plugin\PluginRegistry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Control\ArchiveTab\ArchiveTabController.cs" />
+    <Compile Include="Control\Ez2On\Archive\Ez2OnArchiveTabControl.xaml.cs">
+      <DependentUpon>Ez2OnArchiveTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Ez2On\Archive\Ez2OnArchive.cs" />
+    <Compile Include="Core\Ez2On\Archive\Ez2OnArchiveType.cs" />
+    <Compile Include="Control\Ez2On\Archive\Ez2OnArchiveTabController.cs" />
+    <Compile Include="Core\Ez2On\Archive\Ez2OnArchiveFile.cs" />
+    <Compile Include="Core\Ez2On\Archive\Ez2OnArchiveIO.cs" />
+    <Compile Include="Core\Ez2On\Archive\Ez2OnArchiveIOEventArgs.cs" />
+    <Compile Include="Core\Ez2On\Archive\Ez2OnArchiveIndex.cs" />
+    <Compile Include="Control\Tab\ITab.cs" />
+    <Compile Include="Control\Tab\TabManager.cs" />
+    <Compile Include="Windows\Main\IMainWindow.cs" />
+    <Compile Include="Windows\Main\MainController.cs" />
+    <Compile Include="Control\Tab\TabUserControl.cs" />
+    <Compile Include="Windows\Main\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Tab\TabController.cs" />
+    <Compile Include="Windows\SelectOption\SelectOptionBuilder.cs" />
+    <Compile Include="Windows\SelectOption\SelectOptionWindow.xaml.cs">
+      <DependentUpon>SelectOptionWindow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="app.manifest" />
+    <None Include="Arrowgene.StepFile.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="AppResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlTemplate\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlTemplate\CheckBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlTemplate\ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlTemplate\MenuImageStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlTemplate\MenuButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlTemplate\LabelStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlTemplate\LanguageButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlTemplate\ListBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlTemplate\ProgressBarStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlTemplate\TextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlTemplate\TabControlStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlTemplate\TextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\ArchiveTab\ArchiveTabItemName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\Ez2On\Archive\Ez2OnArchiveTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\Ez2On\StepFile\Ez2OnStepFileTabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\LogTab\LogTabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\SettingTab\SettingTabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\Main\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SelectOption\SelectOptionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\package.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\page-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\folder-open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\package-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\package-go.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\package-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\disk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\brush.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\close-red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\folder-orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\key-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\key-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PastelSVG\page-white-film.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
+    <Resource Include="icons\PastelSVG\cog.png" />
+    <Resource Include="icons\PastelSVG\key-disk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Arrowgene.StepFile.Plugin\Arrowgene.StepFile.Plugin.csproj">
+      <Project>{349ce16e-8f01-4c60-bded-4a2fffbfe430}</Project>
+      <Name>Arrowgene.StepFile.Plugin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

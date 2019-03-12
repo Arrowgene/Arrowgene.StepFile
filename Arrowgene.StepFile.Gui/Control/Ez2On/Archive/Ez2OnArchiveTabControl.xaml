@@ -1,0 +1,83 @@
+﻿<archiveTab:ArchiveTabUserControl x:Class="Arrowgene.StepFile.Control.Ez2On.Archive.Ez2OnArchiveTabControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:archiveTab="clr-namespace:Arrowgene.StepFile.Control.ArchiveTab"
+             xmlns:dynamicGridView="clr-namespace:Arrowgene.StepFile.Core.DynamicGridView"
+            >
+    <archiveTab:ArchiveTabUserControl.Resources>
+        <ResourceDictionary>
+            <dynamicGridView:DynamicGridViewConverter x:Key="DynamicGridViewConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../AppResourceDictionary.xaml"/>
+                <ResourceDictionary Source="../../../ControlTemplate/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="../../../ControlTemplate/MenuButtonStyle.xaml"/>
+                <ResourceDictionary Source="../../../ControlTemplate/LanguageButtonStyle.xaml"/>
+                <ResourceDictionary Source="../../../ControlTemplate/ComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="../../../ControlTemplate/ListBoxStyle.xaml"/>
+                <ResourceDictionary Source="../../../ControlTemplate/CheckBoxStyle.xaml"/>
+                <ResourceDictionary Source="../../../ControlTemplate/TextBoxStyle.xaml"/>
+                <ResourceDictionary Source="../../../ControlTemplate/ProgressBarStyle.xaml"/>
+                <ResourceDictionary Source="../../../ControlTemplate/LabelStyle.xaml"/>
+                <ResourceDictionary Source="../../../ControlTemplate/TabControlStyle.xaml"/>
+                <ResourceDictionary Source="../../../ControlTemplate/MenuImageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </archiveTab:ArchiveTabUserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Command="{Binding OpenCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Open Archive">
+                <Image Source="pack://application:,,,/icons/PastelSVG/folder-open.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
+            <Button Command="{Binding SaveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Save Archive" Margin="0 0 10 0">
+                <Image Source="pack://application:,,,/icons/PastelSVG/disk.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
+            <Button Command="{Binding AddCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Add File">
+                <Image Source="pack://application:,,,/icons/PastelSVG/package-add.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
+            <Button Command="{Binding DeleteCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Delete File">
+                <Image Source="pack://application:,,,/icons/PastelSVG/package-delete.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
+            <Button Command="{Binding ExtractCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Extract File" Margin="0 0 10 0">
+                <Image Source="pack://application:,,,/icons/PastelSVG/package-go.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
+            <Button Command="{Binding KeyAddCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Set Key">
+                <Image Source="pack://application:,,,/icons/PastelSVG/key-add.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
+            <Button Command="{Binding KeyDeleteCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Remove Key">
+                <Image Source="pack://application:,,,/icons/PastelSVG/key-delete.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
+            <Button Command="{Binding KeyGenerateCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Generate New Key">
+                <Image Source="pack://application:,,,/icons/PastelSVG/key-disk.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Archive Type:"/>
+            <Label Grid.Row="0" Grid.Column="1" Content="{Binding ArchiveType}"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Created Date:"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding Path=Created, StringFormat={}{0:dd-MMM-yyyy hh:mm:ss}}"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Encryption:"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding Encryption}"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Current Path:"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="{Binding FilePath}"/>
+        </Grid>
+        <ListView Grid.Row="2" x:Name="listViewItems" ItemsSource="{Binding Items}" View="{Binding ColumnConfig, Converter={StaticResource DynamicGridViewConverter}}"/>
+    </Grid>
+</archiveTab:ArchiveTabUserControl>
