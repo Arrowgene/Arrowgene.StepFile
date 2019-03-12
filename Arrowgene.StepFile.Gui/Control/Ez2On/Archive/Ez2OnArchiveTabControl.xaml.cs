@@ -11,6 +11,8 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
         private ICommand _keyAddCommand;
         private ICommand _keyDeleteCommand;
         private ICommand _keyGenerateCommand;
+        private ICommand _encryptBatchCommand;
+        private ICommand _decryptBatchCommend;
 
         private string _filePath;
         private Ez2OnArchiveType _archiveType;
@@ -19,6 +21,8 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
 
         public ICommand KeyAddCommand { get { return _keyAddCommand; } set { _keyAddCommand = value; OnPropertyChanged("KeyAddCommand"); } }
         public ICommand KeyDeleteCommand { get { return _keyDeleteCommand; } set { _keyDeleteCommand = value; OnPropertyChanged("KeyDeleteCommand"); } }
+        public ICommand EncryptBatchCommand { get { return _encryptBatchCommand; } set { _encryptBatchCommand = value; OnPropertyChanged("EncryptBatchCommand"); } }
+        public ICommand DecryptBatchCommend { get { return _decryptBatchCommend; } set { _decryptBatchCommend = value; OnPropertyChanged("DecryptBatchCommend"); } }
         public ICommand KeyGenerateCommand { get { return _keyGenerateCommand; } set { _keyGenerateCommand = value; OnPropertyChanged("KeyGenerateCommand"); } }
         public string FilePath { get { return _filePath; } set { _filePath = value; OnPropertyChanged("FilePath"); } }
         public Ez2OnArchiveType ArchiveType { get { return _archiveType; } set { _archiveType = value; OnPropertyChanged("ArchiveType"); } }

@@ -22,7 +22,7 @@
         [STAThread]
         public static void Main()
         {
-            PluginRegistry.Instance.Load(".");
+            PluginRegistry.Instance.Load("./Plugin");
             _mainWindow = new MainWindow();
             _controller = new MainController(_mainWindow);
             App app = new App();

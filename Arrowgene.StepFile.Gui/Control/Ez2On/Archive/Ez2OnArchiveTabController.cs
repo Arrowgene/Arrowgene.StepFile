@@ -57,10 +57,14 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
             _ez2OnArchiveTabControl.KeyAddCommand = _cmdKeyAdd = new CommandHandler(KeyAdd, CanAddKey);
             _ez2OnArchiveTabControl.KeyDeleteCommand = _cmdKeyDelete = new CommandHandler(KeyDelete, CanDeleteKey);
             _ez2OnArchiveTabControl.KeyGenerateCommand = new CommandHandler(KeyGenerate, true);
+            _ez2OnArchiveTabControl.EncryptBatchCommand = new CommandHandler(EncryptBatch, true);
+            _ez2OnArchiveTabControl.DecryptBatchCommend = new CommandHandler(DecryptBatch, true);
 
 
             _ez2OnArchiveTabControl.ListViewItems.MouseDoubleClick += ListViewItems_MouseDoubleClick;
             _ez2OnArchiveTabControl.ListViewItems.SelectionChanged += ListViewItems_SelectionChanged;
+            _ez2OnArchiveTabControl.ListViewItems.AllowDrop = true;
+            _ez2OnArchiveTabControl.ListViewItems.Drop += ListViewItems_Drop;
 
             _archive = new Ez2OnArchive();
             _root = new Ez2OnArchiveTabFolder(_archive.RootFolder);
@@ -73,7 +77,7 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
             _cmdDelete.RaiseCanExecuteChanged();
         }
 
-        public async void Open()
+        private async void Open()
         {
             FileInfo selected = new SelectFileBuilder()
                 .Filter("Ez2On Archive files(*.dat, *.tro) | *.dat; *.tro")
@@ -280,6 +284,10 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
                 return;
             }
             Ez2OnArchiveCrypto selectedCrypto = selectOption.Select();
+            if (selectedCrypto == null)
+            {
+                return;
+            }
             if (selectedCrypto.CryptoPlugin is ICryptoPlugin)
             {
                 ICryptoPlugin selectedICryptoPlugin = (ICryptoPlugin)selectedCrypto.CryptoPlugin;
@@ -404,7 +412,29 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
 
         private void KeyGenerate()
         {
-            byte[] key = Utils.GenerateKey(16);
+            SelectOptionBuilder<ICryptoPlugin> selectOption = new SelectOptionBuilder<ICryptoPlugin>()
+                .SetTitle("Select Crypto")
+                .SetText("Choose a crypto to generate a key");
+            bool hasCrypto = false;
+            foreach (Ez2OnArchiveCrypto crypto in _cryptos)
+            {
+                if (crypto.CryptoPlugin is ICryptoPlugin)
+                {
+                    selectOption.AddOption((ICryptoPlugin)crypto.CryptoPlugin, crypto.Name);
+                    hasCrypto = true;
+                }
+            }
+            if (!hasCrypto)
+            {
+                MessageBox.Show($"No Crypto with key generation available", "StepFile", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            ICryptoPlugin selectedCrypto = selectOption.Select();
+            if (selectedCrypto == null)
+            {
+                return;
+            }
+            byte[] key = Utils.GenerateKey(selectedCrypto.KeyLength);
             FileInfo selected = new SaveFileBuilder()
                 .Filter("Ez2On Archive Key file(*.key) | *.key")
                 .Select();
@@ -414,6 +444,207 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
             }
             Utils.WriteFile(key, selected.FullName);
             MessageBox.Show("New Key Saved", "StepFile", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private async void DecryptBatch()
+        {
+            List<FileInfo> selectedArchives = new SelectFileBuilder()
+                .Filter("Ez2On Data Archive (.tro)|*.tro|Ez2On Music Archive (.dat)|*.dat")
+                .SelectMulti();
+            if (selectedArchives == null || selectedArchives.Count <= 0)
+            {
+                return;
+            }
+            DirectoryInfo selectedDestination = new SelectFolderBuilder()
+                .Select();
+            if (selectedDestination == null)
+            {
+                return;
+            }
+            Ez2OnArchiveIO archiveIO = new Ez2OnArchiveIO();
+            archiveIO.ProgressChanged += ArchiveIO_ProgressChanged;
+            List<string> errors = new List<string>();
+            var task = Task.Run(() =>
+            {
+                int total = selectedArchives.Count;
+                int current = 0;
+                float progress = 0;
+                byte[] key = null;
+                foreach (FileInfo selectedArchive in selectedArchives)
+                {
+                    Ez2OnArchive archive = archiveIO.Read(selectedArchive.FullName);
+                    if (archive.CryptoType == Ez2OnArchive.CRYPTO_TYPE_NONE)
+                    {
+                        errors.Add($"'{selectedArchive.FullName}': Can not remove encryption. Archive is not encrypted");
+                        continue;
+                    }
+                    Ez2OnArchiveCrypto activeCrypto = GetArchiveCrypto(archive.CryptoType);
+                    if (activeCrypto == null)
+                    {
+                        errors.Add($"'{selectedArchive.FullName}': Can not remove encryption. Archive is encrypted with an unknown encryption");
+                        continue;
+                    }
+                    if (!activeCrypto.CanDecrypt)
+                    {
+                        errors.Add($"'{selectedArchive.FullName}': Can not remove encryption. '{activeCrypto.Name}' does not support decryption");
+                        continue;
+                    }
+                    if (activeCrypto.CryptoPlugin is ICryptoPlugin)
+                    {
+                        if (key == null)
+                        {
+                            FileInfo selectedKey = new SelectFileBuilder().Filter("Ez2On Archive Key file(*.key) | *.key").SelectSingle();
+                            if (selectedKey == null)
+                            {
+                                errors.Add($"'{selectedArchive.FullName}': No key selected for decryption");
+                                continue;
+                            }
+                            key = Utils.ReadFile(selectedKey.FullName);
+                        }
+                        ICryptoPlugin selectedICryptoPlugin = (ICryptoPlugin)activeCrypto.CryptoPlugin;
+                        selectedICryptoPlugin.SetKey(key);
+                    }
+                    total += archive.Files.Count;
+                    foreach (Ez2OnArchiveFile file in archive.Files)
+                    {
+                        progress = current++ / (float)total * 100;
+                        App.UpdateProgress(this, (int)progress, $"'{selectedArchive.FullName}': Decrypting: {file.FullPath}");
+                        activeCrypto.Decrypt(file);
+                    }
+                    archive.CryptoType = Ez2OnArchive.CRYPTO_TYPE_NONE;
+
+                    string destination = Path.Combine(selectedDestination.FullName, selectedArchive.Name);
+                    archiveIO.Write(archive, destination);
+
+                    progress = current++ / (float)total * 100;
+                    App.UpdateProgress(this, (int)progress, $"'{selectedArchive.FullName}'");
+                }
+            });
+            await task;
+            App.ResetProgress(this);
+            if (errors.Count > 0)
+            {
+                string error = "";
+                for (int i = 0; i < errors.Count && i < 10; i++)
+                {
+                    error += errors + Environment.NewLine;
+                }
+                MessageBox.Show(error, "StepFile", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            MessageBox.Show("Operation Completed", "StepFile", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private async void EncryptBatch()
+        {
+            SelectOptionBuilder<Ez2OnArchiveCrypto> selectOption = new SelectOptionBuilder<Ez2OnArchiveCrypto>()
+                .SetTitle("Select Crypto")
+                .SetText("Choose a crypto to apply");
+            bool hasCrypto = false;
+            foreach (Ez2OnArchiveCrypto crypto in _cryptos)
+            {
+                if (crypto.CanEncrypt)
+                {
+                    selectOption.AddOption(crypto, crypto.Name);
+                    hasCrypto = true;
+                }
+            }
+            if (!hasCrypto)
+            {
+                MessageBox.Show($"Can not encrypt archive. No suitable encryption plugin available", "StepFile", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            Ez2OnArchiveCrypto selectedCrypto = selectOption.Select();
+            if (selectedCrypto == null)
+            {
+                return;
+            }
+            byte[] key = null;
+            if (selectedCrypto.CryptoPlugin is ICryptoPlugin)
+            {
+                ICryptoPlugin selectedICryptoPlugin = (ICryptoPlugin)selectedCrypto.CryptoPlugin;
+                FileInfo selected = new SelectFileBuilder()
+                    .Filter("Ez2On Archive Key file(*.key) | *.key")
+                    .SelectSingle();
+                if (selected == null)
+                {
+                    return;
+                }
+                key = Utils.ReadFile(selected.FullName);
+                selectedICryptoPlugin.SetKey(key);
+            }
+            List<FileInfo> selectedArchives = new SelectFileBuilder()
+                        .Filter("Ez2On Data Archive (.tro)|*.tro|Ez2On Music Archive (.dat)|*.dat")
+                        .SelectMulti();
+            if (selectedArchives == null || selectedArchives.Count <= 0)
+            {
+                return;
+            }
+            DirectoryInfo selectedDestination = new SelectFolderBuilder()
+                .Select();
+            if (selectedDestination == null)
+            {
+                return;
+            }
+            Ez2OnArchiveIO archiveIO = new Ez2OnArchiveIO();
+            archiveIO.ProgressChanged += ArchiveIO_ProgressChanged;
+            List<string> errors = new List<string>();
+            var task = Task.Run(() =>
+            {
+                int total = selectedArchives.Count;
+                int current = 0;
+                float progress = 0;
+                foreach (FileInfo selectedArchive in selectedArchives)
+                {
+                    Ez2OnArchive archive = archiveIO.Read(selectedArchive.FullName);
+                    Ez2OnArchiveCrypto activeCrypto = null;
+                    if (archive.CryptoType != Ez2OnArchive.CRYPTO_TYPE_NONE)
+                    {
+                        activeCrypto = GetArchiveCrypto(archive.CryptoType);
+                        if (activeCrypto == null)
+                        {
+                            errors.Add($"'{selectedArchive.FullName}': Can not encrypt archive. Archive is encrypted with an unknown encryption");
+                            continue;
+                        }
+                        else
+                        {
+                            errors.Add($"'{selectedArchive.FullName}': Can not encrypt archive. Archive is encrypted with '{activeCrypto.Name}' encryption");
+                            continue;
+                        }
+                    }
+                    total += archive.Files.Count;
+                    foreach (Ez2OnArchiveFile file in archive.Files)
+                    {
+                        progress = current++ / (float)total * 100;
+                        App.UpdateProgress(this, (int)progress, $"'{selectedArchive.FullName}': Decrypting: {file.FullPath}");
+                        selectedCrypto.Encrypt(file);
+                    }
+                    archive.CryptoType = selectedCrypto.CryptoType;
+                    string destination = Path.Combine(selectedDestination.FullName, selectedArchive.Name);
+                    archiveIO.Write(archive, destination);
+                    progress = current++ / (float)total * 100;
+                    App.UpdateProgress(this, (int)progress, $"'{selectedArchive.FullName}'");
+                }
+            });
+            await task;
+            App.ResetProgress(this);
+            if (errors.Count > 0)
+            {
+                string error = "";
+                for (int i = 0; i < errors.Count && i < 10; i++)
+                {
+                    error += errors + Environment.NewLine;
+                }
+                MessageBox.Show(error, "StepFile", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            MessageBox.Show("Operation Completed", "StepFile", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void ListViewItems_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            }
         }
 
         private void ArchiveIO_ProgressChanged(object sender, Ez2OnArchiveIOEventArgs e)

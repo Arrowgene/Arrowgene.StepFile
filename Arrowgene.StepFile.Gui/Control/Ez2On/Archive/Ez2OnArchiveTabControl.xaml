@@ -48,14 +48,26 @@
             <Button Command="{Binding ExtractCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Extract File" Margin="0 0 10 0">
                 <Image Source="pack://application:,,,/icons/PastelSVG/package-go.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding KeyAddCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Set Key">
-                <Image Source="pack://application:,,,/icons/PastelSVG/key-add.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            <Button Command="{Binding KeyAddCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Add Encryption">
+                <Image Source="pack://application:,,,/icons/PastelSVG/lock-add.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding KeyDeleteCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Remove Key">
-                <Image Source="pack://application:,,,/icons/PastelSVG/key-delete.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            <Button Command="{Binding KeyDeleteCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Remove Encryption">
+                <Image Source="pack://application:,,,/icons/PastelSVG/lock-delete.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding KeyGenerateCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Generate New Key">
+            <Button Command="{Binding KeyGenerateCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Generate Encryption Key" Margin="0 0 10 0">
                 <Image Source="pack://application:,,,/icons/PastelSVG/key-disk.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
+            <Button Command="{Binding EncryptBatchCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Add Encryption">
+                <Grid>
+                    <Image Source="pack://application:,,,/icons/PastelSVG/lock-add.png" Style="{StaticResource CustomMenuImageStyle}"/>
+                    <Image Source="pack://application:,,,/icons/PastelSVG/lightning-add.png" Style="{StaticResource CustomMenuImageStyle}"/>
+                </Grid>
+            </Button>
+            <Button Command="{Binding DecryptBatchCommend}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Remove Encryption">
+                <Grid>
+                    <Image Source="pack://application:,,,/icons/PastelSVG/lock-delete.png" Style="{StaticResource CustomMenuImageStyle}"/>
+                    <Image Source="pack://application:,,,/icons/PastelSVG/lightning-delete.png" Style="{StaticResource CustomMenuImageStyle}"/>
+                </Grid>
             </Button>
         </StackPanel>
         <Grid Grid.Row="1">

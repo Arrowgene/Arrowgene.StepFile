@@ -331,6 +331,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Resource Include="icons\PastelSVG\lightning-add.png" />
+    <Resource Include="icons\PastelSVG\lightning-delete.png" />
+    <Resource Include="icons\PastelSVG\lock-add.png" />
+    <Resource Include="icons\PastelSVG\lock-delete.png" />
+    <Resource Include="icons\PastelSVG\lorry-add.png" />
+    <Resource Include="icons\PastelSVG\lorry-delete.png" />
     <Resource Include="icons\PastelSVG\cog.png" />
     <Resource Include="icons\PastelSVG\key-disk.png" />
   </ItemGroup>
