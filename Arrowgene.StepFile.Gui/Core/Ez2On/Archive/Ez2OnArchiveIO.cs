@@ -49,6 +49,8 @@ namespace Arrowgene.StepFile.Core.Ez2On.Archive
 
         private const int IndexBlockSize = 268;
         private const int MaxNameLength = 260;
+        private const int TroHeaderLength = 20;
+        private const int DatHeaderLength = 40;
         private const string DateFormat = "yyyy-MM-dd HH:mm:ss";
 
         // 949 | ks_c_5601-1987 | Korean
@@ -160,23 +162,30 @@ namespace Arrowgene.StepFile.Core.Ez2On.Archive
                         }
                     }
                 }
-                if (folderDictionary.ContainsKey(file.DirectoryPath))
+                string directoryPath = file.DirectoryPath;
+                if (!string.IsNullOrEmpty(directoryPath) && !directoryPath.EndsWith("\\"))
                 {
-                    folderDictionary[file.DirectoryPath].Add(file);
+                    directoryPath += "\\";
+                }
+                if (folderDictionary.ContainsKey(directoryPath))
+                {
+                    folderDictionary[directoryPath].Add(file);
                 }
                 else
                 {
-                    _logger.Write(LogLevel.Error, "Should already be added ({0})", file.DirectoryPath);
-                    folderDictionary.Add(file.DirectoryPath, new List<Ez2OnArchiveFile>() { file });
-                    orderedKeys.Add(file.DirectoryPath);
+                    folderDictionary.Add(directoryPath, new List<Ez2OnArchiveFile>() { file });
+                    orderedKeys.Add(directoryPath);
                 }
             }
             orderedKeys.Sort((s1, s2) => string.Compare(s1, s2, StringComparison.InvariantCultureIgnoreCase));
-
             IBuffer buffer = BufferProvider.Provide();
             int totalFiles = archive.Files.Count;
             int currentFile = 0;
-            int folderIndexStart = archive.IndexOffset;
+            int folderIndexStart = TroHeaderLength;
+            if (archive.ArchiveType == Ez2OnArchiveType.Dat)
+            {
+                folderIndexStart = DatHeaderLength;
+            }
             int fileIndexStart = folderIndexStart + folderDictionary.Count * IndexBlockSize;
             int contentStart = fileIndexStart + IndexBlockSize * archive.Files.Count;
             int currentFolderIndex = 0;

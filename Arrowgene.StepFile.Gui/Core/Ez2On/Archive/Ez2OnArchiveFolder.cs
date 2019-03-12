@@ -22,6 +22,10 @@ namespace Arrowgene.StepFile.Core.Ez2On.Archive
 
         public void SetFullPath(string fullPath)
         {
+            if (!string.IsNullOrEmpty(fullPath) && !fullPath.EndsWith("\\"))
+            {
+                fullPath += "\\";
+            }
             FullPath = fullPath;
             string path = "";
             string[] folderNameParts = fullPath.Split(new char[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);

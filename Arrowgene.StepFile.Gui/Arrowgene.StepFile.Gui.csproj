@@ -331,6 +331,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Resource Include="icons\PastelSVG\page-delete.png" />
+    <Resource Include="icons\PastelSVG\page-add.png" />
+    <Resource Include="icons\PastelSVG\folder-add.png" />
+    <Resource Include="icons\PastelSVG\folder-delete.png" />
     <Resource Include="icons\PastelSVG\lightning-add.png" />
     <Resource Include="icons\PastelSVG\lightning-delete.png" />
     <Resource Include="icons\PastelSVG\lock-add.png" />
