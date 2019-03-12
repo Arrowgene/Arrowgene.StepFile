@@ -15,6 +15,12 @@ using System.Windows.Input;
 
 namespace Arrowgene.StepFile.Control.Ez2On.Archive
 {
+    /// <summary>
+    /// 2) File Preview
+    /// 3) Warn unsaved progress
+    /// 4) Rename directory / file
+    /// 5) New directory
+    /// </summary>
     public class Ez2OnArchiveTabController : ArchiveTabController
     {
 
@@ -25,6 +31,7 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
         private ArchiveTabItem _currentSelection;
         private Ez2OnArchiveTabControl _ez2OnArchiveTabControl;
         private ICollection<Ez2OnArchiveCrypto> _cryptos;
+        private byte[] _crypoKey;
 
         private CommandHandler _cmdKeyAdd;
         private CommandHandler _cmdAdd;
@@ -105,9 +112,10 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
             }
             else
             {
-                Ez2OnArchiveCrypto _activeCrypto = GetArchiveCrypto(_archive.CryptoType);
-                _ez2OnArchiveTabControl.Encryption = _activeCrypto == null ? "Unknown" : _activeCrypto.Name;
+                Ez2OnArchiveCrypto activeCrypto = GetArchiveCrypto(_archive.CryptoType);
+                _ez2OnArchiveTabControl.Encryption = activeCrypto == null ? "Unknown" : activeCrypto.Name;
             }
+            _crypoKey = null;
             _ez2OnArchiveTabControl.ArchiveType = _archive.ArchiveType;
             _ez2OnArchiveTabControl.ClearItems();
             _ez2OnArchiveTabControl.AddItemRange(_root.Folders);
@@ -164,21 +172,13 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
             {
                 return;
             }
-            byte[] file = Utils.ReadFile(selected.FullName);
-            Ez2OnArchiveFile archiveFile = new Ez2OnArchiveFile();
-            archiveFile.Data = file;
-            archiveFile.Name = selected.Name;
-            archiveFile.Length = file.Length;
-            archiveFile.Extension = selected.Extension;
-            archiveFile.DirectoryPath = _currentFolder.FullPath;
-            archiveFile.FullPath = _currentFolder.FullPath + selected.Name;
-            if (activeCrypto != null)
+            Ez2OnArchiveTabFile tabFile = CreateFile(selected, activeCrypto, _currentFolder);
+            if (tabFile == null)
             {
-                activeCrypto.Encrypt(archiveFile);
+                return;
             }
-            Ez2OnArchiveTabFile tabFile = new Ez2OnArchiveTabFile(archiveFile);
+            _archive.Files.Add(tabFile.File);
             _currentFolder.AddFile(tabFile);
-            _archive.Files.Add(archiveFile);
             _ez2OnArchiveTabControl.Items.Add(tabFile);
         }
 
@@ -298,8 +298,8 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
                 {
                     return;
                 }
-                byte[] key = Utils.ReadFile(selected.FullName);
-                selectedICryptoPlugin.SetKey(key);
+                _crypoKey = Utils.ReadFile(selected.FullName);
+                selectedICryptoPlugin.SetKey(_crypoKey);
             }
             int total = _archive.Files.Count;
             int current = 0;
@@ -361,15 +361,18 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
             if (activeCrypto.CryptoPlugin is ICryptoPlugin)
             {
                 ICryptoPlugin selectedICryptoPlugin = (ICryptoPlugin)activeCrypto.CryptoPlugin;
-                FileInfo selected = new SelectFileBuilder()
-                    .Filter("Ez2On Archive Key file(*.key) | *.key")
-                    .SelectSingle();
-                if (selected == null)
+                if (_crypoKey == null)
                 {
-                    return;
+                    FileInfo selected = new SelectFileBuilder()
+                        .Filter("Ez2On Archive Key file(*.key) | *.key")
+                        .SelectSingle();
+                    if (selected == null)
+                    {
+                        return;
+                    }
+                    _crypoKey = Utils.ReadFile(selected.FullName);
                 }
-                byte[] key = Utils.ReadFile(selected.FullName);
-                selectedICryptoPlugin.SetKey(key);
+                selectedICryptoPlugin.SetKey(_crypoKey);
             }
             int total = _archive.Files.Count;
             int current = 0;
@@ -385,6 +388,7 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
             await task;
             _archive.CryptoType = Ez2OnArchive.CRYPTO_TYPE_NONE;
             _ez2OnArchiveTabControl.Encryption = "None";
+            _crypoKey = null;
             _cmdKeyAdd.RaiseCanExecuteChanged();
             _cmdKeyDelete.RaiseCanExecuteChanged();
             _cmdAdd.RaiseCanExecuteChanged();
@@ -641,9 +645,56 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
 
         private void ListViewItems_Drop(object sender, DragEventArgs e)
         {
+            Ez2OnArchiveCrypto activeCrypto = null;
+            if (_archive.CryptoType != Ez2OnArchive.CRYPTO_TYPE_NONE)
+            {
+                activeCrypto = GetArchiveCrypto(_archive.CryptoType);
+                if (activeCrypto == null)
+                {
+                    MessageBox.Show($"Can not add file. Archive is encrypted with an unknown encryption", "StepFile", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                if (!activeCrypto.CanEncrypt)
+                {
+                    MessageBox.Show($"Can not add file. Encryption is not supported for '{activeCrypto.Name}'", "StepFile", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+            }
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string[] dropped = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (string drop in dropped)
+                {
+                    if (File.Exists(drop))
+                    {
+                        FileInfo file = App.CreateFileInfo(drop);
+                        if (file == null)
+                        {
+                            continue;
+                        }
+                        Ez2OnArchiveTabFile tabFile = CreateFile(file, activeCrypto, _currentFolder);
+                        if (tabFile == null)
+                        {
+                            continue;
+                        }
+                        _archive.Files.Add(tabFile.File);
+                        _currentFolder.AddFile(tabFile);
+                        _ez2OnArchiveTabControl.Items.Add(tabFile);
+                    }
+                    else if (Directory.Exists(drop))
+                    {
+                        DirectoryInfo directory = App.CreateDirectoryInfo(drop);
+                        Ez2OnArchiveTabFolder tabFolder = CreateDirectory(directory, activeCrypto, _currentFolder);
+                        _currentFolder.Folders.Add(tabFolder);
+                        _currentFolder.Folder.Folders.Add(tabFolder.Folder);
+                        _ez2OnArchiveTabControl.Items.Add(tabFolder);
+                        AddToArchive(tabFolder);
+                    }
+                    else
+                    {
+                        _logger.Error($"Can not handle dropped: {drop}");
+                    }
+                }
             }
         }
 
@@ -706,5 +757,77 @@ namespace Arrowgene.StepFile.Control.Ez2On.Archive
             return null;
         }
 
+        private Ez2OnArchiveTabFolder CreateDirectory(DirectoryInfo directoryInfo, Ez2OnArchiveCrypto activeCrypto, Ez2OnArchiveTabFolder parentTabFolder)
+        {
+            Ez2OnArchiveFolder folder = new Ez2OnArchiveFolder();
+            folder.Name = directoryInfo.Name;
+            folder.DirectoryPath = parentTabFolder.FullPath;
+            folder.FullPath = parentTabFolder.FullPath + directoryInfo.Name;
+            Ez2OnArchiveTabFolder tabFolder = new Ez2OnArchiveTabFolder(folder);
+            tabFolder.Parent = parentTabFolder;
+            foreach (FileInfo fileInfo in directoryInfo.GetFiles("*", SearchOption.TopDirectoryOnly))
+            {
+                Ez2OnArchiveTabFile tabFile = CreateFile(fileInfo, activeCrypto, tabFolder);
+                if (tabFile == null)
+                {
+                    continue;
+                }
+                tabFolder.AddFile(tabFile);
+            }
+            foreach (DirectoryInfo subFolder in directoryInfo.GetDirectories("*", SearchOption.TopDirectoryOnly))
+            {
+                Ez2OnArchiveTabFolder subTabFolder = CreateDirectory(subFolder, activeCrypto, tabFolder);
+                subTabFolder.Parent = tabFolder;
+                tabFolder.Folders.Add(subTabFolder);
+                tabFolder.Folder.Folders.Add(subTabFolder.Folder);
+            }
+            return tabFolder;
+        }
+
+        private Ez2OnArchiveTabFile CreateFile(FileInfo fileInfo, Ez2OnArchiveCrypto activeCrypto, Ez2OnArchiveTabFolder tabFolder)
+        {
+            byte[] file = Utils.ReadFile(fileInfo.FullName);
+            Ez2OnArchiveFile archiveFile = new Ez2OnArchiveFile();
+            archiveFile.Data = file;
+            archiveFile.Name = fileInfo.Name;
+            archiveFile.Length = file.Length;
+            archiveFile.Extension = fileInfo.Extension;
+            archiveFile.DirectoryPath = tabFolder.FullPath;
+            archiveFile.FullPath = tabFolder.FullPath + fileInfo.Name;
+            if (activeCrypto != null)
+            {
+                if (activeCrypto.CryptoPlugin is ICryptoPlugin)
+                {
+                    ICryptoPlugin selectedICryptoPlugin = (ICryptoPlugin)activeCrypto.CryptoPlugin;
+                    if (_crypoKey == null)
+                    {
+                        FileInfo selectedKey = new SelectFileBuilder()
+                            .Filter("Ez2On Archive Key file(*.key) | *.key")
+                            .SelectSingle();
+                        if (selectedKey == null)
+                        {
+                            return null;
+                        }
+                        _crypoKey = Utils.ReadFile(selectedKey.FullName);
+                    }
+                    selectedICryptoPlugin.SetKey(_crypoKey);
+                }
+                activeCrypto.Encrypt(archiveFile);
+            }
+            Ez2OnArchiveTabFile tabFile = new Ez2OnArchiveTabFile(archiveFile);
+            return tabFile;
+        }
+
+        private void AddToArchive(Ez2OnArchiveTabFolder parentTabFolder)
+        {
+            foreach (Ez2OnArchiveTabFile tabFile in parentTabFolder.Files)
+            {
+                _archive.Files.Add(tabFile.File);
+            }
+            foreach (Ez2OnArchiveTabFolder tabFolder in parentTabFolder.Folders)
+            {
+                AddToArchive(tabFolder);
+            }
+        }
     }
 }

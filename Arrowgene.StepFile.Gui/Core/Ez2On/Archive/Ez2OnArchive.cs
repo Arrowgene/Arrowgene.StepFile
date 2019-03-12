@@ -16,12 +16,10 @@ namespace Arrowgene.StepFile.Core.Ez2On.Archive
         public int FolderCount { get; set; }
         public int IndexOffset { get; set; }
         public List<Ez2OnArchiveFile> Files { get; }
-        public List<Ez2OnArchiveFolder> Folders { get; }
         public Ez2OnArchiveFolder RootFolder { get; set; }
 
         public Ez2OnArchive()
         {
-            Folders = new List<Ez2OnArchiveFolder>();
             Files = new List<Ez2OnArchiveFile>();
             RootFolder = new Ez2OnArchiveFolder();
             Created = DateTime.Now;
