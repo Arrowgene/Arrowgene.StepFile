@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel;
 using System.Windows.Controls;
 
-namespace Arrowgene.StepFile.Gui.Control.Ez2On.DotBin
+namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 {
-    public partial class Ez2OnDotBinTabProperty : UserControl, INotifyPropertyChanged
+    public partial class Ez2OnBinFileTabProperty : UserControl, INotifyPropertyChanged
     {
         private string _property;
         private string _value;
 
-        public Ez2OnDotBinTabProperty()
+        public Ez2OnBinFileTabProperty()
         {
             _property = null;
             _value = null;

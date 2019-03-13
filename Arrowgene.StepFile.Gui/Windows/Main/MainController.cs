@@ -1,5 +1,5 @@
 ﻿using Arrowgene.StepFile.Gui.Control.Ez2On.Archive;
-using Arrowgene.StepFile.Gui.Control.Ez2On.DotBin;
+using Arrowgene.StepFile.Gui.Control.Ez2On.BinFile;
 using Arrowgene.StepFile.Gui.Control.Ez2On.StepFile;
 using Arrowgene.StepFile.Gui.Control.LogTab;
 using Arrowgene.StepFile.Gui.Control.SettingTab;
@@ -43,7 +43,7 @@ namespace Arrowgene.StepFile.Gui.Windows.Main
 
         private void OpenDotBinTab()
         {
-            _tabManager.OpenTab(new Ez2OnDotBinTabController());
+            _tabManager.OpenTab(new Ez2OnBinFileTabController());
         }
 
     }

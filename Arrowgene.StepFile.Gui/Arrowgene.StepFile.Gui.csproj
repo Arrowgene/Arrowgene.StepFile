@@ -87,14 +87,14 @@
     </Compile>
     <Compile Include="Control\Ez2On\Archive\Ez2OnArchiveTabFile.cs" />
     <Compile Include="Control\Ez2On\Archive\Ez2OnArchiveTabFolder.cs" />
-    <Compile Include="Control\Ez2On\DotBin\Ez2OnDotBinTabProperty.xaml.cs">
-      <DependentUpon>Ez2OnDotBinTabProperty.xaml</DependentUpon>
+    <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabProperty.xaml.cs">
+      <DependentUpon>Ez2OnBinFileTabProperty.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\Ez2On\DotBin\Ez2OnDotBinTabItem.cs" />
-    <Compile Include="Control\Ez2On\DotBin\Ez2OnDotBinTabControl.xaml.cs">
-      <DependentUpon>Ez2OnDotBinTabControl.xaml</DependentUpon>
+    <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabItem.cs" />
+    <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabControl.xaml.cs">
+      <DependentUpon>Ez2OnBinFileTabControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\Ez2On\DotBin\Ez2OnDotBinTabController.cs" />
+    <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabController.cs" />
     <Compile Include="Control\Ez2On\StepFile\Ez2OnStepFileTabControl.xaml.cs">
       <DependentUpon>Ez2OnStepFileTabControl.xaml</DependentUpon>
     </Compile>
@@ -113,13 +113,14 @@
     <Compile Include="Core\Ez2On\Archive\Ez2OnArchiveCryptoDetector.cs" />
     <Compile Include="Core\Ez2On\Archive\Ez2OnArchiveFolder.cs" />
     <Compile Include="Core\Ez2On\Archive\Ez2OnCrypto\Ez2OnCryptoPlugin.cs" />
-    <Compile Include="Core\Ez2On\DotBin\BinFile.cs" />
-    <Compile Include="Core\Ez2On\DotBin\IdFilterData.cs" />
-    <Compile Include="Core\Ez2On\DotBin\ItemDataBin.cs" />
-    <Compile Include="Core\Ez2On\DotBin\ItemDataBinR14.cs" />
-    <Compile Include="Core\Ez2On\DotBin\MusicDataBin.cs" />
-    <Compile Include="Core\Ez2On\DotBin\MusicDataBinR14.cs" />
-    <Compile Include="Core\Ez2On\DotBin\QuestDataBin.cs" />
+    <Compile Include="Core\Ez2On\BinFile\Ez2OnBinFile.cs" />
+    <Compile Include="Core\Ez2On\BinFile\Ez2OnBinFileIO.cs" />
+    <Compile Include="Core\Ez2On\BinFile\Ez2OnRadiomixBinFile.cs" />
+    <Compile Include="Core\Ez2On\BinFile\Ez2OnCardBinFile.cs" />
+    <Compile Include="Core\Ez2On\BinFile\Ez2OnIdFilterBinFile.cs" />
+    <Compile Include="Core\Ez2On\BinFile\Ez2OnItemBinFile.cs" />
+    <Compile Include="Core\Ez2On\BinFile\Ez2OnMusicBinFile.cs" />
+    <Compile Include="Core\Ez2On\BinFile\Ez2OnQuestBinFile.cs" />
     <Compile Include="Control\ArchiveTab\ArchiveTabItem.cs" />
     <Compile Include="Core\Ez2On\Archive\Ez2OnCrypto\Ez2OnCryptoExtension.cs" />
     <Compile Include="Core\Ez2On\Archive\Ez2OnCrypto\Ez2OnCryptoKey.cs" />
@@ -252,11 +253,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Control\Ez2On\DotBin\Ez2OnDotBinTabProperty.xaml">
+    <Page Include="Control\Ez2On\BinFile\Ez2OnBinFileTabProperty.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Control\Ez2On\DotBin\Ez2OnDotBinTabControl.xaml">
+    <Page Include="Control\Ez2On\BinFile\Ez2OnBinFileTabControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

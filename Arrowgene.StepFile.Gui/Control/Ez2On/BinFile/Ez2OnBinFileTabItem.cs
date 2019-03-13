@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using Arrowgene.StepFile.Gui.Core.Ez2On.Model;
 
-namespace Arrowgene.StepFile.Gui.Control.Ez2On.DotBin
+namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 {
-    public class Ez2OnDotBinTabItem
+    public class Ez2OnBinFileTabItem
     {
 
-        public List<Ez2OnDotBinTabProperty> Properties { get; }
+        public List<UIElement> Properties { get; }
 
-        public Ez2OnDotBinTabItem()
+        public Ez2OnBinFileTabItem()
         {
-            Properties = new List<Ez2OnDotBinTabProperty>();
+            Properties = new List<UIElement>();
         }
 
-        public Ez2OnDotBinTabItem(Item item) : this()
+        public Ez2OnBinFileTabItem(Item item) : this()
         {
             AddProperty("Name", item.Name);
             AddProperty("Image", item.Image);
@@ -22,7 +23,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.DotBin
 
         private void AddProperty(string property, string value)
         {
-            Properties.Add(new Ez2OnDotBinTabProperty()
+            Properties.Add(new Ez2OnBinFileTabProperty()
             {
                 Property = property,
                 Value = value
