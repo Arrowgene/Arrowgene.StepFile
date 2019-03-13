@@ -1,8 +1,8 @@
-﻿<archiveTab:ArchiveTabUserControl x:Class="Arrowgene.StepFile.Control.Ez2On.Archive.Ez2OnArchiveTabControl"
+﻿<archiveTab:ArchiveTabUserControl x:Class="Arrowgene.StepFile.Gui.Control.Ez2On.Archive.Ez2OnArchiveTabControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:archiveTab="clr-namespace:Arrowgene.StepFile.Control.ArchiveTab"
-             xmlns:dynamicGridView="clr-namespace:Arrowgene.StepFile.Core.DynamicGridView"
+             xmlns:archiveTab="clr-namespace:Arrowgene.StepFile.Gui.Control.ArchiveTab"
+             xmlns:dynamicGridView="clr-namespace:Arrowgene.StepFile.Gui.Core.DynamicGridView"
             >
     <archiveTab:ArchiveTabUserControl.Resources>
         <ResourceDictionary>

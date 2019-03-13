@@ -1,9 +1,9 @@
 ﻿using Arrowgene.Services.Logging;
-using Arrowgene.StepFile.Control.Tab;
-using Arrowgene.StepFile.Core;
-using Arrowgene.StepFile.Core.DynamicGridView;
+using Arrowgene.StepFile.Gui.Control.Tab;
+using Arrowgene.StepFile.Gui.Core;
+using Arrowgene.StepFile.Gui.Core.DynamicGridView;
 
-namespace Arrowgene.StepFile.Control.LogTab
+namespace Arrowgene.StepFile.Gui.Control.LogTab
 {
     public class LogTabController : TabController
     {

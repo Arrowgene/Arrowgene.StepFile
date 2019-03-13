@@ -1,10 +1,10 @@
-﻿using Arrowgene.StepFile.Control.ArchiveTab;
-using Arrowgene.StepFile.Core.Ez2On.Archive;
+﻿using Arrowgene.StepFile.Gui.Control.ArchiveTab;
+using Arrowgene.StepFile.Gui.Core.Ez2On.Archive;
 using System;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Arrowgene.StepFile.Control.Ez2On.Archive
+namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
 {
     public partial class Ez2OnArchiveTabControl : ArchiveTabUserControl
     {

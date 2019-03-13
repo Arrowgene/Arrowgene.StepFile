@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Arrowgene.StepFile.Windows.SelectOption
+namespace Arrowgene.StepFile.Gui.Windows.SelectOption
 {
     public partial class SelectOptionWindow : Window
     {

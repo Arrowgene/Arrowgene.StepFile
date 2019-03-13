@@ -1,6 +1,6 @@
 using System;
 
-namespace Arrowgene.StepFile.Core.Asset.Ez2On.Model
+namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
 {
     [Serializable]
     public enum SongCategoryType

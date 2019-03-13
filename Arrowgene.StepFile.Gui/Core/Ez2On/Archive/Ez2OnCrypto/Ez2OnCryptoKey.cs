@@ -1,4 +1,4 @@
-﻿namespace Arrowgene.StepFile.Core.Ez2On.Archive.Ez2OnCrypto
+﻿namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive.Ez2OnCrypto
 {
     /// <summary>
     /// Repository for all keys.

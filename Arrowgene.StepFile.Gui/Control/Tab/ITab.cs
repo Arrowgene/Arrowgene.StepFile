@@ -1,4 +1,4 @@
-﻿namespace Arrowgene.StepFile.Control.Tab
+﻿namespace Arrowgene.StepFile.Gui.Control.Tab
 {
     public interface ITab
     {

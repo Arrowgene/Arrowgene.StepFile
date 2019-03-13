@@ -1,4 +1,4 @@
-﻿namespace Arrowgene.StepFile.Core.DynamicGridView
+﻿namespace Arrowgene.StepFile.Gui.Core.DynamicGridView
 {
     public class DynamicGridViewColumn
     {

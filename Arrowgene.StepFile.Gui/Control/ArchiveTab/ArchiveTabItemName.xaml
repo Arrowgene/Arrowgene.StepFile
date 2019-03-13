@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Arrowgene.StepFile.Control.ArchiveTab.ArchiveTabItemName"
+﻿<UserControl x:Class="Arrowgene.StepFile.Gui.Control.ArchiveTab.ArchiveTabItemName"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <UserControl.Resources>

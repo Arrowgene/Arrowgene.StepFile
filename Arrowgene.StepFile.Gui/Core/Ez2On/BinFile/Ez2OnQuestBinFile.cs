@@ -1,9 +1,9 @@
 ﻿using Arrowgene.Services.Buffers;
-using Arrowgene.StepFile.Core.Asset.Ez2On.Model;
+using Arrowgene.StepFile.Gui.Core.Ez2On.Model;
 
-namespace Arrowgene.StepFile.Core.Asset.Ez2On.DotBin
+namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
 {
-    public class QuestDataBin : BinFile<Quest>
+    public class Ez2OnQuestBinFile : Ez2OnBinFile<Quest>
     {
         public override string Header => "M_QUEST";
 

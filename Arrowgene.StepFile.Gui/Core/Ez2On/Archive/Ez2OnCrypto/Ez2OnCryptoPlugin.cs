@@ -2,7 +2,7 @@
 using Arrowgene.StepFile.Plugin;
 using System;
 
-namespace Arrowgene.StepFile.Core.Ez2On.Archive.Ez2OnCrypto
+namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive.Ez2OnCrypto
 {
     public class Ez2OnCryptoPlugin : IEz2OnArchiveCryptoPlugin
     {

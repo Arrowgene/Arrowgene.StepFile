@@ -1,9 +1,8 @@
-﻿using Arrowgene.Services.Logging;
-using Arrowgene.StepFile.Control.Tab;
-using Arrowgene.StepFile.Core;
+﻿using Arrowgene.StepFile.Gui.Control.Tab;
+using Arrowgene.StepFile.Gui.Core;
 using System.IO;
 
-namespace Arrowgene.StepFile.Control.Ez2On.StepFile
+namespace Arrowgene.StepFile.Gui.Control.Ez2On.StepFile
 {
     public class Ez2OnStepFileTabController : TabController
     {

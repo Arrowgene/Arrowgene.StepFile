@@ -1,6 +1,6 @@
-﻿using Arrowgene.StepFile.Control.Tab;
+﻿using Arrowgene.StepFile.Gui.Control.Tab;
 
-namespace Arrowgene.StepFile.Control.SettingTab
+namespace Arrowgene.StepFile.Gui.Control.SettingTab
 {
     public partial class SettingTabControl : TabUserControl
     {

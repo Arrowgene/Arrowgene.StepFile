@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Arrowgene.StepFile.Core
+namespace Arrowgene.StepFile.Gui.Core
 {
     public class SelectFileBuilder
     {

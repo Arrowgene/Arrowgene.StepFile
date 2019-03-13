@@ -1,11 +1,11 @@
-﻿using Arrowgene.StepFile.Control.Tab;
-using Arrowgene.StepFile.Core.DynamicGridView;
+﻿using Arrowgene.StepFile.Gui.Control.Tab;
+using Arrowgene.StepFile.Gui.Core.DynamicGridView;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Arrowgene.StepFile.Control.LogTab
+namespace Arrowgene.StepFile.Gui.Control.LogTab
 {
     public partial class LogTabControl : TabUserControl
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Arrowgene.StepFile.Core
+namespace Arrowgene.StepFile.Gui.Core
 {
     public class CommandHandler : ICommand
     {

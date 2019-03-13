@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Controls;
 
-namespace Arrowgene.StepFile.Control.ArchiveTab
+namespace Arrowgene.StepFile.Gui.Control.ArchiveTab
 {
     public partial class ArchiveTabItemName : UserControl, INotifyPropertyChanged
     {

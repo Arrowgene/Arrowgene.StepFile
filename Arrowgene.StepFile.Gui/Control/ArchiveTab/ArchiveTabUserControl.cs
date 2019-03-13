@@ -1,11 +1,10 @@
-﻿using Arrowgene.StepFile.Control.Tab;
-using Arrowgene.StepFile.Core.DynamicGridView;
+﻿using Arrowgene.StepFile.Gui.Control.Tab;
+using Arrowgene.StepFile.Gui.Core.DynamicGridView;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Windows.Input;
 
-namespace Arrowgene.StepFile.Control.ArchiveTab
+namespace Arrowgene.StepFile.Gui.Control.ArchiveTab
 {
     public abstract class ArchiveTabUserControl : TabUserControl
     {

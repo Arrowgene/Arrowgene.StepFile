@@ -1,4 +1,4 @@
-﻿namespace Arrowgene.StepFile.Windows.SelectOption
+﻿namespace Arrowgene.StepFile.Gui.Windows.SelectOption
 {
     public class SelectOptionBuilder<T>
     {

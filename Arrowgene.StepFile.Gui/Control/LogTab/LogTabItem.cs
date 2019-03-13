@@ -1,8 +1,8 @@
 ﻿using Arrowgene.Services.Logging;
-using Arrowgene.StepFile.Core.DynamicGridView;
+using Arrowgene.StepFile.Gui.Core.DynamicGridView;
 using System;
 
-namespace Arrowgene.StepFile.Control.LogTab
+namespace Arrowgene.StepFile.Gui.Control.LogTab
 {
     public class LogTabItem : DynamicGridViewItem
     {

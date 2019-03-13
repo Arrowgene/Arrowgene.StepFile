@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Arrowgene.StepFile.Core.Ez2On.Archive
+namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive
 {
     public class Ez2OnArchiveIOEventArgs : EventArgs
     {

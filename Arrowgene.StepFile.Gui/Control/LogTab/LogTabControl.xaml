@@ -1,8 +1,8 @@
-﻿<tab:TabUserControl x:Class="Arrowgene.StepFile.Control.LogTab.LogTabControl"
+﻿<tab:TabUserControl x:Class="Arrowgene.StepFile.Gui.Control.LogTab.LogTabControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:tab="clr-namespace:Arrowgene.StepFile.Control.Tab"
-             xmlns:dynamicGridView="clr-namespace:Arrowgene.StepFile.Core.DynamicGridView"
+             xmlns:tab="clr-namespace:Arrowgene.StepFile.Gui.Control.Tab"
+             xmlns:dynamicGridView="clr-namespace:Arrowgene.StepFile.Gui.Core.DynamicGridView"
             >
     <tab:TabUserControl.Resources>
         <ResourceDictionary>

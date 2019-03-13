@@ -1,7 +1,7 @@
-﻿using Arrowgene.StepFile.Control.Tab;
+﻿using Arrowgene.StepFile.Gui.Control.Tab;
 using System.Windows.Input;
 
-namespace Arrowgene.StepFile.Control.Ez2On.DotBin
+namespace Arrowgene.StepFile.Gui.Control.Ez2On.DotBin
 {
     public partial class Ez2OnDotBinTabControl : TabUserControl
     {

@@ -1,8 +1,8 @@
-﻿using Arrowgene.StepFile.Control.ArchiveTab;
-using Arrowgene.StepFile.Core.Ez2On.Archive;
+﻿using Arrowgene.StepFile.Gui.Control.ArchiveTab;
+using Arrowgene.StepFile.Gui.Core.Ez2On.Archive;
 using System.Collections.ObjectModel;
 
-namespace Arrowgene.StepFile.Control.Ez2On.Archive
+namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
 {
     public class Ez2OnArchiveTabFolder : ArchiveTabItem
     {

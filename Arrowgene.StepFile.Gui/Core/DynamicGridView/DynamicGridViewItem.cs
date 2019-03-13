@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Arrowgene.StepFile.Core.DynamicGridView
+namespace Arrowgene.StepFile.Gui.Core.DynamicGridView
 {
     public abstract class DynamicGridViewItem : INotifyPropertyChanged
     {

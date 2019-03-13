@@ -1,10 +1,11 @@
 ﻿using Arrowgene.Services.Extra;
-using Arrowgene.StepFile.Control.ArchiveTab;
-using Arrowgene.StepFile.Core;
-using Arrowgene.StepFile.Core.DynamicGridView;
-using Arrowgene.StepFile.Core.Ez2On.Archive;
+using Arrowgene.StepFile.Gui.Control.ArchiveTab;
+using Arrowgene.StepFile.Gui.Core;
+using Arrowgene.StepFile.Gui.Core.DynamicGridView;
+using Arrowgene.StepFile.Gui.Core.Ez2On.Archive;
+using Arrowgene.StepFile.Gui.Plugin;
+using Arrowgene.StepFile.Gui.Windows.SelectOption;
 using Arrowgene.StepFile.Plugin;
-using Arrowgene.StepFile.Windows.SelectOption;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Arrowgene.StepFile.Control.Ez2On.Archive
+namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
 {
     /// <summary>
     /// 2) File Preview

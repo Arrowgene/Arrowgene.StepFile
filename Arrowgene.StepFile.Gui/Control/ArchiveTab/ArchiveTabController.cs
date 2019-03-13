@@ -1,6 +1,6 @@
-﻿using Arrowgene.StepFile.Control.Tab;
+﻿using Arrowgene.StepFile.Gui.Control.Tab;
 
-namespace Arrowgene.StepFile.Control.ArchiveTab
+namespace Arrowgene.StepFile.Gui.Control.ArchiveTab
 {
     public abstract class ArchiveTabController : TabController
     {

@@ -1,6 +1,6 @@
-﻿using Arrowgene.StepFile.Core.DynamicGridView;
+﻿using Arrowgene.StepFile.Gui.Core.DynamicGridView;
 
-namespace Arrowgene.StepFile.Control.ArchiveTab
+namespace Arrowgene.StepFile.Gui.Control.ArchiveTab
 {
     public class ArchiveTabItem : DynamicGridViewItem
     {

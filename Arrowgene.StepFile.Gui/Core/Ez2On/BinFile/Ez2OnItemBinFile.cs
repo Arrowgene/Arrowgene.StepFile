@@ -1,9 +1,9 @@
 ﻿using Arrowgene.Services.Buffers;
-using Arrowgene.StepFile.Core.Asset.Ez2On.Model;
+using Arrowgene.StepFile.Gui.Core.Ez2On.Model;
 
-namespace Arrowgene.StepFile.Core.Asset.Ez2On.DotBin
+namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
 {
-    public class ItemDataBinR14 : BinFile<Item>
+    public class Ez2OnItemBinFile : Ez2OnBinFile<Item>
     {
         public override string Header => "M_ITEM";
 

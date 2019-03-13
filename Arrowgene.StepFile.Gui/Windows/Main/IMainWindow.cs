@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Arrowgene.StepFile.Windows.Main
+namespace Arrowgene.StepFile.Gui.Windows.Main
 {
     public interface IMainWindow
     {
@@ -12,6 +12,7 @@ namespace Arrowgene.StepFile.Windows.Main
         ICommand Ez2OnStepFileCommand { get; set; }
         ICommand LogTabCommand { get; set; }
         ICommand SettingTabCommand { get; set; }
+        ICommand Ez2OnDotBinCommand { get; set; }
         int ProgressBarValue { get; set; }
         string ProgressBarText { get; set; }
     }

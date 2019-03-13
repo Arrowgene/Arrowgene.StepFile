@@ -1,11 +1,12 @@
-﻿using Arrowgene.StepFile.Control.Ez2On.Archive;
-using Arrowgene.StepFile.Control.Ez2On.StepFile;
-using Arrowgene.StepFile.Control.LogTab;
-using Arrowgene.StepFile.Control.SettingTab;
-using Arrowgene.StepFile.Control.Tab;
-using Arrowgene.StepFile.Core;
+﻿using Arrowgene.StepFile.Gui.Control.Ez2On.Archive;
+using Arrowgene.StepFile.Gui.Control.Ez2On.DotBin;
+using Arrowgene.StepFile.Gui.Control.Ez2On.StepFile;
+using Arrowgene.StepFile.Gui.Control.LogTab;
+using Arrowgene.StepFile.Gui.Control.SettingTab;
+using Arrowgene.StepFile.Gui.Control.Tab;
+using Arrowgene.StepFile.Gui.Core;
 
-namespace Arrowgene.StepFile.Windows.Main
+namespace Arrowgene.StepFile.Gui.Windows.Main
 {
     public class MainController
     {
@@ -14,6 +15,7 @@ namespace Arrowgene.StepFile.Windows.Main
         public MainController(IMainWindow mainWindow)
         {
             mainWindow.Ez2OnArchiveCommand = new CommandHandler(OpenEz2OnArchiveTab, true);
+            mainWindow.Ez2OnDotBinCommand = new CommandHandler(OpenDotBinTab, true);
             mainWindow.Ez2OnStepFileCommand = new CommandHandler(OpenEz2OnStepFileTab, true);
             mainWindow.LogTabCommand = new CommandHandler(OpenLogTab, true);
             mainWindow.SettingTabCommand = new CommandHandler(OpenSettingTab, true);
@@ -37,6 +39,11 @@ namespace Arrowgene.StepFile.Windows.Main
         private void OpenSettingTab()
         {
             _tabManager.OpenTab(new SettingTabController());
+        }
+
+        private void OpenDotBinTab()
+        {
+            _tabManager.OpenTab(new Ez2OnDotBinTabController());
         }
 
     }

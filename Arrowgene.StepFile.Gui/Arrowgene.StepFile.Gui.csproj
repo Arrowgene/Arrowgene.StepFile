@@ -7,8 +7,8 @@
     <ProjectGuid>{1407C236-BE6D-4B2D-B1B8-6D02A6BC55C6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Arrowgene.StepFile</RootNamespace>
-    <AssemblyName>Arrowgene.StepFile</AssemblyName>
+    <RootNamespace>Arrowgene.StepFile.Gui</RootNamespace>
+    <AssemblyName>Arrowgene.StepFile.Gui</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -52,7 +52,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Arrowgene.StepFile.App</StartupObject>
+    <StartupObject>Arrowgene.StepFile.Gui.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -87,6 +87,14 @@
     </Compile>
     <Compile Include="Control\Ez2On\Archive\Ez2OnArchiveTabFile.cs" />
     <Compile Include="Control\Ez2On\Archive\Ez2OnArchiveTabFolder.cs" />
+    <Compile Include="Control\Ez2On\DotBin\Ez2OnDotBinTabProperty.xaml.cs">
+      <DependentUpon>Ez2OnDotBinTabProperty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Ez2On\DotBin\Ez2OnDotBinTabItem.cs" />
+    <Compile Include="Control\Ez2On\DotBin\Ez2OnDotBinTabControl.xaml.cs">
+      <DependentUpon>Ez2OnDotBinTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Ez2On\DotBin\Ez2OnDotBinTabController.cs" />
     <Compile Include="Control\Ez2On\StepFile\Ez2OnStepFileTabControl.xaml.cs">
       <DependentUpon>Ez2OnStepFileTabControl.xaml</DependentUpon>
     </Compile>
@@ -244,6 +252,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Control\Ez2On\DotBin\Ez2OnDotBinTabProperty.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\Ez2On\DotBin\Ez2OnDotBinTabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Control\Ez2On\StepFile\Ez2OnStepFileTabControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -331,6 +347,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Resource Include="icons\VS2017\Media.png" />
+    <Resource Include="icons\VS2017\BinaryFile.png" />
     <Resource Include="icons\PastelSVG\page-delete.png" />
     <Resource Include="icons\PastelSVG\page-add.png" />
     <Resource Include="icons\PastelSVG\folder-add.png" />

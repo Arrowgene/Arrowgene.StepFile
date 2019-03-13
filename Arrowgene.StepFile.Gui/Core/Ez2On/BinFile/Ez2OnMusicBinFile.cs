@@ -1,10 +1,10 @@
 ﻿using System;
 using Arrowgene.Services.Buffers;
-using Arrowgene.StepFile.Core.Asset.Ez2On.Model;
+using Arrowgene.StepFile.Gui.Core.Ez2On.Model;
 
-namespace Arrowgene.StepFile.Core.Asset.Ez2On.DotBin
+namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
 {
-    public class MusicDataBin : BinFile<Song>
+    public class Ez2OnMusicBinFile : Ez2OnBinFile<Song>
     {
         public override string Header => "M_MUSIC";
 
@@ -12,6 +12,9 @@ namespace Arrowgene.StepFile.Core.Asset.Ez2On.DotBin
         {
             Song song = new Song();
             song.Id = buffer.ReadInt32();
+
+            buffer.ReadInt32();
+
             song.Name = ReadString(buffer);
             song.Category = GetSongCategory(ReadString(buffer));
             song.Duration = ReadString(buffer);
@@ -19,7 +22,7 @@ namespace Arrowgene.StepFile.Core.Asset.Ez2On.DotBin
             song.FileName = ReadString(buffer);
 
             song.d1 = buffer.ReadInt32();
-            
+
             song.d2 = buffer.ReadInt32();
             song.RubyEzExr = buffer.ReadInt32();
             song.d4 = buffer.ReadInt32();
@@ -91,6 +94,22 @@ namespace Arrowgene.StepFile.Core.Asset.Ez2On.DotBin
             song.d59 = buffer.ReadInt32();
             song.ClubShdNotes = buffer.ReadInt32();
             song.d61 = buffer.ReadInt32();
+
+            buffer.ReadInt32();
+            buffer.ReadInt32();
+            buffer.ReadInt32();
+            buffer.ReadInt32();
+            buffer.ReadInt32();
+            
+            buffer.ReadInt32();
+            buffer.ReadInt32();
+            buffer.ReadInt32();
+            buffer.ReadInt32();
+            buffer.ReadInt32();
+            
+            buffer.ReadInt32();
+            buffer.ReadInt32();
+            buffer.ReadInt32();
 
             return song;
         }
@@ -172,17 +191,18 @@ namespace Arrowgene.StepFile.Core.Asset.Ez2On.DotBin
             {
                 return SongCategoryType.None;
             }
+
             if (!Enum.IsDefined(typeof(SongCategoryType), categoryNum))
             {
                 return SongCategoryType.None;
             }
-            return (SongCategoryType)categoryNum;
+
+            return (SongCategoryType) categoryNum;
         }
 
         private string GetSongCategory(SongCategoryType category)
         {
-            return ((int)category).ToString();
+            return ((int) category).ToString();
         }
-
     }
 }

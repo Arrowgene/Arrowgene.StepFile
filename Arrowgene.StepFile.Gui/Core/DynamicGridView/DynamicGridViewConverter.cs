@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Arrowgene.StepFile.Core.DynamicGridView
+namespace Arrowgene.StepFile.Gui.Core.DynamicGridView
 {
     public class DynamicGridViewConverter : IValueConverter
     {

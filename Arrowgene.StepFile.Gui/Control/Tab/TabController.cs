@@ -1,9 +1,9 @@
 ﻿using Arrowgene.Services.Logging;
-using Arrowgene.StepFile.Core;
+using Arrowgene.StepFile.Gui.Core;
 using System.ComponentModel;
 using System.Windows.Input;
 
-namespace Arrowgene.StepFile.Control.Tab
+namespace Arrowgene.StepFile.Gui.Control.Tab
 {
 
     /// <summary>

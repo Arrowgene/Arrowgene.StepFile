@@ -1,7 +1,7 @@
-﻿namespace Arrowgene.StepFile
+﻿namespace Arrowgene.StepFile.Gui
 {
-    using Arrowgene.StepFile.Plugin;
-    using Arrowgene.StepFile.Windows.Main;
+    using Arrowgene.StepFile.Gui.Plugin;
+    using Arrowgene.StepFile.Gui.Windows.Main;
     using System;
     using System.IO;
     using System.Reflection;

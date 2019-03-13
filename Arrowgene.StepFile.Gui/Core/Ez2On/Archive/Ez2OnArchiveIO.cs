@@ -7,7 +7,7 @@ using Arrowgene.Services.Buffers;
 using Arrowgene.Services.Extra;
 using Arrowgene.Services.Logging;
 
-namespace Arrowgene.StepFile.Core.Ez2On.Archive
+namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive
 {
     public class Ez2OnArchiveIO
     {

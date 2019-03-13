@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Arrowgene.StepFile.Plugin;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-namespace Arrowgene.StepFile.Plugin
+namespace Arrowgene.StepFile.Gui.Plugin
 {
     public class PluginRegistry
     {

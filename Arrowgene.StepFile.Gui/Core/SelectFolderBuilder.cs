@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 
-namespace Arrowgene.StepFile.Core
+namespace Arrowgene.StepFile.Gui.Core
 {
     public class SelectFolderBuilder
     {

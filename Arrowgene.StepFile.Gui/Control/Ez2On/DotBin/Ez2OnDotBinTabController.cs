@@ -1,9 +1,8 @@
-﻿using Arrowgene.Services.Logging;
-using Arrowgene.StepFile.Control.Tab;
-using Arrowgene.StepFile.Core;
+﻿using Arrowgene.StepFile.Gui.Control.Tab;
+using Arrowgene.StepFile.Gui.Core;
 using System.IO;
 
-namespace Arrowgene.StepFile.Control.Ez2On.DotBin
+namespace Arrowgene.StepFile.Gui.Control.Ez2On.DotBin
 {
     public class Ez2OnDotBinTabController : TabController
     {
@@ -13,7 +12,7 @@ namespace Arrowgene.StepFile.Control.Ez2On.DotBin
         {
             _ez2OndotBinTabControl = TabUserControl as Ez2OnDotBinTabControl;
 
-            Header = "Ez2On StepFile";
+            Header = "Ez2On DotBin File";
 
             _ez2OndotBinTabControl.OpenCommand = new CommandHandler(Open, true);
             _ez2OndotBinTabControl.SaveCommand = new CommandHandler(Save, true);
@@ -21,12 +20,16 @@ namespace Arrowgene.StepFile.Control.Ez2On.DotBin
         private void Open()
         {
             FileInfo selected = new SelectFileBuilder()
-                .Filter("Ez2On StepFile(*.ptn) | *.ptn")
+                .Filter("Ez2On StepFile(*.bin) | *.bin")
                 .SelectSingle();
             if (selected == null)
             {
                 return;
             }
+
+
+
+
         }
 
         private void Save()
