@@ -8,12 +8,12 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
 
         public override string ReadEntry(IBuffer buffer)
         {
-            return "";
+            return ReadString(buffer);
         }
 
-        public override void WriteEntry(string str, IBuffer buffer)
+        public override void WriteEntry(string idFilter, IBuffer buffer)
         {
-            WriteString(str, buffer);
+            WriteString(idFilter, buffer);
         }
     }
 }

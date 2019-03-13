@@ -126,11 +126,13 @@
     <Compile Include="Core\Ez2On\Archive\Ez2OnCrypto\Ez2OnCryptoKey.cs" />
     <Compile Include="Core\Ez2On\Archive\Ez2OnCrypto\Ez2OnCryptoKeyState.cs" />
     <Compile Include="Core\Ez2On\Model\DifficultType.cs" />
-    <Compile Include="Core\Ez2On\Model\Item.cs" />
+    <Compile Include="Core\Ez2On\Model\Ez2OnModelRadiomix.cs" />
+    <Compile Include="Core\Ez2On\Model\Ez2OnModelCard.cs" />
+    <Compile Include="Core\Ez2On\Model\Ez2OnModelItem.cs" />
     <Compile Include="Core\Ez2On\Model\ItemType.cs" />
     <Compile Include="Core\Ez2On\Model\ModeType.cs" />
-    <Compile Include="Core\Ez2On\Model\Quest.cs" />
-    <Compile Include="Core\Ez2On\Model\Song.cs" />
+    <Compile Include="Core\Ez2On\Model\Ez2OnModelQuest.cs" />
+    <Compile Include="Core\Ez2On\Model\Ez2onModelMusic.cs" />
     <Compile Include="Core\Ez2On\Model\SongCategoryType.cs" />
     <Compile Include="Core\Format\IStepFileReader.cs" />
     <Compile Include="Core\Format\IStepFileWriter.cs" />

@@ -46,6 +46,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                     Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelCard);
                     binFileTabItems.Add(binFileTabItem);
                 }
+                Header = "Card";
             }
             else if (binFile is Ez2OnIdFilterBinFile)
             {
@@ -55,6 +56,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                     Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(idFilter);
                     binFileTabItems.Add(binFileTabItem);
                 }
+                Header = "IdFilter";
             }
             else if (binFile is Ez2OnItemBinFile)
             {
@@ -64,6 +66,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                     Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelItem);
                     binFileTabItems.Add(binFileTabItem);
                 }
+                Header = "Item";
             }
             else if (binFile is Ez2OnMusicBinFile)
             {
@@ -73,6 +76,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                     Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelMusic);
                     binFileTabItems.Add(binFileTabItem);
                 }
+                Header = "Music";
             }
             else if (binFile is Ez2OnQuestBinFile)
             {
@@ -82,6 +86,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                     Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelQuest);
                     binFileTabItems.Add(binFileTabItem);
                 }
+                Header = "Quest";
             }
             else if (binFile is Ez2OnRadiomixBinFile)
             {
@@ -91,6 +96,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                     Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelRadiomix);
                     binFileTabItems.Add(binFileTabItem);
                 }
+                Header = "Radiomix";
             }
             else
             {

@@ -29,6 +29,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
         public Ez2OnBinFileTabItem(Ez2OnModelCard modelCard) : this()
         {
             AddProperty("Id", modelCard.Id.ToString());
+            AddProperty("Text", modelCard.Text);
         }
 
         public Ez2OnBinFileTabItem(Ez2OnModelQuest modelQuest) : this()
