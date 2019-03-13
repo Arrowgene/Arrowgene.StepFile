@@ -3,7 +3,7 @@
 namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
 {
     [Serializable]
-    public class Song
+    public class Ez2onModelMusic
     {
         public string Name { get; set; }
         public string Duration { get; set; }

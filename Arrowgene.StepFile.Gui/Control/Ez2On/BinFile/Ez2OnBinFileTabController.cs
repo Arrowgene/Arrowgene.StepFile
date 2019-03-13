@@ -40,32 +40,57 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             List<Ez2OnBinFileTabItem> binFileTabItems = new List<Ez2OnBinFileTabItem>();
             if (binFile is Ez2OnCardBinFile)
             {
-
+                Ez2OnCardBinFile cardBindFile = (Ez2OnCardBinFile)binFile;
+                foreach (Ez2OnModelCard modelCard in cardBindFile.Entries)
+                {
+                    Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelCard);
+                    binFileTabItems.Add(binFileTabItem);
+                }
             }
             else if (binFile is Ez2OnIdFilterBinFile)
             {
-
+                Ez2OnIdFilterBinFile idFilterBinFile = (Ez2OnIdFilterBinFile)binFile;
+                foreach (string idFilter in idFilterBinFile.Entries)
+                {
+                    Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(idFilter);
+                    binFileTabItems.Add(binFileTabItem);
+                }
             }
             else if (binFile is Ez2OnItemBinFile)
             {
                 Ez2OnItemBinFile itemBinFile = (Ez2OnItemBinFile)binFile;
-                foreach (Item item in itemBinFile.Entries)
+                foreach (Ez2OnModelItem modelItem in itemBinFile.Entries)
                 {
-                    Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(item);
+                    Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelItem);
                     binFileTabItems.Add(binFileTabItem);
                 }
             }
             else if (binFile is Ez2OnMusicBinFile)
             {
-
+                Ez2OnMusicBinFile musicBinFile = (Ez2OnMusicBinFile)binFile;
+                foreach (Ez2onModelMusic modelMusic in musicBinFile.Entries)
+                {
+                    Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelMusic);
+                    binFileTabItems.Add(binFileTabItem);
+                }
             }
             else if (binFile is Ez2OnQuestBinFile)
             {
-
+                Ez2OnQuestBinFile questBinFile = (Ez2OnQuestBinFile)binFile;
+                foreach (Ez2OnModelQuest modelQuest in questBinFile.Entries)
+                {
+                    Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelQuest);
+                    binFileTabItems.Add(binFileTabItem);
+                }
             }
             else if (binFile is Ez2OnRadiomixBinFile)
             {
-
+                Ez2OnRadiomixBinFile radioMixBinFile = (Ez2OnRadiomixBinFile)binFile;
+                foreach (Ez2OnModelRadiomix modelRadiomix in radioMixBinFile.Entries)
+                {
+                    Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelRadiomix);
+                    binFileTabItems.Add(binFileTabItem);
+                }
             }
             else
             {

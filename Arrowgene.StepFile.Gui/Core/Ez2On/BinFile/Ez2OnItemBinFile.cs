@@ -3,13 +3,13 @@ using Arrowgene.StepFile.Gui.Core.Ez2On.Model;
 
 namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
 {
-    public class Ez2OnItemBinFile : Ez2OnBinFile<Item>
+    public class Ez2OnItemBinFile : Ez2OnBinFile<Ez2OnModelItem>
     {
         public override string Header => "M_ITEM";
 
-        public override Item ReadEntry(IBuffer buffer)
+        public override Ez2OnModelItem ReadEntry(IBuffer buffer)
         {
-            Item item = new Item();
+            Ez2OnModelItem item = new Ez2OnModelItem();
             item.Id = buffer.ReadInt32();
             item.q = buffer.ReadInt32();
             item.Type = (ItemType) buffer.ReadInt32();
@@ -42,7 +42,7 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             return item;
         }
 
-        public override void WriteEntry(Item item, IBuffer buffer)
+        public override void WriteEntry(Ez2OnModelItem item, IBuffer buffer)
         {
             buffer.WriteInt32(item.Id);
             buffer.WriteInt32(item.q);

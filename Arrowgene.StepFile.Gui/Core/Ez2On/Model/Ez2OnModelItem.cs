@@ -3,9 +3,9 @@
 namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
 {
     [Serializable]
-    public class Item
+    public class Ez2OnModelItem
     {
-        public Item()
+        public Ez2OnModelItem()
         {
             Id = -1;
         }

@@ -3,13 +3,13 @@ using Arrowgene.StepFile.Gui.Core.Ez2On.Model;
 
 namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
 {
-    public class Ez2OnQuestBinFile : Ez2OnBinFile<Quest>
+    public class Ez2OnQuestBinFile : Ez2OnBinFile<Ez2OnModelQuest>
     {
         public override string Header => "M_QUEST";
 
-        public override Quest ReadEntry(IBuffer buffer)
+        public override Ez2OnModelQuest ReadEntry(IBuffer buffer)
         {
-            Quest quest = new Quest();
+            Ez2OnModelQuest quest = new Ez2OnModelQuest();
             quest.Id = buffer.ReadInt32();
             quest.a = buffer.ReadInt32();
             quest.b = buffer.ReadInt32();
@@ -51,7 +51,7 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             return quest;
         }
 
-        public override void WriteEntry(Quest quest, IBuffer buffer)
+        public override void WriteEntry(Ez2OnModelQuest quest, IBuffer buffer)
         {
             buffer.WriteInt32(quest.Id);
             buffer.WriteInt32(quest.Id);

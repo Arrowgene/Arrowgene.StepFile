@@ -4,13 +4,13 @@ using Arrowgene.StepFile.Gui.Core.Ez2On.Model;
 
 namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
 {
-    public class Ez2OnMusicBinFile : Ez2OnBinFile<Song>
+    public class Ez2OnMusicBinFile : Ez2OnBinFile<Ez2onModelMusic>
     {
         public override string Header => "M_MUSIC";
 
-        public override Song ReadEntry(IBuffer buffer)
+        public override Ez2onModelMusic ReadEntry(IBuffer buffer)
         {
-            Song song = new Song();
+            Ez2onModelMusic song = new Ez2onModelMusic();
             song.Id = buffer.ReadInt32();
 
             buffer.ReadInt32();
@@ -114,7 +114,7 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             return song;
         }
 
-        public override void WriteEntry(Song song, IBuffer buffer)
+        public override void WriteEntry(Ez2onModelMusic song, IBuffer buffer)
         {
             buffer.WriteInt32(song.Id);
             WriteString(song.Name, buffer);

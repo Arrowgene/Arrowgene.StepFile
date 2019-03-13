@@ -3,7 +3,7 @@
 namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
 {
     [Serializable]
-    public class Quest
+    public class Ez2OnModelQuest
     {
         public int Id { get; set; }
         public int a { get; set; }

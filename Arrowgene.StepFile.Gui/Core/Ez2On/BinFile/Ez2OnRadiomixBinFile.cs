@@ -1,19 +1,20 @@
 ﻿using Arrowgene.Services.Buffers;
+using Arrowgene.StepFile.Gui.Core.Ez2On.Model;
 
 namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
 {
-    public class Ez2OnRadiomixBinFile : Ez2OnBinFile<string>
+    public class Ez2OnRadiomixBinFile : Ez2OnBinFile<Ez2OnModelRadiomix>
     {
         public override string Header => "M_RADIOMIX";
 
-        public override string ReadEntry(IBuffer buffer)
+        public override Ez2OnModelRadiomix ReadEntry(IBuffer buffer)
         {
-            return "";
+            return null;
         }
 
-        public override void WriteEntry(string str, IBuffer buffer)
+        public override void WriteEntry(Ez2OnModelRadiomix radioMix, IBuffer buffer)
         {
-            WriteString(str, buffer);
+
         }
     }
 }
