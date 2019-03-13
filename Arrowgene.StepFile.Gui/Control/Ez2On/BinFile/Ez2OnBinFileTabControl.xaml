@@ -1,10 +1,12 @@
-﻿<tab:TabUserControl x:Class=" Arrowgene.StepFile.Gui.Control.Ez2On.BinFile.Ez2OnBinFileTabControl"
+﻿<archiveTab:ArchiveTabUserControl x:Class="Arrowgene.StepFile.Gui.Control.Ez2On.BinFile.Ez2OnBinFileTabControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:tab="clr-namespace:Arrowgene.StepFile.Gui.Control.Tab"
+             xmlns:archiveTab="clr-namespace:Arrowgene.StepFile.Gui.Control.ArchiveTab"
+             xmlns:dynamicGridView="clr-namespace:Arrowgene.StepFile.Gui.Core.DynamicGridView"
             >
-    <tab:TabUserControl.Resources>
+    <archiveTab:ArchiveTabUserControl.Resources>
         <ResourceDictionary>
+            <dynamicGridView:DynamicGridViewConverter x:Key="DynamicGridViewConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../../ControlTemplate/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="../../../ControlTemplate/MenuButtonStyle.xaml"/>
@@ -19,7 +21,7 @@
                 <ResourceDictionary Source="../../../ControlTemplate/MenuImageStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </tab:TabUserControl.Resources>
+    </archiveTab:ArchiveTabUserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -36,6 +38,6 @@
                 <Image Source="pack://application:,,,/icons/PastelSVG/disk.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
         </StackPanel>
-        <ListView Grid.Row="2" x:Name="listViewItems"/>
+        <ListView Grid.Row="2" x:Name="listViewItems" ItemsSource="{Binding Items}" View="{Binding ColumnConfig, Converter={StaticResource DynamicGridViewConverter}}"/>
     </Grid>
-</tab:TabUserControl>
+</archiveTab:ArchiveTabUserControl>

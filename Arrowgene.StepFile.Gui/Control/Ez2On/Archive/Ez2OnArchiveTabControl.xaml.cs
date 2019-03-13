@@ -40,12 +40,12 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
         public string Encryption { get { return _encryption; } set { _encryption = value; OnPropertyChanged("Encryption"); } }
         public DateTime? Created { get { return _created; } set { _created = value; OnPropertyChanged("Created"); } }
 
+        public override ListView ListViewItems => listViewItems;
+
         public Ez2OnArchiveTabControl()
         {
             DataContext = this;
             InitializeComponent();
         }
-
-        public override ListView ListViewItems => listViewItems;
     }
 }

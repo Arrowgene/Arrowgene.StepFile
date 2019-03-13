@@ -35,10 +35,22 @@ namespace Arrowgene.StepFile.Gui.Control.ArchiveTab
                 _items.Add(item);
             }
         }
+        public void AddItems(params DynamicGridViewItem[] items)
+        {
+            foreach (DynamicGridViewItem item in items)
+            {
+                _items.Add(item);
+            }
+        }
 
         public void ClearItems()
         {
             _items.Clear();
+        }
+
+        public void ClearColumns()
+        {
+            _columnConfig.Columns.Clear();
         }
 
     }

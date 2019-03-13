@@ -11,15 +11,15 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
         {
             Ez2OnModelItem item = new Ez2OnModelItem();
             item.Id = buffer.ReadInt32();
-            item.q = buffer.ReadInt32();
+            item.Q = buffer.ReadInt32();
             item.Type = (ItemType) buffer.ReadInt32();
-            item.s = buffer.ReadInt32();
-            item.t = buffer.ReadInt32();
-            item.u = buffer.ReadInt32();
+            item.S = buffer.ReadInt32();
+            item.T = buffer.ReadInt32();
+            item.U = buffer.ReadInt32();
             item.Image = ReadString(buffer);
-            item.a = buffer.ReadInt32();
+            item.A = buffer.ReadInt32();
             item.Name = ReadString(buffer);
-            item.b = buffer.ReadInt32();
+            item.B = buffer.ReadInt32();
             item.Duration = buffer.ReadInt32();
             item.Coins = buffer.ReadInt32();
             item.Level = buffer.ReadInt32();
@@ -28,14 +28,14 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             item.HpPlus = buffer.ReadInt32();
             item.ResiliencePlus = buffer.ReadInt32();
             item.DefensePlus = buffer.ReadInt32();
-            item.k = buffer.ReadInt32();
-            item.l = buffer.ReadInt32();
-            item.m = buffer.ReadInt32();
-            item.n = buffer.ReadInt32();
-            item.o = buffer.ReadInt32();
-            item.v = buffer.ReadInt32();
-            item.w = buffer.ReadInt32();
-            item.x = buffer.ReadInt32();
+            item.K = buffer.ReadInt32();
+            item.L = buffer.ReadInt32();
+            item.M = buffer.ReadInt32();
+            item.N = buffer.ReadInt32();
+            item.O = buffer.ReadInt32();
+            item.V = buffer.ReadInt32();
+            item.W = buffer.ReadInt32();
+            item.X = buffer.ReadInt32();
             item.Effect = ReadString(buffer);
             return item;
         }
@@ -43,15 +43,15 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
         public override void WriteEntry(Ez2OnModelItem item, IBuffer buffer)
         {
             buffer.WriteInt32(item.Id);
-            buffer.WriteInt32(item.q);
+            buffer.WriteInt32(item.Q);
             buffer.WriteInt32((int) item.Type);
-            buffer.WriteInt32(item.s);
-            buffer.WriteInt32(item.t);
-            buffer.WriteInt32(item.u);
+            buffer.WriteInt32(item.S);
+            buffer.WriteInt32(item.T);
+            buffer.WriteInt32(item.U);
             WriteString(item.Image, buffer);
-            buffer.WriteInt32(item.a);
+            buffer.WriteInt32(item.A);
             WriteString(item.Name, buffer);
-            buffer.WriteInt32(item.b);
+            buffer.WriteInt32(item.B);
             buffer.WriteInt32(item.Duration);
             buffer.WriteInt32(item.Coins);
             buffer.WriteInt32(item.Level);
@@ -60,14 +60,14 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             buffer.WriteInt32(item.HpPlus);
             buffer.WriteInt32(item.ResiliencePlus);
             buffer.WriteInt32(item.DefensePlus);
-            buffer.WriteInt32(item.k);
-            buffer.WriteInt32(item.l);
-            buffer.WriteInt32(item.m);
-            buffer.WriteInt32(item.n);
-            buffer.WriteInt32(item.o);
-            buffer.WriteInt32(item.v);
-            buffer.WriteInt32(item.w);
-            buffer.WriteInt32(item.x);
+            buffer.WriteInt32(item.K);
+            buffer.WriteInt32(item.L);
+            buffer.WriteInt32(item.M);
+            buffer.WriteInt32(item.N);
+            buffer.WriteInt32(item.O);
+            buffer.WriteInt32(item.V);
+            buffer.WriteInt32(item.W);
+            buffer.WriteInt32(item.X);
             WriteString(item.Effect, buffer);
         }
     }

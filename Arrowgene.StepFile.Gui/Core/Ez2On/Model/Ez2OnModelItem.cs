@@ -11,9 +11,9 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
         }
 
         public string Image { get; set; }
-        public int a { get; set; }
+        public int A { get; set; }
         public string Name { get; set; }
-        public int b { get; set; }
+        public int B { get; set; }
         public int Duration { get; set; }
         public int Coins { get; set; }
         public int Level { get; set; }
@@ -22,7 +22,6 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
         /// 경험치
         /// </summary>
         public int ExpPlus { get; set; }
-
         public int CoinPlus { get; set; }
         public int HpPlus { get; set; }
 
@@ -35,23 +34,20 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
         /// 방어력
         /// </summary>
         public int DefensePlus { get; set; }
-
-        public int k { get; set; }
-        public int l { get; set; }
-        public int m { get; set; }
-        public int n { get; set; }
-        public int o { get; set; }
+        public int K { get; set; }
+        public int L { get; set; }
+        public int M { get; set; }
+        public int N { get; set; }
+        public int O { get; set; }
         public string Effect { get; set; }
         public int Id { get; set; }
-        public int q { get; set; }
+        public int Q { get; set; }
         public ItemType Type { get; set; }
-        public int s { get; set; }
-        public int t { get; set; }
-        public int u { get; set; }
-        
-        
-        public int v { get; set; }
-        public int w { get; set; }
-        public int x { get; set; }
+        public int S { get; set; }
+        public int T { get; set; }
+        public int U { get; set; }
+        public int V { get; set; }
+        public int W { get; set; }
+        public int X { get; set; }
     }
 }

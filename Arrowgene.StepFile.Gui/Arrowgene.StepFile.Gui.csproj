@@ -82,14 +82,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="BindingErrorTraceListener.cs" />
     <Compile Include="Control\ArchiveTab\ArchiveTabItemName.xaml.cs">
       <DependentUpon>ArchiveTabItemName.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\Ez2On\Archive\Ez2OnArchiveTabFile.cs" />
     <Compile Include="Control\Ez2On\Archive\Ez2OnArchiveTabFolder.cs" />
-    <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabProperty.xaml.cs">
-      <DependentUpon>Ez2OnBinFileTabProperty.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabQuest.cs" />
+    <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabRadiomix.cs" />
+    <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabMusic.cs" />
+    <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabViewItem.cs" />
+    <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabIdFilter.cs" />
     <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabItem.cs" />
     <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabControl.xaml.cs">
       <DependentUpon>Ez2OnBinFileTabControl.xaml</DependentUpon>
@@ -254,10 +257,6 @@
     <Page Include="Control\Ez2On\Archive\Ez2OnArchiveTabControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Control\Ez2On\BinFile\Ez2OnBinFileTabProperty.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Control\Ez2On\BinFile\Ez2OnBinFileTabControl.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -141,6 +141,20 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
                 return;
             }
             Ez2OnArchiveIO archiveIO = new Ez2OnArchiveIO();
+            if (selected.Extension == ".dat")
+            {
+                _archive.ArchiveType = Ez2OnArchiveType.Dat;
+            }
+            else if (selected.Extension == ".tro")
+            {
+                _archive.ArchiveType = Ez2OnArchiveType.Tro;
+            }
+            else
+            {
+                MessageBox.Show($"Can not save file. Invalid extension. Only '.tro' and '.dat' supported", "StepFile", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            _ez2OnArchiveTabControl.ArchiveType = _archive.ArchiveType;
             archiveIO.ProgressChanged += ArchiveIO_ProgressChanged;
             var task = Task.Run(() =>
             {

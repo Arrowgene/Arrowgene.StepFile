@@ -3,7 +3,7 @@ using Arrowgene.StepFile.Gui.Core.Ez2On.Model;
 
 namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 {
-    public class Ez2OnBinFileTabItem : Ez2OnBinFileTabViewItem
+    public class Ez2OnBinFileTabQuest : Ez2OnBinFileTabViewItem
     {
         private Ez2OnModelItem _modelItem;
         private TextBox _id;
@@ -62,9 +62,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
         public TextBox X { get { if (_x == null) _x = Create("X"); return _x; } }
         public TextBox Effect { get { if (_effect == null) _effect = Create("Effect"); return _effect; } }
 
-        protected override object BindingSource => _modelItem;
-
-        public Ez2OnBinFileTabItem(Ez2OnModelItem modelItem)
+        public Ez2OnBinFileTabQuest(Ez2OnModelItem modelItem)
         {
             _modelItem = modelItem;
         }

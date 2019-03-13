@@ -25,6 +25,7 @@ namespace Arrowgene.StepFile.Gui.Core.DynamicGridView
                     else
                     {
                         Binding binding = new Binding(column.ContentField);
+                        binding.FallbackValue = "No Data";
                         DataTemplate template = new DataTemplate();
                         FrameworkElementFactory feFactory = new FrameworkElementFactory(typeof(ContentControl));
                         feFactory.SetBinding(ContentControl.ContentProperty, binding);

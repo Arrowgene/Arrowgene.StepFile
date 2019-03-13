@@ -18,60 +18,60 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
         public int ClubShdNotes { get; set; }
         public SongCategoryType Category { get; set; }
         public string FileName { get; set; }
-        public int d2 { get; set; }
-        public int d1 { get; set; }
-        public int d4 { get; set; }
-        public int d6 { get; set; }
-        public int d7 { get; set; }
+        public int D2 { get; set; }
+        public int D1 { get; set; }
+        public int D4 { get; set; }
+        public int D6 { get; set; }
+        public int D7 { get; set; }
         public int RubyNmExr { get; set; }
-        public int d9 { get; set; }
+        public int D9 { get; set; }
         public int RubyNmNotes { get; set; }
-        public int d11 { get; set; }
-        public int d12 { get; set; }
+        public int D11 { get; set; }
+        public int D12 { get; set; }
         public int RubyHdExr { get; set; }
-        public int d14 { get; set; }
+        public int D14 { get; set; }
         public int RubyHdNotes { get; set; }
-        public int d16 { get; set; }
-        public int d17 { get; set; }
-        public int d19 { get; set; }
-        public int d21 { get; set; }
-        public int d22 { get; set; }
+        public int D16 { get; set; }
+        public int D17 { get; set; }
+        public int D19 { get; set; }
+        public int D21 { get; set; }
+        public int D22 { get; set; }
         public int StreetEzExr { get; set; }
-        public int d24 { get; set; }
+        public int D24 { get; set; }
         public int StreetEzNotes { get; set; }
-        public int d26 { get; set; }
-        public int d27 { get; set; }
+        public int D26 { get; set; }
+        public int D27 { get; set; }
         public int StreetNmExr { get; set; }
-        public int d29 { get; set; }
+        public int D29 { get; set; }
         public int StreetNmNotes { get; set; }
-        public int d31 { get; set; }
-        public int d32 { get; set; }
-        public int d52 { get; set; }
-        public int d51 { get; set; }
+        public int D31 { get; set; }
+        public int D32 { get; set; }
+        public int D52 { get; set; }
+        public int D51 { get; set; }
         public int ClubNmNotes { get; set; }
-        public int d49 { get; set; }
+        public int D49 { get; set; }
         public int ClubNmExr { get; set; }
-        public int d47 { get; set; }
-        public int d46 { get; set; }
+        public int D47 { get; set; }
+        public int D46 { get; set; }
         public int ClubEzNotes { get; set; }
-        public int d44 { get; set; }
+        public int D44 { get; set; }
         public int StreetHdExr { get; set; }
-        public int d34 { get; set; }
+        public int D34 { get; set; }
         public int StreetHdNotes { get; set; }
-        public int d36 { get; set; }
-        public int d37 { get; set; }
+        public int D36 { get; set; }
+        public int D37 { get; set; }
         public int StreetShdExr { get; set; }
-        public int d39 { get; set; }
+        public int D39 { get; set; }
         public int StreetShdNotes { get; set; }
-        public int d41 { get; set; }
-        public int d42 { get; set; }
+        public int D41 { get; set; }
+        public int D42 { get; set; }
         public int ClubEzExr { get; set; }
         public int ClubShdExr { get; set; }
-        public int d59 { get; set; }
-        public int d57 { get; set; }
-        public int d56 { get; set; }
-        public int d54 { get; set; }
-        public int d61 { get; set; }
+        public int D59 { get; set; }
+        public int D57 { get; set; }
+        public int D56 { get; set; }
+        public int D54 { get; set; }
+        public int D61 { get; set; }
         public float MeasureScale { get; set; }
         public byte JudgmentKool  { get; set; }
         public byte JudgmentCool { get; set; }
@@ -81,6 +81,21 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
         public float GaugeGood { get; set; }
         public float GaugeMiss { get; set; }
         public float GaugeFail { get; set; }
+        public int E1 { get; set; }
+        public int E2 { get; set; }
+        public int E3 { get; set; }
+        public int E4 { get; set; }
+        public int E5 { get; set; }
+        public int E6 { get; set; }
+        public int E7 { get; set; }
+        public int E8 { get; set; }
+        public int E9 { get; set; }
+        public int E10 { get; set; }
+        public int E11 { get; set; }
+        public int E12 { get; set; }
+        public int E13 { get; set; }
+        public int E14 { get; set; }
+
 
         public int GetExr(ModeType mode, DifficultyType difficulty)
         {
