@@ -55,7 +55,7 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             buffer.WriteString(Header);
             buffer.Position = Ez2OnBinFile.HeaderSize;
             buffer.WriteInt32(Entries.Count);
-            for (int i = 1; i < Entries.Count; i++)
+            for (int i = 0; i < Entries.Count; i++)
             {
                 T entry = Entries[i];
                 WriteEntry(entry, buffer);

@@ -33,11 +33,9 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             item.m = buffer.ReadInt32();
             item.n = buffer.ReadInt32();
             item.o = buffer.ReadInt32();
-
             item.v = buffer.ReadInt32();
             item.w = buffer.ReadInt32();
             item.x = buffer.ReadInt32();
-
             item.Effect = ReadString(buffer);
             return item;
         }
@@ -67,6 +65,9 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             buffer.WriteInt32(item.m);
             buffer.WriteInt32(item.n);
             buffer.WriteInt32(item.o);
+            buffer.WriteInt32(item.v);
+            buffer.WriteInt32(item.w);
+            buffer.WriteInt32(item.x);
             WriteString(item.Effect, buffer);
         }
     }

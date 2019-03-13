@@ -7,6 +7,7 @@ using Arrowgene.StepFile.Gui.Core.Ez2On.Model;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 {
@@ -14,6 +15,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
     {
         private Ez2OnBinFileTabControl _ez2OnBinFileTabControl;
         private ObservableCollection<UIElement> _items;
+        private Ez2OnBinFile _binFile;
 
 
         public Ez2OnBinFileTabController() : base(new Ez2OnBinFileTabControl())
@@ -36,11 +38,11 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 return;
             }
             Ez2OnBinFileIO binFileIO = new Ez2OnBinFileIO();
-            Ez2OnBinFile binFile = binFileIO.Read(selected.FullName);
+            _binFile = binFileIO.Read(selected.FullName);
             List<Ez2OnBinFileTabItem> binFileTabItems = new List<Ez2OnBinFileTabItem>();
-            if (binFile is Ez2OnCardBinFile)
+            if (_binFile is Ez2OnCardBinFile)
             {
-                Ez2OnCardBinFile cardBindFile = (Ez2OnCardBinFile)binFile;
+                Ez2OnCardBinFile cardBindFile = (Ez2OnCardBinFile)_binFile;
                 foreach (Ez2OnModelCard modelCard in cardBindFile.Entries)
                 {
                     Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelCard);
@@ -48,9 +50,9 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 }
                 Header = "Card";
             }
-            else if (binFile is Ez2OnIdFilterBinFile)
+            else if (_binFile is Ez2OnIdFilterBinFile)
             {
-                Ez2OnIdFilterBinFile idFilterBinFile = (Ez2OnIdFilterBinFile)binFile;
+                Ez2OnIdFilterBinFile idFilterBinFile = (Ez2OnIdFilterBinFile)_binFile;
                 foreach (string idFilter in idFilterBinFile.Entries)
                 {
                     Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(idFilter);
@@ -58,9 +60,9 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 }
                 Header = "IdFilter";
             }
-            else if (binFile is Ez2OnItemBinFile)
+            else if (_binFile is Ez2OnItemBinFile)
             {
-                Ez2OnItemBinFile itemBinFile = (Ez2OnItemBinFile)binFile;
+                Ez2OnItemBinFile itemBinFile = (Ez2OnItemBinFile)_binFile;
                 foreach (Ez2OnModelItem modelItem in itemBinFile.Entries)
                 {
                     Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelItem);
@@ -68,9 +70,9 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 }
                 Header = "Item";
             }
-            else if (binFile is Ez2OnMusicBinFile)
+            else if (_binFile is Ez2OnMusicBinFile)
             {
-                Ez2OnMusicBinFile musicBinFile = (Ez2OnMusicBinFile)binFile;
+                Ez2OnMusicBinFile musicBinFile = (Ez2OnMusicBinFile)_binFile;
                 foreach (Ez2onModelMusic modelMusic in musicBinFile.Entries)
                 {
                     Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelMusic);
@@ -78,9 +80,9 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 }
                 Header = "Music";
             }
-            else if (binFile is Ez2OnQuestBinFile)
+            else if (_binFile is Ez2OnQuestBinFile)
             {
-                Ez2OnQuestBinFile questBinFile = (Ez2OnQuestBinFile)binFile;
+                Ez2OnQuestBinFile questBinFile = (Ez2OnQuestBinFile)_binFile;
                 foreach (Ez2OnModelQuest modelQuest in questBinFile.Entries)
                 {
                     Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelQuest);
@@ -88,9 +90,9 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 }
                 Header = "Quest";
             }
-            else if (binFile is Ez2OnRadiomixBinFile)
+            else if (_binFile is Ez2OnRadiomixBinFile)
             {
-                Ez2OnRadiomixBinFile radioMixBinFile = (Ez2OnRadiomixBinFile)binFile;
+                Ez2OnRadiomixBinFile radioMixBinFile = (Ez2OnRadiomixBinFile)_binFile;
                 foreach (Ez2OnModelRadiomix modelRadiomix in radioMixBinFile.Entries)
                 {
                     Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelRadiomix);
@@ -126,9 +128,22 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             return uiElements;
         }
 
-        private void Save()
+        private async void Save()
         {
-
+            FileInfo selected = new SaveFileBuilder()
+                .Filter("Ez2On Bin File (.bin)|*.bin")
+                .Select();
+            if (selected == null)
+            {
+                return;
+            }
+            Ez2OnBinFileIO binFileIO = new Ez2OnBinFileIO();
+            var task = Task.Run(() =>
+            {
+                binFileIO.Wrtire(selected.FullName, _binFile);
+            });
+            await task;
+            App.ResetProgress(this);
         }
     }
 }
