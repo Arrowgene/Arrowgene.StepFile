@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="Control\Ez2On\Archive\Ez2OnArchiveTabFile.cs" />
     <Compile Include="Control\Ez2On\Archive\Ez2OnArchiveTabFolder.cs" />
+    <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabCard.cs" />
     <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabQuest.cs" />
     <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabRadiomix.cs" />
     <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabMusic.cs" />
@@ -349,6 +350,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Resource Include="icons\PastelSVG\pencil.png" />
     <Resource Include="icons\VS2017\Media.png" />
     <Resource Include="icons\VS2017\BinaryFile.png" />
     <Resource Include="icons\PastelSVG\page-delete.png" />

@@ -6,42 +6,42 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
     public class Ez2OnModelQuest
     {
         public int Id { get; set; }
-        public int a { get; set; }
-        public int b { get; set; }
-        public int c { get; set; }
-        public int d { get; set; }
+        public int A { get; set; }
+        public int B { get; set; }
+        public int C { get; set; }
+        public int D { get; set; }
         public string Title { get; set; }
         public string Mission { get; set; }
-        public int g { get; set; }
-        public int h { get; set; }
-        public int i { get; set; }
-        public int j { get; set; }
-        public int k { get; set; }
-        public int l { get; set; }
-        public int m { get; set; }
-        public int n { get; set; }
-        public int o { get; set; }
-        public int p { get; set; }
-        public int q { get; set; }
-        public int r { get; set; }
-        public int s { get; set; }
-        public int t { get; set; }
-        public int u { get; set; }
-        public int v { get; set; }
-        public int w { get; set; }
-        public int x { get; set; }
-        public int y { get; set; }
-        public int z { get; set; }
-        public int z1 { get; set; }
-        public int z2 { get; set; }
-        public int z3 { get; set; }
-        public int z4 { get; set; }
-        public int z5 { get; set; }
-        public int z6 { get; set; }
-        public int z7 { get; set; }
-        public int z8 { get; set; }
-        public int z9 { get; set; }
-        public int z10 { get; set; }
-        public int z11 { get; set; }
+        public int G { get; set; }
+        public int H { get; set; }
+        public int I { get; set; }
+        public int J { get; set; }
+        public int K { get; set; }
+        public int L { get; set; }
+        public int M { get; set; }
+        public int N { get; set; }
+        public int O { get; set; }
+        public int P { get; set; }
+        public int Q { get; set; }
+        public int R { get; set; }
+        public int S { get; set; }
+        public int T { get; set; }
+        public int U { get; set; }
+        public int V { get; set; }
+        public int W { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Z { get; set; }
+        public int Z1 { get; set; }
+        public int Z2 { get; set; }
+        public int Z3 { get; set; }
+        public int Z4 { get; set; }
+        public int Z5 { get; set; }
+        public int Z6 { get; set; }
+        public int Z7 { get; set; }
+        public int Z8 { get; set; }
+        public int Z9 { get; set; }
+        public int Z10 { get; set; }
+        public int Z11 { get; set; }
     }
 }

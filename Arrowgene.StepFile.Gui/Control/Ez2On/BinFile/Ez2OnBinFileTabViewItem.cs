@@ -19,7 +19,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             TextBox textBox = new TextBox();
             Binding binding = new Binding(propertyName);
             binding.FallbackValue = "No Data";
-            binding.Source = this;
+            binding.Source = BindingSource;
             textBox.SetBinding(TextBox.TextProperty, binding);
             return textBox;
         }
