@@ -190,7 +190,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             }
             foreach (FileInfo fileInfo in selected)
             {
-                Ez2OnArchiveTabFile tabFile = CreateFile(fileInfo, activeCrypto, _currentFolder);
+                Ez2OnArchiveTabFile tabFile = CreateFile(fileInfo, activeCrypto, _currentFolder, _archive.ArchiveType);
                 if (tabFile == null)
                 {
                     continue;
@@ -241,11 +241,11 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
                     return;
                 }
             }
-            Ez2OnArchiveTabFolder tabFolder = CreateDirectory(selectedDestination, activeCrypto, _currentFolder);
+            Ez2OnArchiveTabFolder tabFolder = CreateDirectory(selectedDestination, activeCrypto, _currentFolder, _archive.ArchiveType);
             _currentFolder.Folders.Add(tabFolder);
             _currentFolder.Folder.Folders.Add(tabFolder.Folder);
             _ez2OnArchiveTabControl.Items.Add(tabFolder);
-            AddToArchive(tabFolder);
+            AddToCurrentArchive(tabFolder);
         }
 
         private void DeleteSelectionCommand()
@@ -358,7 +358,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
                 {
                     float progress = current++ / (float)total * 100;
                     App.UpdateProgress(this, (int)progress, $"Encrypting: {file.FullPath}");
-                    selectedCrypto.Encrypt(file);
+                    selectedCrypto.Encrypt(file, _archive.ArchiveType);
                 }
             });
             await task;
@@ -431,7 +431,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
                 {
                     float progress = current++ / (float)total * 100;
                     App.UpdateProgress(this, (int)progress, $"Decrypting: {file.FullPath}");
-                    activeCrypto.Decrypt(file);
+                    activeCrypto.Decrypt(file, _archive.ArchiveType);
                 }
             });
             await task;
@@ -519,12 +519,12 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             List<string> errors = new List<string>();
             var task = Task.Run(() =>
             {
-                int total = selectedArchives.Count;
-                int current = 0;
-                float progress = 0;
+                int totalArchives = selectedArchives.Count;
+                int currentArchive = 0;
                 byte[] key = null;
                 foreach (FileInfo selectedArchive in selectedArchives)
                 {
+                    currentArchive++;
                     Ez2OnArchive archive = archiveIO.Read(selectedArchive.FullName);
                     if (archive.CryptoType == Ez2OnArchive.CRYPTO_TYPE_NONE)
                     {
@@ -557,20 +557,19 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
                         ICryptoPlugin selectedICryptoPlugin = (ICryptoPlugin)activeCrypto.CryptoPlugin;
                         selectedICryptoPlugin.SetKey(key);
                     }
-                    total += archive.Files.Count;
+                    int total = archive.Files.Count;
+                    int current = 0;
+                    float progress = 0;
                     foreach (Ez2OnArchiveFile file in archive.Files)
                     {
                         progress = current++ / (float)total * 100;
-                        App.UpdateProgress(this, (int)progress, $"'{selectedArchive.FullName}': Decrypting: {file.FullPath}");
-                        activeCrypto.Decrypt(file);
+                        App.UpdateProgress(this, (int)progress, $"({currentArchive}/{totalArchives}) - {selectedArchive.FullName}: Decrypting: {file.FullPath}");
+                        activeCrypto.Decrypt(file, archive.ArchiveType);
                     }
                     archive.CryptoType = Ez2OnArchive.CRYPTO_TYPE_NONE;
-
                     string destination = Path.Combine(selectedDestination.FullName, selectedArchive.Name);
                     archiveIO.Write(archive, destination);
-
-                    progress = current++ / (float)total * 100;
-                    App.UpdateProgress(this, (int)progress, $"'{selectedArchive.FullName}'");
+                    App.UpdateProgress(this, (int)progress, $"({currentArchive}/{totalArchives}) - {selectedArchive.FullName}");
                 }
             });
             await task;
@@ -580,7 +579,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
                 string error = "";
                 for (int i = 0; i < errors.Count && i < 10; i++)
                 {
-                    error += errors + Environment.NewLine;
+                    error += errors[i] + Environment.NewLine;
                 }
                 MessageBox.Show(error, "StepFile", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -643,11 +642,11 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             List<string> errors = new List<string>();
             var task = Task.Run(() =>
             {
-                int total = selectedArchives.Count;
-                int current = 0;
-                float progress = 0;
+                int totalArchives = selectedArchives.Count;
+                int currentArchive = 0;
                 foreach (FileInfo selectedArchive in selectedArchives)
                 {
+                    currentArchive++;
                     Ez2OnArchive archive = archiveIO.Read(selectedArchive.FullName);
                     Ez2OnArchiveCrypto activeCrypto = null;
                     if (archive.CryptoType != Ez2OnArchive.CRYPTO_TYPE_NONE)
@@ -664,18 +663,19 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
                             continue;
                         }
                     }
-                    total += archive.Files.Count;
+                    int total = archive.Files.Count;
+                    int current = 0;
+                    float progress = 0;
                     foreach (Ez2OnArchiveFile file in archive.Files)
                     {
                         progress = current++ / (float)total * 100;
-                        App.UpdateProgress(this, (int)progress, $"'{selectedArchive.FullName}': Decrypting: {file.FullPath}");
-                        selectedCrypto.Encrypt(file);
+                        App.UpdateProgress(this, (int)progress, $"({currentArchive}/{totalArchives}) - {selectedArchive.FullName}: Encrypting: {file.FullPath}");
+                        selectedCrypto.Encrypt(file, archive.ArchiveType);
                     }
                     archive.CryptoType = selectedCrypto.CryptoType;
                     string destination = Path.Combine(selectedDestination.FullName, selectedArchive.Name);
                     archiveIO.Write(archive, destination);
-                    progress = current++ / (float)total * 100;
-                    App.UpdateProgress(this, (int)progress, $"'{selectedArchive.FullName}'");
+                    App.UpdateProgress(this, (int)progress, $"({currentArchive}/{totalArchives}) - {selectedArchive.FullName}");
                 }
             });
             await task;
@@ -685,7 +685,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
                 string error = "";
                 for (int i = 0; i < errors.Count && i < 10; i++)
                 {
-                    error += errors + Environment.NewLine;
+                    error += errors[i] + Environment.NewLine;
                 }
                 MessageBox.Show(error, "StepFile", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -721,7 +721,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
                         {
                             continue;
                         }
-                        Ez2OnArchiveTabFile tabFile = CreateFile(file, activeCrypto, _currentFolder);
+                        Ez2OnArchiveTabFile tabFile = CreateFile(file, activeCrypto, _currentFolder, _archive.ArchiveType);
                         if (tabFile == null)
                         {
                             continue;
@@ -733,11 +733,11 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
                     else if (Directory.Exists(drop))
                     {
                         DirectoryInfo directory = App.CreateDirectoryInfo(drop);
-                        Ez2OnArchiveTabFolder tabFolder = CreateDirectory(directory, activeCrypto, _currentFolder);
+                        Ez2OnArchiveTabFolder tabFolder = CreateDirectory(directory, activeCrypto, _currentFolder, _archive.ArchiveType);
                         _currentFolder.Folders.Add(tabFolder);
                         _currentFolder.Folder.Folders.Add(tabFolder.Folder);
                         _ez2OnArchiveTabControl.Items.Add(tabFolder);
-                        AddToArchive(tabFolder);
+                        AddToCurrentArchive(tabFolder);
                     }
                     else
                     {
@@ -806,7 +806,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             return null;
         }
 
-        private Ez2OnArchiveTabFolder CreateDirectory(DirectoryInfo directoryInfo, Ez2OnArchiveCrypto activeCrypto, Ez2OnArchiveTabFolder parentTabFolder)
+        private Ez2OnArchiveTabFolder CreateDirectory(DirectoryInfo directoryInfo, Ez2OnArchiveCrypto activeCrypto, Ez2OnArchiveTabFolder parentTabFolder, Ez2OnArchiveType archiveType)
         {
             Ez2OnArchiveFolder folder = new Ez2OnArchiveFolder();
             folder.SetFullPath(parentTabFolder.FullPath + directoryInfo.Name);
@@ -814,7 +814,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             tabFolder.Parent = parentTabFolder;
             foreach (FileInfo fileInfo in directoryInfo.GetFiles("*", SearchOption.TopDirectoryOnly))
             {
-                Ez2OnArchiveTabFile tabFile = CreateFile(fileInfo, activeCrypto, tabFolder);
+                Ez2OnArchiveTabFile tabFile = CreateFile(fileInfo, activeCrypto, tabFolder, archiveType);
                 if (tabFile == null)
                 {
                     continue;
@@ -823,7 +823,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             }
             foreach (DirectoryInfo subFolder in directoryInfo.GetDirectories("*", SearchOption.TopDirectoryOnly))
             {
-                Ez2OnArchiveTabFolder subTabFolder = CreateDirectory(subFolder, activeCrypto, tabFolder);
+                Ez2OnArchiveTabFolder subTabFolder = CreateDirectory(subFolder, activeCrypto, tabFolder, archiveType);
                 subTabFolder.Parent = tabFolder;
                 tabFolder.Folders.Add(subTabFolder);
                 tabFolder.Folder.Folders.Add(subTabFolder.Folder);
@@ -831,7 +831,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             return tabFolder;
         }
 
-        private Ez2OnArchiveTabFile CreateFile(FileInfo fileInfo, Ez2OnArchiveCrypto activeCrypto, Ez2OnArchiveTabFolder tabFolder)
+        private Ez2OnArchiveTabFile CreateFile(FileInfo fileInfo, Ez2OnArchiveCrypto activeCrypto, Ez2OnArchiveTabFolder tabFolder, Ez2OnArchiveType archiveType)
         {
             byte[] file = Utils.ReadFile(fileInfo.FullName);
             Ez2OnArchiveFile archiveFile = new Ez2OnArchiveFile();
@@ -859,13 +859,13 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
                     }
                     selectedICryptoPlugin.SetKey(_crypoKey);
                 }
-                activeCrypto.Encrypt(archiveFile);
+                activeCrypto.Encrypt(archiveFile, archiveType);
             }
             Ez2OnArchiveTabFile tabFile = new Ez2OnArchiveTabFile(archiveFile);
             return tabFile;
         }
 
-        private void AddToArchive(Ez2OnArchiveTabFolder parentTabFolder)
+        private void AddToCurrentArchive(Ez2OnArchiveTabFolder parentTabFolder)
         {
             foreach (Ez2OnArchiveTabFile tabFile in parentTabFolder.Files)
             {
@@ -873,7 +873,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             }
             foreach (Ez2OnArchiveTabFolder tabFolder in parentTabFolder.Folders)
             {
-                AddToArchive(tabFolder);
+                AddToCurrentArchive(tabFolder);
             }
         }
     }

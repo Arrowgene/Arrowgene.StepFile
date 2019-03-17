@@ -5,20 +5,31 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive
     public class Ez2OnArchiveCryptoDetector
     {
         private Dictionary<string, List<byte[]>> _signatures;
+        private HashSet<string> _ignoreExtensions;
 
         public Ez2OnArchiveCryptoDetector()
         {
             _signatures = new Dictionary<string, List<byte[]>>();
+            _ignoreExtensions = new HashSet<string>();
             LoadSignatures();
         }
-
-        public bool CanCrypt(string extension)
+        
+        public bool CanCrypt(string extension, Ez2OnArchiveType archiveType)
         {
             if (string.IsNullOrEmpty(extension))
             {
                 return false;
             }
-            return _signatures.ContainsKey(extension.ToLowerInvariant());
+            extension = extension.ToLowerInvariant();
+            if (_ignoreExtensions.Contains(extension))
+            {
+                return false;
+            }
+            if (archiveType == Ez2OnArchiveType.Dat && extension == ".str")
+            {
+                return false;
+            }
+            return true;
         }
 
         public bool? IsEncrypted(string extension, byte[] data)
@@ -33,6 +44,10 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive
                 return null;
             }
             List<byte[]> possibleHeader = _signatures[extension];
+            if (possibleHeader.Count <= 0)
+            {
+                return null;
+            }
             foreach (byte[] header in possibleHeader)
             {
                 bool equal = true;
@@ -52,6 +67,11 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive
             return true;
         }
 
+        private void LoadIgnoredExtensions()
+        {
+            _ignoreExtensions.Add(".bik");
+        }
+
         private void LoadSignatures()
         {
             _signatures.Add(".png", new List<byte[]>
@@ -66,6 +86,7 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive
                 new byte[] {0x4D, 0x5F, 0x43, 0x41, 0x52, 0x44, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}, //M_CARD
                 new byte[] {0x4D, 0x5F, 0x49, 0x54, 0x45, 0x4D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}, //M_ITEM
                 new byte[] {0x4D, 0x5F, 0x49, 0x44, 0x5F, 0x46, 0x49, 0x4C, 0x54, 0x45, 0x52, 0x00}, //M_ID_FILTER
+                new byte[] {0x4D, 0x5F, 0x52, 0x41, 0x44, 0x49, 0x4F, 0x4D, 0x49, 0x58, 0x00, 0x00}, //M_RADIOMIX
             });
             _signatures.Add(".str", new List<byte[]>
             {

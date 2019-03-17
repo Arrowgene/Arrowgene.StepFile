@@ -22,9 +22,13 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive
             _cryptoDetector = new Ez2OnArchiveCryptoDetector();
         }
 
-        public void Decrypt(Ez2OnArchiveFile file)
+        public void Decrypt(Ez2OnArchiveFile file, Ez2OnArchiveType archiveType)
         {
-            if (!_cryptoDetector.CanCrypt(file.Extension))
+            if (!_cryptoDetector.CanCrypt(file.Extension, archiveType))
+            {
+                return;
+            }
+            if (_cryptoDetector.IsEncrypted(file.Extension, file.Data) == false)
             {
                 return;
             }
@@ -32,9 +36,9 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive
             file.Encrypted = false;
         }
 
-        public void Encrypt(Ez2OnArchiveFile file)
+        public void Encrypt(Ez2OnArchiveFile file, Ez2OnArchiveType archiveType)
         {
-            if (!_cryptoDetector.CanCrypt(file.Extension))
+            if (!_cryptoDetector.CanCrypt(file.Extension, archiveType))
             {
                 return;
             }

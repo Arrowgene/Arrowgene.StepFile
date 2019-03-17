@@ -29,9 +29,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Button Command="{Binding ClearCommand}" Style="{StaticResource CustomMenuButtonStyle}">
-                <Image Source="pack://application:,,,/icons/PastelSVG/brush.png" Style="{StaticResource CustomMenuImageStyle}"/>
-            </Button>
             <Button Command="{Binding SaveCommand}" Style="{StaticResource CustomMenuButtonStyle}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/disk.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
