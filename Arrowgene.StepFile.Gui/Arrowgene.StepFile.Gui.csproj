@@ -350,6 +350,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Resource Include="icons\VS2017\NewCube.png" />
     <Resource Include="icons\PastelSVG\add.png" />
     <Resource Include="icons\PastelSVG\pencil.png" />
     <Resource Include="icons\VS2017\Media.png" />

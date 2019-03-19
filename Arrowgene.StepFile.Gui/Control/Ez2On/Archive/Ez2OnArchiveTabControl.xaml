@@ -33,6 +33,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Command="{Binding NewArchiveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="New Archive">
+                <Image Source="pack://application:,,,/icons/VS2017/NewCube.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
             <Button Command="{Binding OpenArchiveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Open Archive">
                 <Image Source="pack://application:,,,/icons/PastelSVG/folder-open.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>

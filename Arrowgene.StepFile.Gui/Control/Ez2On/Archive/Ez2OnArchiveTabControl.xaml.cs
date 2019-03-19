@@ -8,6 +8,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
 {
     public partial class Ez2OnArchiveTabControl : ArchiveTabUserControl
     {
+        private ICommand _newArchiveCommand;
         private ICommand _openArchiveCommand;
         private ICommand _saveArchiveCommand;
         private ICommand _addFileCommand;
@@ -20,10 +21,11 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
         private ICommand _batchAddEncryptionCommand;
         private ICommand _batchRemoveEncryptionCommand;
         private string _filePath;
-        private Ez2OnArchiveType _archiveType;
+        private Ez2OnArchiveType? _archiveType;
         private string _encryption;
         private DateTime? _created;
 
+        public ICommand NewArchiveCommand { get { return _newArchiveCommand; } set { _newArchiveCommand = value; OnPropertyChanged("NewArchiveCommand"); } }
         public ICommand OpenArchiveCommand { get { return _openArchiveCommand; } set { _openArchiveCommand = value; OnPropertyChanged("OpenArchiveCommand"); } }
         public ICommand SaveArchiveCommand { get { return _saveArchiveCommand; } set { _saveArchiveCommand = value; OnPropertyChanged("SaveArchiveCommand"); } }
         public ICommand AddFileCommand { get { return _addFileCommand; } set { _addFileCommand = value; OnPropertyChanged("AddFileCommand"); } }
@@ -36,7 +38,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
         public ICommand BatchAddEncryptionCommand { get { return _batchAddEncryptionCommand; } set { _batchAddEncryptionCommand = value; OnPropertyChanged("BatchAddEncryptionCommand"); } }
         public ICommand BatchRemoveEncryptionCommand { get { return _batchRemoveEncryptionCommand; } set { _batchRemoveEncryptionCommand = value; OnPropertyChanged("BatchRemoveEncryptionCommand"); } }
         public string FilePath { get { return _filePath; } set { _filePath = value; OnPropertyChanged("FilePath"); } }
-        public Ez2OnArchiveType ArchiveType { get { return _archiveType; } set { _archiveType = value; OnPropertyChanged("ArchiveType"); } }
+        public Ez2OnArchiveType? ArchiveType { get { return _archiveType; } set { _archiveType = value; OnPropertyChanged("ArchiveType"); } }
         public string Encryption { get { return _encryption; } set { _encryption = value; OnPropertyChanged("Encryption"); } }
         public DateTime? Created { get { return _created; } set { _created = value; OnPropertyChanged("Created"); } }
 

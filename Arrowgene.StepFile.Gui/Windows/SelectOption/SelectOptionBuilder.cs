@@ -1,4 +1,6 @@
-﻿namespace Arrowgene.StepFile.Gui.Windows.SelectOption
+﻿using System;
+
+namespace Arrowgene.StepFile.Gui.Windows.SelectOption
 {
     public class SelectOptionBuilder<T>
     {
@@ -29,9 +31,11 @@
         public T Select()
         {
             object result = _selectOptionWindow.Select();
+            if (result == null)
+            {
+                return default(T);
+            }
             return (T)result;
         }
-
-
     }
 }

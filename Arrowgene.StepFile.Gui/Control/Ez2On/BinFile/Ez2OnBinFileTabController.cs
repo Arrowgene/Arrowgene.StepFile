@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Arrowgene.StepFile.Gui.Core.DynamicGridView;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System;
 
 namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 {
@@ -15,7 +16,11 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
     {
         private Ez2OnBinFileTabControl _ez2OnBinFileTabControl;
         private Ez2OnBinFile _binFile;
-        private object _selectedItem;
+        private Ez2OnBinFileTabViewItem _selectedItem;
+
+        private CommandHandler _cmdEdit;
+        private CommandHandler _cmdAdd;
+        private CommandHandler _cmdDelete;
 
 
         public Ez2OnBinFileTabController() : base(new Ez2OnBinFileTabControl())
@@ -25,12 +30,13 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 
             _ez2OnBinFileTabControl.OpenCommand = new CommandHandler(OpenCommand, true);
             _ez2OnBinFileTabControl.SaveCommand = new CommandHandler(SaveCommand, true);
-            _ez2OnBinFileTabControl.EditCommand = new CommandHandler(EditCommand, true);
-            _ez2OnBinFileTabControl.AddCommand = new CommandHandler(AddCommand, true);
-            _ez2OnBinFileTabControl.DeleteCommand = new CommandHandler(DeleteCommand, true);
+            _ez2OnBinFileTabControl.EditCommand = _cmdEdit = new CommandHandler(EditCommand, CanEdit);
+            _ez2OnBinFileTabControl.AddCommand = _cmdAdd = new CommandHandler(AddCommand, CanAdd);
+            _ez2OnBinFileTabControl.DeleteCommand = _cmdDelete = new CommandHandler(DeleteCommand, CanDelete);
 
             _ez2OnBinFileTabControl.ListViewItems.SelectionMode = SelectionMode.Single;
             _ez2OnBinFileTabControl.ListViewItems.MouseDoubleClick += ListViewItems_MouseDoubleClick;
+            _ez2OnBinFileTabControl.ListViewItems.SelectionChanged += ListViewItems_SelectionChanged;
         }
 
         private void OpenCommand()
@@ -259,8 +265,9 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             else
             {
                 MessageBox.Show($"Can not read BinFile: '{selected.FullName}'", "StepFile", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
             }
+
+            RaiseCmdChanged();
         }
 
         private async void SaveCommand()
@@ -280,21 +287,103 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             await task;
             App.ResetProgress(this);
         }
-        private void DeleteCommand()
-        {
-        }
 
         private void AddCommand()
         {
         }
 
+        private bool CanAdd()
+        {
+            return true;
+        }
+
         private void EditCommand()
         {
+            Edit(_selectedItem);
+        }
+
+        private void Edit(Ez2OnBinFileTabViewItem item)
+        {
+            if (item is Ez2OnBinFileTabCard)
+            {
+                Ez2OnBinFileTabCard binFileTabCard = (Ez2OnBinFileTabCard)item;
+            }
+            else if (item is Ez2OnBinFileTabIdFilter)
+            {
+                Ez2OnBinFileTabIdFilter binFileTabIdFilter = (Ez2OnBinFileTabIdFilter)item;
+            }
+            else if (item is Ez2OnBinFileTabItem)
+            {
+                Ez2OnBinFileTabItem binFileTabItem = (Ez2OnBinFileTabItem)item;
+            }
+            else if (item is Ez2OnBinFileTabMusic)
+            {
+                Ez2OnBinFileTabMusic binFileTabMusic = (Ez2OnBinFileTabMusic)item;
+            }
+            else if (item is Ez2OnBinFileTabQuest)
+            {
+                Ez2OnBinFileTabQuest binFileTabQuest = (Ez2OnBinFileTabQuest)item;
+            }
+            else if (item is Ez2OnBinFileTabRadiomix)
+            {
+                Ez2OnBinFileTabRadiomix binFileTabRadiomix = (Ez2OnBinFileTabRadiomix)item;
+            }
+            else
+            {
+                MessageBox.Show($"Can not edit BinFile: '{item}'", "StepFile", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private bool CanEdit()
+        {
+            if (_selectedItem == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void DeleteCommand()
+        {
+        }
+
+        private bool CanDelete()
+        {
+            if (_selectedItem == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void ListViewItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            object selectedItem = _ez2OnBinFileTabControl.ListViewItems.SelectedItem;
+            if (selectedItem == null)
+            {
+                _selectedItem = null;
+            }
+            else if (selectedItem is Ez2OnBinFileTabViewItem)
+            {
+                _selectedItem = (Ez2OnBinFileTabViewItem)selectedItem;
+            }
+            RaiseCmdChanged();
         }
 
         private void ListViewItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            _selectedItem = _ez2OnBinFileTabControl.ListViewItems.SelectedItem;
+            object selectedItem = _ez2OnBinFileTabControl.ListViewItems.SelectedItem;
+            if (selectedItem is Ez2OnBinFileTabViewItem)
+            {
+                Edit((Ez2OnBinFileTabViewItem)selectedItem);
+            }
+        }
+
+        private void RaiseCmdChanged()
+        {
+            _cmdAdd.RaiseCanExecuteChanged();
+            _cmdEdit.RaiseCanExecuteChanged();
+            _cmdDelete.RaiseCanExecuteChanged();
         }
 
     }

@@ -34,9 +34,11 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
         private ICollection<Ez2OnArchiveCrypto> _cryptos;
         private byte[] _crypoKey;
 
-        private CommandHandler _cmdKeyAdd;
-        private CommandHandler _cmdAdd;
-        private CommandHandler _cmdKeyDelete;
+        private CommandHandler _cmdAddEncryption;
+        private CommandHandler _cmdAddFile;
+        private CommandHandler _cmdSave;
+        private CommandHandler _cmdAddFolder;
+        private CommandHandler _cmdRemoveEncryption;
         private CommandHandler _cmdExtract;
         private CommandHandler _cmdDelete;
 
@@ -57,14 +59,15 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             _ez2OnArchiveTabControl.AddColumn(new DynamicGridViewColumn { Header = "Length", TextField = "Length" });
             _ez2OnArchiveTabControl.AddColumn(new DynamicGridViewColumn { Header = "Encrypted", TextField = "Encrypted" });
 
+            _ez2OnArchiveTabControl.NewArchiveCommand = new CommandHandler(NewArchiveCommand, true);
             _ez2OnArchiveTabControl.OpenArchiveCommand = new CommandHandler(OpenArchiveCommand, true);
-            _ez2OnArchiveTabControl.SaveArchiveCommand = new CommandHandler(SaveArchiveCommand, true);
-            _ez2OnArchiveTabControl.AddFileCommand = _cmdAdd = new CommandHandler(AddFileCommand, CanAdd);
-            _ez2OnArchiveTabControl.AddFolderCommand = new CommandHandler(AddFolderCommand, true);
+            _ez2OnArchiveTabControl.SaveArchiveCommand = _cmdSave = new CommandHandler(SaveArchiveCommand, CanSave);
+            _ez2OnArchiveTabControl.AddFileCommand = _cmdAddFile = new CommandHandler(AddFileCommand, CanAddFile);
+            _ez2OnArchiveTabControl.AddFolderCommand = _cmdAddFolder = new CommandHandler(AddFolderCommand, CanAddFolder);
             _ez2OnArchiveTabControl.ExtractSelectionCommand = _cmdExtract = new CommandHandler(ExtractSelectionCommand, CanExtract);
             _ez2OnArchiveTabControl.DeleteSelectionCommand = _cmdDelete = new CommandHandler(DeleteSelectionCommand, CanDelete);
-            _ez2OnArchiveTabControl.AddEncryptionCommand = _cmdKeyAdd = new CommandHandler(AddEncryptionCommand, CanAddKey);
-            _ez2OnArchiveTabControl.RemoveEncryptionCommand = _cmdKeyDelete = new CommandHandler(RemoveEncryptionCommand, CanDeleteKey);
+            _ez2OnArchiveTabControl.AddEncryptionCommand = _cmdAddEncryption = new CommandHandler(AddEncryptionCommand, CanAddEncryption);
+            _ez2OnArchiveTabControl.RemoveEncryptionCommand = _cmdRemoveEncryption = new CommandHandler(RemoveEncryptionCommand, CanRemoveEncryptiony);
             _ez2OnArchiveTabControl.GenerateKeyCommand = new CommandHandler(GenerateKeyCommand, true);
             _ez2OnArchiveTabControl.BatchAddEncryptionCommand = new CommandHandler(BatchAddEncryptionCommand, true);
             _ez2OnArchiveTabControl.BatchRemoveEncryptionCommand = new CommandHandler(BatchRemoveEncryptionCommand, true);
@@ -74,16 +77,36 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             _ez2OnArchiveTabControl.ListViewItems.AllowDrop = true;
             _ez2OnArchiveTabControl.ListViewItems.Drop += ListViewItems_Drop;
             _ez2OnArchiveTabControl.ListViewItems.SelectionMode = SelectionMode.Single;
+            _ez2OnArchiveTabControl.ListViewItems.IsEnabled = false;
 
+            RaiseCmdChanged();
+        }
+
+
+        private void NewArchiveCommand()
+        {
+            Ez2OnArchiveType? archiveType = new SelectOptionBuilder<Ez2OnArchiveType?>()
+                .SetTitle("Select Archive Type")
+                .AddOption(Ez2OnArchiveType.Tro, "Tro (Data Archive)")
+                .AddOption(Ez2OnArchiveType.Dat, "Dat (Music Archive)")
+                .Select();
+            if (archiveType == null)
+            {
+                return;
+            }
             _archive = new Ez2OnArchive();
+            _archive.ArchiveType = (Ez2OnArchiveType)archiveType;
             _root = new Ez2OnArchiveTabFolder(_archive.RootFolder);
             _currentFolder = _root;
+            _ez2OnArchiveTabControl.Encryption = "None";
+            _crypoKey = null;
+            _ez2OnArchiveTabControl.ArchiveType = _archive.ArchiveType;
+            _ez2OnArchiveTabControl.ClearItems();
+            _ez2OnArchiveTabControl.AddItemRange(_root.Folders);
+            _ez2OnArchiveTabControl.AddItemRange(_root.Files);
+            _ez2OnArchiveTabControl.ListViewItems.IsEnabled = true;
 
-            _cmdAdd.RaiseCanExecuteChanged();
-            _cmdKeyAdd.RaiseCanExecuteChanged();
-            _cmdKeyDelete.RaiseCanExecuteChanged();
-            _cmdExtract.RaiseCanExecuteChanged();
-            _cmdDelete.RaiseCanExecuteChanged();
+            RaiseCmdChanged();
         }
 
         private async void OpenArchiveCommand()
@@ -122,39 +145,33 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             _ez2OnArchiveTabControl.ClearItems();
             _ez2OnArchiveTabControl.AddItemRange(_root.Folders);
             _ez2OnArchiveTabControl.AddItemRange(_root.Files);
-            _cmdAdd.RaiseCanExecuteChanged();
-            _cmdKeyAdd.RaiseCanExecuteChanged();
-            _cmdKeyDelete.RaiseCanExecuteChanged();
-            _cmdExtract.RaiseCanExecuteChanged();
-            _cmdDelete.RaiseCanExecuteChanged();
-            App.ResetProgress(this);
+            _ez2OnArchiveTabControl.ListViewItems.IsEnabled = true;
 
+            RaiseCmdChanged();
+            App.ResetProgress(this);
         }
 
         private async void SaveArchiveCommand()
         {
-            FileInfo selected = new SaveFileBuilder()
-                .Filter("Ez2On Data Archive (.tro)|*.tro|Ez2On Music Archive (.dat)|*.dat")
-                .Select();
+            SaveFileBuilder saveFileBuilder = new SaveFileBuilder();
+            switch (_archive.ArchiveType)
+            {
+                case Ez2OnArchiveType.Dat:
+                    saveFileBuilder.Filter("Ez2On Music Archive (.dat)|*.dat");
+                    break;
+                case Ez2OnArchiveType.Tro:
+                    saveFileBuilder.Filter("Ez2On Data Archive (.tro)|*.tro");
+                    break;
+                default:
+                    MessageBox.Show($"Can not save file. Invalid extension. Only '.tro' and '.dat' supported", "StepFile", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+            }
+            FileInfo selected = saveFileBuilder.Select();
             if (selected == null)
             {
                 return;
             }
             Ez2OnArchiveIO archiveIO = new Ez2OnArchiveIO();
-            if (selected.Extension == ".dat")
-            {
-                _archive.ArchiveType = Ez2OnArchiveType.Dat;
-            }
-            else if (selected.Extension == ".tro")
-            {
-                _archive.ArchiveType = Ez2OnArchiveType.Tro;
-            }
-            else
-            {
-                MessageBox.Show($"Can not save file. Invalid extension. Only '.tro' and '.dat' supported", "StepFile", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
-            _ez2OnArchiveTabControl.ArchiveType = _archive.ArchiveType;
             archiveIO.ProgressChanged += ArchiveIO_ProgressChanged;
             var task = Task.Run(() =>
             {
@@ -162,6 +179,16 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             });
             await task;
             App.ResetProgress(this);
+        }
+
+
+        private bool CanSave()
+        {
+            if (_archive == null)
+            {
+                return false;
+            }
+            return true;
         }
 
         private void AddFileCommand()
@@ -201,20 +228,12 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             }
         }
 
-        private bool CanAdd()
+        private bool CanAddFile()
         {
             if (_archive == null)
             {
                 return false;
             }
-            //  if (_archive.CryptoType == Ez2OnArchiveCryptoType.AesCrypto && _activeCrypto == null)
-            //  {
-            //      return false;
-            //  }
-            //  if (_archive.CryptoType == Ez2OnArchiveCryptoType.EzCrypto)
-            //  {
-            //      return false;
-            //  }
             return true;
         }
 
@@ -246,6 +265,15 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             _currentFolder.Folder.Folders.Add(tabFolder.Folder);
             _ez2OnArchiveTabControl.Items.Add(tabFolder);
             AddToCurrentArchive(tabFolder);
+        }
+
+        private bool CanAddFolder()
+        {
+            if (_archive == null)
+            {
+                return false;
+            }
+            return true;
         }
 
         private void DeleteSelectionCommand()
@@ -364,29 +392,19 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             await task;
             _archive.CryptoType = selectedCrypto.CryptoType;
             _ez2OnArchiveTabControl.Encryption = selectedCrypto.Name;
-            _cmdKeyAdd.RaiseCanExecuteChanged();
-            _cmdKeyDelete.RaiseCanExecuteChanged();
-            _cmdAdd.RaiseCanExecuteChanged();
+
+            RaiseCmdChanged();
             App.ResetProgress(this);
             MessageBox.Show($"Added '{selectedCrypto.Name}' encryption", "StepFile", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private bool CanAddKey()
+        private bool CanAddEncryption()
         {
+            if (_archive == null)
+            {
+                return false;
+            }
             return true;
-            //   if (_archive == null)
-            //   {
-            //       return false;
-            //   }
-            //   if (_activeCrypto == null && _archive.CryptoType == Ez2OnArchiveCryptoType.AesCrypto)
-            //   {
-            //       return true;
-            //   }
-            //   if (_activeCrypto == null && _archive.CryptoType == Ez2OnArchiveCryptoType.None)
-            //   {
-            //       return true;
-            //   }
-            //   return false;
         }
 
         private async void RemoveEncryptionCommand()
@@ -438,29 +456,19 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             _archive.CryptoType = Ez2OnArchive.CRYPTO_TYPE_NONE;
             _ez2OnArchiveTabControl.Encryption = "None";
             _crypoKey = null;
-            _cmdKeyAdd.RaiseCanExecuteChanged();
-            _cmdKeyDelete.RaiseCanExecuteChanged();
-            _cmdAdd.RaiseCanExecuteChanged();
+
+            RaiseCmdChanged();
             App.ResetProgress(this);
             MessageBox.Show($"Removed '{activeCrypto.Name}' Encryption", "StepFile", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private bool CanDeleteKey()
+        private bool CanRemoveEncryptiony()
         {
+            if (_archive == null)
+            {
+                return false;
+            }
             return true;
-            //   if (_archive == null)
-            //   {
-            //       return false;
-            //   }
-            //   if (_activeCrypto == null && _archive.CryptoType == Ez2OnArchiveCryptoType.EzCrypto)
-            //   {
-            //       return true;
-            //   }
-            //   if (_activeCrypto != null && _archive.CryptoType == Ez2OnArchiveCryptoType.AesCrypto)
-            //   {
-            //       return true;
-            //   }
-            //   return false;
         }
 
         private void GenerateKeyCommand()
@@ -782,8 +790,8 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             _currentSelection = selection;
             Ez2OnArchiveTabFile selectedFile = _ez2OnArchiveTabControl.ListViewItems.SelectedItem as Ez2OnArchiveTabFile;
             _currentFile = selectedFile;
-            _cmdExtract.RaiseCanExecuteChanged();
-            _cmdDelete.RaiseCanExecuteChanged();
+
+            RaiseCmdChanged();
         }
 
         private void LoadArchiveCryptos()
@@ -875,6 +883,17 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             {
                 AddToCurrentArchive(tabFolder);
             }
+        }
+
+        private void RaiseCmdChanged()
+        {
+            _cmdAddEncryption.RaiseCanExecuteChanged();
+            _cmdAddFile.RaiseCanExecuteChanged();
+            _cmdSave.RaiseCanExecuteChanged();
+            _cmdAddFolder.RaiseCanExecuteChanged();
+            _cmdRemoveEncryption.RaiseCanExecuteChanged();
+            _cmdExtract.RaiseCanExecuteChanged();
+            _cmdDelete.RaiseCanExecuteChanged();
         }
     }
 }
