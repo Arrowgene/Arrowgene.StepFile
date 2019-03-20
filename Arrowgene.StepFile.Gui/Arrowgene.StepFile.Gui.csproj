@@ -99,6 +99,9 @@
       <DependentUpon>Ez2OnBinFileTabControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabController.cs" />
+    <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileEditorWindow.xaml.cs">
+      <DependentUpon>Ez2OnBinFileEditorWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\Ez2On\StepFile\Ez2OnStepFileTabControl.xaml.cs">
       <DependentUpon>Ez2OnStepFileTabControl.xaml</DependentUpon>
     </Compile>
@@ -260,6 +263,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\Ez2On\BinFile\Ez2OnBinFileTabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\Ez2On\BinFile\Ez2OnBinFileEditorWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

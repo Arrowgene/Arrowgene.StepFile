@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Arrowgene.StepFile.Gui.Core.DynamicGridView;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System;
 
 namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 {
@@ -21,7 +20,6 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
         private CommandHandler _cmdEdit;
         private CommandHandler _cmdAdd;
         private CommandHandler _cmdDelete;
-
 
         public Ez2OnBinFileTabController() : base(new Ez2OnBinFileTabControl())
         {
@@ -304,33 +302,14 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 
         private void Edit(Ez2OnBinFileTabViewItem item)
         {
-            if (item is Ez2OnBinFileTabCard)
+            Ez2OnBinFileEditorWindow editorWindow = new Ez2OnBinFileEditorWindow(App.Window, item);
+            if (editorWindow.ShowDialog() == true)
             {
-                Ez2OnBinFileTabCard binFileTabCard = (Ez2OnBinFileTabCard)item;
-            }
-            else if (item is Ez2OnBinFileTabIdFilter)
-            {
-                Ez2OnBinFileTabIdFilter binFileTabIdFilter = (Ez2OnBinFileTabIdFilter)item;
-            }
-            else if (item is Ez2OnBinFileTabItem)
-            {
-                Ez2OnBinFileTabItem binFileTabItem = (Ez2OnBinFileTabItem)item;
-            }
-            else if (item is Ez2OnBinFileTabMusic)
-            {
-                Ez2OnBinFileTabMusic binFileTabMusic = (Ez2OnBinFileTabMusic)item;
-            }
-            else if (item is Ez2OnBinFileTabQuest)
-            {
-                Ez2OnBinFileTabQuest binFileTabQuest = (Ez2OnBinFileTabQuest)item;
-            }
-            else if (item is Ez2OnBinFileTabRadiomix)
-            {
-                Ez2OnBinFileTabRadiomix binFileTabRadiomix = (Ez2OnBinFileTabRadiomix)item;
+                item.Save();
             }
             else
             {
-                MessageBox.Show($"Can not edit BinFile: '{item}'", "StepFile", MessageBoxButton.OK, MessageBoxImage.Error);
+                item.Discard();
             }
         }
 

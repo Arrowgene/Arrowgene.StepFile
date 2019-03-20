@@ -15,6 +15,7 @@
         private const string SETTINGS_FILE_NAME = "arrowgene_stepfile.settings";
         private const string LOG_FILE_NAME = "arrowgene_stepfile.log";
 
+        public static Window Window => _mainWindow.Window;
         private static IMainWindow _mainWindow;
         private static MainController _controller;
         private static object _progressOwner;

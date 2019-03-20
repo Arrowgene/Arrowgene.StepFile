@@ -6,11 +6,18 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
     {
         private Ez2OnModelRadiomix _modelRadiomix;
 
-        protected override object BindingSource => _modelRadiomix;
-
         public Ez2OnBinFileTabRadiomix(Ez2OnModelRadiomix modelRadiomix)
         {
             _modelRadiomix = modelRadiomix;
+            Discard();
+        }
+
+        public override void Save()
+        {
+        }
+
+        public override void Discard()
+        {
         }
     }
 }
