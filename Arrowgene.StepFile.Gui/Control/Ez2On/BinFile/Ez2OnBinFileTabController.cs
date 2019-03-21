@@ -113,86 +113,99 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             else if (_binFile is Ez2OnMusicBinFile)
             {
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Id", TextField = "Id" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E1", TextField = "E1" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Unknown", TextField = "Unknown" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Name", TextField = "Name" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Category", TextField = "Category" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Duration", TextField = "Duration" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Bpm", TextField = "Bpm" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "FileName", TextField = "FileName" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D1", TextField = "D1" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D2", TextField = "D2" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "New", TextField = "New" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "LicensePrice", TextField = "LicensePrice" });
+
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyEzActivation", TextField = "RubyEzActivation" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyEzExr", TextField = "RubyEzExr" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D4", TextField = "D4" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyEzUnknown", TextField = "RubyEzUnknown" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyEzNotes", TextField = "RubyEzNotes" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D6", TextField = "D6" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D7", TextField = "D7" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyEzUnlock", TextField = "RubyEzUnlock" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyEzDjPoint", TextField = "RubyEzDjPoint" });
+
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyNmActivation", TextField = "RubyNmActivation" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyNmExr", TextField = "RubyNmExr" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D9", TextField = "D9" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyNmUnknown", TextField = "RubyNmUnknown" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyNmNotes", TextField = "RubyNmNotes" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D11", TextField = "D11" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D12", TextField = "D12" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyNmUnlock", TextField = "RubyNmUnlock" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyNmDjPoint", TextField = "RubyNmDjPoint" });
+
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyHdActivation", TextField = "RubyHdActivation" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyHdExr", TextField = "RubyHdExr" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D14", TextField = "D14" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyHdNotes", TextField = "RubyHdNotes" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D16", TextField = "D16" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D17", TextField = "D17" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyHdUnknown", TextField = "RubyHdUnknown" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyHdUnlock", TextField = "RubyHdUnlock" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyHdDjPoint", TextField = "RubyHdDjPoint" });
+
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyShdActivation", TextField = "RubyShdActivation" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyShdExr", TextField = "RubyShdExr" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D19", TextField = "D19" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyShdUnknown", TextField = "RubyShdUnknown" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyShdNotes", TextField = "RubyShdNotes" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D21", TextField = "D21" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D22", TextField = "D22" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyShdUnlock", TextField = "RubyShdUnlock" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RubyShdDjPoint", TextField = "RubyShdDjPoint" });
+
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetEzActivation", TextField = "StreetEzActivation" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetEzExr", TextField = "StreetEzExr" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D24", TextField = "D24" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetEzUnknown", TextField = "StreetEzUnknown" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetEzNotes", TextField = "StreetEzNotes" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D26", TextField = "D26" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D27", TextField = "D27" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetEzUnlock", TextField = "StreetEzUnlock" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetEzDjPoint", TextField = "StreetEzDjPoint" });
+
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "SteetNmActivation", TextField = "SteetNmActivation" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetNmExr", TextField = "StreetNmExr" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D29", TextField = "D29" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetNmUnknown", TextField = "StreetNmUnknown" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetNmNotes", TextField = "StreetNmNotes" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D31", TextField = "D31" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D32", TextField = "D32" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetNmUnlock", TextField = "StreetNmUnlock" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetNmDjPoint", TextField = "StreetNmDjPoint" });
+                
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetHdActivation", TextField = "StreetHdActivation" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetHdExr", TextField = "StreetHdExr" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D34", TextField = "D34" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetHdUnknown", TextField = "StreetHdUnknown" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetHdNotes", TextField = "StreetHdNotes" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D36", TextField = "D36" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D37", TextField = "D37" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetHdUnlock", TextField = "StreetHdUnlock" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetHdDjPoint", TextField = "StreetHdDjPoint" });
+
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetShdActivation", TextField = "StreetShdActivation" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetShdExr", TextField = "StreetShdExr" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D39", TextField = "D39" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetShdUnknown", TextField = "StreetShdUnknown" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetShdNotes", TextField = "StreetShdNotes" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D41", TextField = "D41" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D42", TextField = "D42" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetShdUnlock", TextField = "StreetShdUnlock" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetShdDjPoint", TextField = "StreetShdDjPoint" });
+
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubEzActivation", TextField = "ClubEzActivation" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubEzExr", TextField = "ClubEzExr" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D44", TextField = "D44" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubEzUnknown", TextField = "ClubEzUnknown" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubEzNotes", TextField = "ClubEzNotes" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D46", TextField = "D46" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D47", TextField = "D47" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubEzUnlock", TextField = "ClubEzUnlock" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubEzDjPoint", TextField = "ClubEzDjPoint" });
+
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubNmActivation", TextField = "ClubNmActivation" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubNmExr", TextField = "ClubNmExr" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D49", TextField = "D49" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubNmUnknown", TextField = "ClubNmUnknown" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubNmNotes", TextField = "ClubNmNotes" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D51", TextField = "D51" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D52", TextField = "D52" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubNmUnlock", TextField = "ClubNmUnlock" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubNmDjPoint", TextField = "ClubNmDjPoint" });
+
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubHdActivation", TextField = "ClubHdActivation" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubHdExr", TextField = "ClubHdExr" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D54", TextField = "D54" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubHdUnknown", TextField = "ClubHdUnknown" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubHdNotes", TextField = "ClubHdNotes" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D56", TextField = "D56" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D57", TextField = "D57" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubHdUnlock", TextField = "ClubHdUnlock" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubHdDjPoint", TextField = "ClubHdDjPoint" });
+
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubShdActivation", TextField = "ClubShdActivation" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubShdExr", TextField = "ClubShdExr" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D59", TextField = "D59" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubShdUnknown", TextField = "ClubShdUnknown" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubShdNotes", TextField = "ClubShdNotes" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D61", TextField = "D61" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E2", TextField = "E2" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E3", TextField = "E3" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E4", TextField = "E4" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E5", TextField = "E5" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E6", TextField = "E6" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E7", TextField = "E7" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E8", TextField = "E8" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E9", TextField = "E9" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E10", TextField = "E10" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E11", TextField = "E11" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E12", TextField = "E12" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E13", TextField = "E13" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E14", TextField = "E14" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubShdUnlock", TextField = "ClubShdUnlock" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubShdDjPoint", TextField = "ClubShdDjPoint" });
+
                 Ez2OnMusicBinFile musicBinFile = (Ez2OnMusicBinFile)_binFile;
                 foreach (Ez2onModelMusic modelMusic in musicBinFile.Entries)
                 {

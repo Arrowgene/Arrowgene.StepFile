@@ -18,60 +18,60 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
         public int ClubShdNotes { get; set; }
         public SongCategoryType Category { get; set; }
         public string FileName { get; set; }
-        public int D2 { get; set; }
-        public int D1 { get; set; }
-        public int D4 { get; set; }
-        public int D6 { get; set; }
-        public int D7 { get; set; }
+        public int LicensePrice { get; set; }
+        public int New { get; set; }
+        public int RubyEzActivation { get; set; }
+        public int RubyEzUnknown { get; set; }
+        public int RubyEzUnlock { get; set; }
         public int RubyNmExr { get; set; }
-        public int D9 { get; set; }
+        public int RubyEzDjPoint { get; set; }
         public int RubyNmNotes { get; set; }
-        public int D11 { get; set; }
-        public int D12 { get; set; }
+        public int RubyNmActivation { get; set; }
+        public int RubyNmUnknown { get; set; }
         public int RubyHdExr { get; set; }
-        public int D14 { get; set; }
+        public int RubyNmUnlock { get; set; }
         public int RubyHdNotes { get; set; }
-        public int D16 { get; set; }
-        public int D17 { get; set; }
-        public int D19 { get; set; }
-        public int D21 { get; set; }
-        public int D22 { get; set; }
+        public int RubyNmDjPoint { get; set; }
+        public int RubyHdActivation { get; set; }
+        public int RubyHdUnknown { get; set; }
+        public int RubyHdUnlock { get; set; }
+        public int RubyHdDjPoint { get; set; }
         public int StreetEzExr { get; set; }
-        public int D24 { get; set; }
+        public int StreetEzUnlock { get; set; }
         public int StreetEzNotes { get; set; }
-        public int D26 { get; set; }
-        public int D27 { get; set; }
+        public int StreetEzDjPoint { get; set; }
+        public int SteetNmActivation { get; set; }
         public int StreetNmExr { get; set; }
-        public int D29 { get; set; }
+        public int StreetNmUnknown { get; set; }
         public int StreetNmNotes { get; set; }
-        public int D31 { get; set; }
-        public int D32 { get; set; }
-        public int D52 { get; set; }
-        public int D51 { get; set; }
+        public int StreetNmUnlock { get; set; }
+        public int StreetNmDjPoint { get; set; }
+        public int ClubNmDjPoint { get; set; }
+        public int ClubNmUnlock { get; set; }
         public int ClubNmNotes { get; set; }
-        public int D49 { get; set; }
+        public int ClubNmUnknown { get; set; }
         public int ClubNmExr { get; set; }
-        public int D47 { get; set; }
-        public int D46 { get; set; }
+        public int ClubEzDjPoint { get; set; }
+        public int ClubEzUnlock { get; set; }
         public int ClubEzNotes { get; set; }
-        public int D44 { get; set; }
+        public int ClubEzUnknown { get; set; }
         public int StreetHdExr { get; set; }
-        public int D34 { get; set; }
+        public int StreetHdUnknown { get; set; }
         public int StreetHdNotes { get; set; }
-        public int D36 { get; set; }
-        public int D37 { get; set; }
+        public int StreetHdUnlock { get; set; }
+        public int StreetHdDjPoint { get; set; }
         public int StreetShdExr { get; set; }
-        public int D39 { get; set; }
+        public int StreetShdUnknown { get; set; }
         public int StreetShdNotes { get; set; }
-        public int D41 { get; set; }
-        public int D42 { get; set; }
+        public int StreetShdUnlock { get; set; }
+        public int StreetShdDjPoint { get; set; }
         public int ClubEzExr { get; set; }
         public int ClubShdExr { get; set; }
-        public int D59 { get; set; }
-        public int D57 { get; set; }
-        public int D56 { get; set; }
-        public int D54 { get; set; }
-        public int D61 { get; set; }
+        public int ClubShdUnknown { get; set; }
+        public int ClubHdDjPoint { get; set; }
+        public int ClubHdUnlock { get; set; }
+        public int ClubHdUnknown { get; set; }
+        public int ClubShdUnlock { get; set; }
         public float MeasureScale { get; set; }
         public byte JudgmentKool  { get; set; }
         public byte JudgmentCool { get; set; }
@@ -81,20 +81,20 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
         public float GaugeGood { get; set; }
         public float GaugeMiss { get; set; }
         public float GaugeFail { get; set; }
-        public int E1 { get; set; }
-        public int E2 { get; set; }
-        public int E3 { get; set; }
-        public int E4 { get; set; }
-        public int E5 { get; set; }
-        public int E6 { get; set; }
-        public int E7 { get; set; }
-        public int E8 { get; set; }
-        public int E9 { get; set; }
-        public int E10 { get; set; }
-        public int E11 { get; set; }
-        public int E12 { get; set; }
-        public int E13 { get; set; }
-        public int E14 { get; set; }
+        public int Unknown { get; set; }
+        public int ClubShdDjPoint { get; set; }
+        public int RubyShdActivation { get; set; }
+        public int RubyShdUnknown { get; set; }
+        public int RubyShdUnlock { get; set; }
+        public int RubyShdDjPoint { get; set; }
+        public int StreetEzActivation { get; set; }
+        public int StreetEzUnknown { get; set; }
+        public int StreetHdActivation { get; set; }
+        public int StreetShdActivation { get; set; }
+        public int ClubEzActivation { get; set; }
+        public int ClubNmActivation { get; set; }
+        public int ClubHdActivation { get; set; }
+        public int ClubShdActivation { get; set; }
 
 
         public int GetExr(ModeType mode, DifficultyType difficulty)

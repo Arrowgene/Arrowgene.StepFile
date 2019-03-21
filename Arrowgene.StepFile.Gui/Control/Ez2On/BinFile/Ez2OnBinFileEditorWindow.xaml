@@ -37,6 +37,6 @@
                 <Image Source="pack://application:,,,/icons/PastelSVG/disk.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
         </StackPanel>
-        <Grid Grid.Row="1" x:Name="gridContent" />
+        <Grid Grid.Row="1" x:Name="gridContent" Margin="5" />
     </Grid>
 </Window>
