@@ -79,7 +79,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
         public int Z5 { get { return _z5; } set { _z5 = value; OnPropertyChanged("Z5"); } }
         public int Z6 { get { return _z6; } set { _z6 = value; OnPropertyChanged("Z6"); } }
         public int Z7 { get { return _z7; } set { _z7 = value; OnPropertyChanged("Z7"); } }
-        public int Z8 { get { return _z8; } set { _z7 = value; OnPropertyChanged("Z8"); } }
+        public int Z8 { get { return _z8; } set { _z8 = value; OnPropertyChanged("Z8"); } }
         public int Z9 { get { return _z9; } set { _z9 = value; OnPropertyChanged("Z9"); } }
         public int Z10 { get { return _z10; } set { _z10 = value; OnPropertyChanged("Z10"); } }
         public int Z11 { get { return _z11; } set { _z11 = value; OnPropertyChanged("Z11"); } }

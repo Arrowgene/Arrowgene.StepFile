@@ -8,8 +8,6 @@ namespace Arrowgene.StepFile.Gui.Core
         private Action _action;
         private Func<bool> _canExecuteFunc;
         private bool _canExecute;
-        private ICommand saveCommand;
-        private bool v;
 
         public CommandHandler(Action action, Func<bool> canExecute)
         {
