@@ -13,6 +13,8 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
         public abstract string Header { get; }
         public abstract void Read(IBuffer buffer);
         public abstract void Write(IBuffer buffer);
+        public abstract object GetEntry(int index);
+        public abstract void SetEntry(int index, object entry);
     }
 
     public abstract class Ez2OnBinFile<T> : Ez2OnBinFile
@@ -60,6 +62,16 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
                 T entry = Entries[i];
                 WriteEntry(entry, buffer);
             }
+        }
+
+        public override object GetEntry(int index)
+        {
+            return Entries[index];
+        }
+
+        public override void SetEntry(int index, object entry)
+        {
+            Entries[index] = (T)entry;
         }
 
         protected string ReadString(IBuffer buffer)

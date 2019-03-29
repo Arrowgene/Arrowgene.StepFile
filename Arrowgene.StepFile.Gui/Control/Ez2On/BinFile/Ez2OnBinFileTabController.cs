@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Arrowgene.StepFile.Gui.Core.DynamicGridView;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System;
 
 namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 {
@@ -530,6 +529,10 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
         {
             int idxA = _ez2OnBinFileTabControl.Items.IndexOf(itemA);
             int idxB = _ez2OnBinFileTabControl.Items.IndexOf(itemB);
+            object binModelA = _binFile.GetEntry(idxA);
+            object binModelB = _binFile.GetEntry(idxB);
+            _binFile.SetEntry(idxB, binModelA);
+            _binFile.SetEntry(idxA, binModelB);
             DynamicGridViewItem tmp = _ez2OnBinFileTabControl.Items[idxA];
             _ez2OnBinFileTabControl.Items[idxA] = _ez2OnBinFileTabControl.Items[idxB];
             _ez2OnBinFileTabControl.Items[idxB] = tmp;
