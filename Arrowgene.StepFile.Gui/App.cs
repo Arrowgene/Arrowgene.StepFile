@@ -1,12 +1,15 @@
 ﻿namespace Arrowgene.StepFile.Gui
 {
+    using Arrowgene.StepFile.Gui.Core;
     using Arrowgene.StepFile.Gui.Plugin;
     using Arrowgene.StepFile.Gui.Windows.Main;
     using System;
+    using System.Globalization;
     using System.IO;
     using System.Reflection;
     using System.Security.Cryptography;
     using System.Text;
+    using System.Threading;
     using System.Windows;
     using System.Windows.Threading;
 
@@ -23,11 +26,30 @@
         [STAThread]
         public static void Main()
         {
+            SetLanguage(LanguageType.English);
             PluginRegistry.Instance.Load("./Plugin");
             _mainWindow = new MainWindow();
             _controller = new MainController(_mainWindow);
             App app = new App();
             app.Run(_mainWindow.Window);
+        }
+
+        public static void SetLanguage(LanguageType language)
+        {
+            string lang = "";
+            switch (language)
+            {
+                case LanguageType.English:
+                    lang = "en-US";
+                    break;
+                case LanguageType.Korean:
+                    lang = "ko-KR";
+                    break;
+                default:
+                    return;
+            }
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
         }
 
         public static void ResetProgress(object owner)

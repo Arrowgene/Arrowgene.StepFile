@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text;
-using System.Windows;
 
-namespace Arrowgene.StepFile.Gui
+namespace Arrowgene.StepFile.Gui.Core
 {
     public class BindingErrorTraceListener : DefaultTraceListener
     {   //http://www.switchonthecode.com/tutorials/wpf-snippet-detecting-binding-errors

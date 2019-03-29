@@ -82,7 +82,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="BindingErrorTraceListener.cs" />
+    <Compile Include="Core\BindingErrorTraceListener.cs" />
+    <Compile Include="Core\Language.cs" />
     <Compile Include="Control\ArchiveTab\ArchiveTabItemName.xaml.cs">
       <DependentUpon>ArchiveTabItemName.xaml</DependentUpon>
     </Compile>
@@ -184,6 +185,16 @@
     <Compile Include="Core\Ez2On\Archive\Ez2OnArchiveIndex.cs" />
     <Compile Include="Control\Tab\ITab.cs" />
     <Compile Include="Control\Tab\TabManager.cs" />
+    <Compile Include="Properties\strings.ko-KR.Designer.cs">
+      <DependentUpon>strings.ko-KR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Main\IMainWindow.cs" />
     <Compile Include="Windows\Main\MainController.cs" />
     <Compile Include="Control\Tab\TabUserControl.cs" />
@@ -382,6 +393,16 @@
       <Project>{349ce16e-8f01-4c60-bded-4a2fffbfe430}</Project>
       <Name>Arrowgene.StepFile.Plugin</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\strings.ko-KR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.ko-KR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
