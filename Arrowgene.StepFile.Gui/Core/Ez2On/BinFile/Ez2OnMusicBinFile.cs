@@ -4,13 +4,13 @@ using Arrowgene.StepFile.Gui.Core.Ez2On.Model;
 
 namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
 {
-    public class Ez2OnMusicBinFile : Ez2OnBinFile<Ez2onModelMusic>
+    public class Ez2OnMusicBinFile : Ez2OnBinFile<Ez2OnModelMusic>
     {
         public override string Header => "M_MUSIC";
 
-        public override Ez2onModelMusic ReadEntry(IBuffer buffer)
+        public override Ez2OnModelMusic ReadEntry(IBuffer buffer)
         {
-            Ez2onModelMusic song = new Ez2onModelMusic();
+            Ez2OnModelMusic song = new Ez2OnModelMusic();
             song.Id = buffer.ReadInt32();
             song.Unknown = buffer.ReadInt32();
             song.Name = ReadString(buffer);
@@ -56,7 +56,7 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             song.StreetEzUnlock = buffer.ReadInt32();
             song.StreetEzDjPoint = buffer.ReadInt32();
 
-            song.SteetNmActivation = buffer.ReadInt32();
+            song.StreetNmActivation = buffer.ReadInt32();
             song.StreetNmExr = buffer.ReadInt32();
             song.StreetNmUnknown = buffer.ReadInt32();
             song.StreetNmNotes = buffer.ReadInt32();
@@ -108,7 +108,7 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             return song;
         }
 
-        public override void WriteEntry(Ez2onModelMusic song, IBuffer buffer)
+        public override void WriteEntry(Ez2OnModelMusic song, IBuffer buffer)
         {
             buffer.WriteInt32(song.Id);
             buffer.WriteInt32(song.Unknown);
@@ -155,7 +155,7 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             buffer.WriteInt32(song.StreetEzUnlock);
             buffer.WriteInt32(song.StreetEzDjPoint);
 
-            buffer.WriteInt32(song.SteetNmActivation);
+            buffer.WriteInt32(song.StreetNmActivation);
             buffer.WriteInt32(song.StreetNmExr);
             buffer.WriteInt32(song.StreetNmUnknown);
             buffer.WriteInt32(song.StreetNmNotes);

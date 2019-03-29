@@ -6,6 +6,8 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
     {
         private Ez2OnModelRadiomix _modelRadiomix;
 
+        public Ez2OnModelRadiomix Model => _modelRadiomix;
+
         public Ez2OnBinFileTabRadiomix(Ez2OnModelRadiomix modelRadiomix)
         {
             _modelRadiomix = modelRadiomix;

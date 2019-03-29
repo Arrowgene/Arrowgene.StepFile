@@ -44,6 +44,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
         private int _z10;
         private int _z11;
 
+        public Ez2OnModelQuest Model => _modelQuest;
         public int Id { get { return _id; } set { _id = value; OnPropertyChanged("Id"); } }
         public int A { get { return _a; } set { _a = value; OnPropertyChanged("A"); } }
         public int B { get { return _b; } set { _b = value; OnPropertyChanged("B"); } }

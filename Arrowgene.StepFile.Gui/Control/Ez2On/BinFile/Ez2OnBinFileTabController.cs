@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Arrowgene.StepFile.Gui.Core.DynamicGridView;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System;
 
 namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 {
@@ -20,6 +21,8 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
         private CommandHandler _cmdEdit;
         private CommandHandler _cmdAdd;
         private CommandHandler _cmdDelete;
+        private CommandHandler _cmdMoveUp;
+        private CommandHandler _cmdMoveDown;
 
         public Ez2OnBinFileTabController() : base(new Ez2OnBinFileTabControl())
         {
@@ -31,6 +34,8 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             _ez2OnBinFileTabControl.EditCommand = _cmdEdit = new CommandHandler(EditCommand, CanEdit);
             _ez2OnBinFileTabControl.AddCommand = _cmdAdd = new CommandHandler(AddCommand, CanAdd);
             _ez2OnBinFileTabControl.DeleteCommand = _cmdDelete = new CommandHandler(DeleteCommand, CanDelete);
+            _ez2OnBinFileTabControl.MoveUpCommand = _cmdMoveUp = new CommandHandler(MoveUpCommand, CanMoveUp);
+            _ez2OnBinFileTabControl.MoveDownCommand = _cmdMoveDown = new CommandHandler(MoveDownCommand, CanMoveDown);
 
             _ez2OnBinFileTabControl.ListViewItems.SelectionMode = SelectionMode.Single;
             _ez2OnBinFileTabControl.ListViewItems.MouseDoubleClick += ListViewItems_MouseDoubleClick;
@@ -112,7 +117,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             }
             else if (_binFile is Ez2OnMusicBinFile)
             {
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Id", TextField = "Id" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Id", TextField = "Id", Width = 40 });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Unknown", TextField = "Unknown" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Name", TextField = "Name" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Category", TextField = "Category" });
@@ -157,13 +162,13 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetEzUnlock", TextField = "StreetEzUnlock" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetEzDjPoint", TextField = "StreetEzDjPoint" });
 
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "SteetNmActivation", TextField = "SteetNmActivation" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetNmActivation", TextField = "StreetNmActivation" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetNmExr", TextField = "StreetNmExr" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetNmUnknown", TextField = "StreetNmUnknown" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetNmNotes", TextField = "StreetNmNotes" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetNmUnlock", TextField = "StreetNmUnlock" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetNmDjPoint", TextField = "StreetNmDjPoint" });
-                
+
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetHdActivation", TextField = "StreetHdActivation" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetHdExr", TextField = "StreetHdExr" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "StreetHdUnknown", TextField = "StreetHdUnknown" });
@@ -207,7 +212,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ClubShdDjPoint", TextField = "ClubShdDjPoint" });
 
                 Ez2OnMusicBinFile musicBinFile = (Ez2OnMusicBinFile)_binFile;
-                foreach (Ez2onModelMusic modelMusic in musicBinFile.Entries)
+                foreach (Ez2OnModelMusic modelMusic in musicBinFile.Entries)
                 {
                     Ez2OnBinFileTabMusic binFileTabMusic = new Ez2OnBinFileTabMusic(modelMusic);
                     _ez2OnBinFileTabControl.AddItems(binFileTabMusic);
@@ -301,6 +306,71 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 
         private void AddCommand()
         {
+            Ez2OnBinFileTabViewItem newItem = null;
+            if (_binFile is Ez2OnCardBinFile)
+            {
+                Ez2OnCardBinFile cardBindFile = (Ez2OnCardBinFile)_binFile;
+                Ez2OnModelCard modelCard = new Ez2OnModelCard();
+                Ez2OnBinFileTabCard binFileTabCard = new Ez2OnBinFileTabCard(modelCard);
+                cardBindFile.Entries.Add(modelCard);
+                _ez2OnBinFileTabControl.AddItems(binFileTabCard);
+                newItem = binFileTabCard;
+            }
+            else if (_binFile is Ez2OnIdFilterBinFile)
+            {
+                Ez2OnIdFilterBinFile idFilterBinFile = (Ez2OnIdFilterBinFile)_binFile;
+                string idFilter = "New Id Filter";
+                Ez2OnBinFileTabIdFilter binFileTabIdFilter = new Ez2OnBinFileTabIdFilter(idFilter, idFilterBinFile);
+                idFilterBinFile.Entries.Add(idFilter);
+                _ez2OnBinFileTabControl.AddItems(binFileTabIdFilter);
+                newItem = binFileTabIdFilter;
+            }
+            else if (_binFile is Ez2OnItemBinFile)
+            {
+                Ez2OnItemBinFile itemBinFile = (Ez2OnItemBinFile)_binFile;
+                Ez2OnModelItem modelItem = new Ez2OnModelItem();
+                Ez2OnBinFileTabItem binFileTabItem = new Ez2OnBinFileTabItem(modelItem);
+                itemBinFile.Entries.Add(modelItem);
+                _ez2OnBinFileTabControl.AddItems(binFileTabItem);
+                newItem = binFileTabItem;
+            }
+            else if (_binFile is Ez2OnMusicBinFile)
+            {
+                Ez2OnMusicBinFile musicBinFile = (Ez2OnMusicBinFile)_binFile;
+                Ez2OnModelMusic modelMusic = new Ez2OnModelMusic();
+                Ez2OnBinFileTabMusic binFileTabMusic = new Ez2OnBinFileTabMusic(modelMusic);
+                musicBinFile.Entries.Add(modelMusic);
+                _ez2OnBinFileTabControl.AddItems(binFileTabMusic);
+                newItem = binFileTabMusic;
+            }
+            else if (_binFile is Ez2OnQuestBinFile)
+            {
+                Ez2OnQuestBinFile questBinFile = (Ez2OnQuestBinFile)_binFile;
+                Ez2OnModelQuest modelQuest = new Ez2OnModelQuest();
+                Ez2OnBinFileTabQuest binFileTabQuest = new Ez2OnBinFileTabQuest(modelQuest);
+                questBinFile.Entries.Add(modelQuest);
+                _ez2OnBinFileTabControl.AddItems(binFileTabQuest);
+                newItem = binFileTabQuest;
+            }
+            else if (_binFile is Ez2OnRadiomixBinFile)
+            {
+                Ez2OnRadiomixBinFile radioMixBinFile = (Ez2OnRadiomixBinFile)_binFile;
+                Ez2OnModelRadiomix modelRadiomix = new Ez2OnModelRadiomix();
+                Ez2OnBinFileTabRadiomix binFileRadiomix = new Ez2OnBinFileTabRadiomix(modelRadiomix);
+                radioMixBinFile.Entries.Add(modelRadiomix);
+                _ez2OnBinFileTabControl.AddItems(binFileRadiomix);
+                newItem = binFileRadiomix;
+            }
+            else
+            {
+                MessageBox.Show($"Can not add new entry", "StepFile", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            if (newItem != null)
+            {
+                _ez2OnBinFileTabControl.ListViewItems.ScrollIntoView(newItem);
+                _ez2OnBinFileTabControl.ListViewItems.SelectedItem = newItem;
+            }
+            RaiseCmdChanged();
         }
 
         private bool CanAdd()
@@ -337,11 +407,96 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 
         private void DeleteCommand()
         {
+            if (_selectedItem is Ez2OnBinFileTabCard && _binFile is Ez2OnCardBinFile)
+            {
+                Ez2OnBinFileTabCard binFileTabCard = (Ez2OnBinFileTabCard)_selectedItem;
+                Ez2OnCardBinFile cardBindFile = (Ez2OnCardBinFile)_binFile;
+                cardBindFile.Entries.Remove(binFileTabCard.Model);
+                _ez2OnBinFileTabControl.RemoveItems(binFileTabCard);
+            }
+            else if (_selectedItem is Ez2OnBinFileTabIdFilter && _binFile is Ez2OnIdFilterBinFile)
+            {
+                Ez2OnBinFileTabIdFilter binFileTabIdFilter = (Ez2OnBinFileTabIdFilter)_selectedItem;
+                Ez2OnIdFilterBinFile idFilterBinFile = (Ez2OnIdFilterBinFile)_binFile;
+                idFilterBinFile.Entries.Remove(binFileTabIdFilter.Model);
+                _ez2OnBinFileTabControl.RemoveItems(binFileTabIdFilter);
+            }
+            else if (_selectedItem is Ez2OnBinFileTabItem && _binFile is Ez2OnItemBinFile)
+            {
+                Ez2OnBinFileTabItem binFileTabItem = (Ez2OnBinFileTabItem)_selectedItem;
+                Ez2OnItemBinFile itemBinFile = (Ez2OnItemBinFile)_binFile;
+                itemBinFile.Entries.Remove(binFileTabItem.Model);
+                _ez2OnBinFileTabControl.RemoveItems(binFileTabItem);
+            }
+            else if (_selectedItem is Ez2OnBinFileTabMusic && _binFile is Ez2OnMusicBinFile)
+            {
+                Ez2OnBinFileTabMusic binFileTabMusic = (Ez2OnBinFileTabMusic)_selectedItem;
+                Ez2OnMusicBinFile musicBinFile = (Ez2OnMusicBinFile)_binFile;
+                musicBinFile.Entries.Remove(binFileTabMusic.Model);
+                _ez2OnBinFileTabControl.RemoveItems(binFileTabMusic);
+            }
+            else if (_selectedItem is Ez2OnBinFileTabQuest && _binFile is Ez2OnQuestBinFile)
+            {
+                Ez2OnBinFileTabQuest binFileTabQuest = (Ez2OnBinFileTabQuest)_selectedItem;
+                Ez2OnQuestBinFile questBinFile = (Ez2OnQuestBinFile)_binFile;
+                questBinFile.Entries.Remove(binFileTabQuest.Model);
+                _ez2OnBinFileTabControl.RemoveItems(binFileTabQuest);
+            }
+            else if (_selectedItem is Ez2OnBinFileTabRadiomix && _binFile is Ez2OnRadiomixBinFile)
+            {
+                Ez2OnBinFileTabRadiomix binFileTabRadiomix = (Ez2OnBinFileTabRadiomix)_selectedItem;
+                Ez2OnRadiomixBinFile radiomixBinFile = (Ez2OnRadiomixBinFile)_binFile;
+                radiomixBinFile.Entries.Remove(binFileTabRadiomix.Model);
+                _ez2OnBinFileTabControl.RemoveItems(binFileTabRadiomix);
+            }
+            else
+            {
+                MessageBox.Show($"Can not delete entry", "StepFile", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            RaiseCmdChanged();
         }
 
         private bool CanDelete()
         {
             if (_selectedItem == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void MoveUpCommand()
+        {
+            int selectedIndex = _ez2OnBinFileTabControl.Items.IndexOf(_selectedItem);
+            DynamicGridViewItem itemA = _ez2OnBinFileTabControl.Items[selectedIndex];
+            DynamicGridViewItem itemB = _ez2OnBinFileTabControl.Items[selectedIndex + 1];
+            Swap(itemA, itemB);
+        }
+
+        private bool CanMoveUp()
+        {
+            if (_ez2OnBinFileTabControl.ListViewItems.SelectedIndex < 0)
+            {
+                return false;
+            }
+            if (_ez2OnBinFileTabControl.ListViewItems.SelectedIndex >= _ez2OnBinFileTabControl.ListViewItems.Items.Count - 1)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void MoveDownCommand()
+        {
+            int selectedIndex = _ez2OnBinFileTabControl.Items.IndexOf(_selectedItem);
+            DynamicGridViewItem itemA = _ez2OnBinFileTabControl.Items[selectedIndex];
+            DynamicGridViewItem itemB = _ez2OnBinFileTabControl.Items[selectedIndex - 1];
+            Swap(itemA, itemB);
+        }
+
+        private bool CanMoveDown()
+        {
+            if (_ez2OnBinFileTabControl.ListViewItems.SelectedIndex <= 0)
             {
                 return false;
             }
@@ -371,11 +526,25 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             }
         }
 
+        private void Swap(DynamicGridViewItem itemA, DynamicGridViewItem itemB)
+        {
+            int idxA = _ez2OnBinFileTabControl.Items.IndexOf(itemA);
+            int idxB = _ez2OnBinFileTabControl.Items.IndexOf(itemB);
+            DynamicGridViewItem tmp = _ez2OnBinFileTabControl.Items[idxA];
+            _ez2OnBinFileTabControl.Items[idxA] = _ez2OnBinFileTabControl.Items[idxB];
+            _ez2OnBinFileTabControl.Items[idxB] = tmp;
+            _ez2OnBinFileTabControl.ListViewItems.ScrollIntoView(itemA);
+            _ez2OnBinFileTabControl.ListViewItems.SelectedIndex = idxB;
+            RaiseCmdChanged();
+        }
+
         private void RaiseCmdChanged()
         {
             _cmdAdd.RaiseCanExecuteChanged();
             _cmdEdit.RaiseCanExecuteChanged();
             _cmdDelete.RaiseCanExecuteChanged();
+            _cmdMoveDown.RaiseCanExecuteChanged();
+            _cmdMoveUp.RaiseCanExecuteChanged();
         }
 
     }

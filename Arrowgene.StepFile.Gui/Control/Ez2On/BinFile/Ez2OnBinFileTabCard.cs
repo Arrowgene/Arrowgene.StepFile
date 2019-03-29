@@ -11,6 +11,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 
         public int Id { get { return _id; } set { _id = value; OnPropertyChanged("Id"); } }
         public string Text { get { return _text; } set { _text = value; OnPropertyChanged("Text"); } }
+        public Ez2OnModelCard Model => _cardBin;
 
         public Ez2OnBinFileTabCard(Ez2OnModelCard cardBin)
         {

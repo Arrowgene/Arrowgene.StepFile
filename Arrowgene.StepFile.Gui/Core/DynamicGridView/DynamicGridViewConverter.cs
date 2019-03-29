@@ -20,7 +20,12 @@ namespace Arrowgene.StepFile.Gui.Core.DynamicGridView
                     {
                         Binding binding = new Binding(column.TextField);
                         binding.FallbackValue = "";
-                        grdiView.Columns.Add(new GridViewColumn { Header = column.Header, DisplayMemberBinding = binding });
+                        grdiView.Columns.Add(new GridViewColumn
+                        {
+                            Header = column.Header,
+                            DisplayMemberBinding = binding,
+                            Width = column.Width
+                        });
                     }
                     else
                     {
@@ -33,7 +38,8 @@ namespace Arrowgene.StepFile.Gui.Core.DynamicGridView
                         grdiView.Columns.Add(new GridViewColumn
                         {
                             Header = column.Header,
-                            CellTemplate = template
+                            CellTemplate = template,
+                            Width = column.Width
                         });
                     }
                 }

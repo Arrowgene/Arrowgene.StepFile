@@ -34,6 +34,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
         private int _x;
         private string _effect;
 
+        public Ez2OnModelItem Model => _modelItem;
         public int Id { get { return _id; } set { _id = value; OnPropertyChanged("Id"); } }
         public int Q { get { return _q; } set { _q = value; OnPropertyChanged("Q"); } }
         public ItemType Type { get { return _type; } set { _type = value; OnPropertyChanged("Type"); } }

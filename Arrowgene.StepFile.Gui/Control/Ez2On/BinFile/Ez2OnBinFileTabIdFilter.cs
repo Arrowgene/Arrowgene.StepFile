@@ -9,6 +9,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
         private string _currentIdFilter;
 
         public string IdFilter { get { return _idFilter; } set { _idFilter = value; OnPropertyChanged("IdFilter"); } }
+        public string Model => _currentIdFilter;
 
         public Ez2OnBinFileTabIdFilter(string idFilter, Ez2OnIdFilterBinFile idFilterBinFile)
         {

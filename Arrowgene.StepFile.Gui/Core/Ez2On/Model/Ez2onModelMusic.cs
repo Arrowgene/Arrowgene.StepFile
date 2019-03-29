@@ -3,7 +3,7 @@
 namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
 {
     [Serializable]
-    public class Ez2onModelMusic
+    public class Ez2OnModelMusic
     {
         public string Name { get; set; }
         public string Duration { get; set; }
@@ -40,7 +40,7 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
         public int StreetEzUnlock { get; set; }
         public int StreetEzNotes { get; set; }
         public int StreetEzDjPoint { get; set; }
-        public int SteetNmActivation { get; set; }
+        public int StreetNmActivation { get; set; }
         public int StreetNmExr { get; set; }
         public int StreetNmUnknown { get; set; }
         public int StreetNmNotes { get; set; }
@@ -73,10 +73,10 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
         public int ClubHdUnknown { get; set; }
         public int ClubShdUnlock { get; set; }
         public float MeasureScale { get; set; }
-        public byte JudgmentKool  { get; set; }
+        public byte JudgmentKool { get; set; }
         public byte JudgmentCool { get; set; }
-        public byte JudgmentGood  { get; set; }
-        public byte JudgmentMiss  { get; set; }
+        public byte JudgmentGood { get; set; }
+        public byte JudgmentMiss { get; set; }
         public float GaugeCool { get; set; }
         public float GaugeGood { get; set; }
         public float GaugeMiss { get; set; }
@@ -96,7 +96,27 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
         public int ClubHdActivation { get; set; }
         public int ClubShdActivation { get; set; }
 
-
+        public Ez2OnModelMusic()
+        {
+            Id = -1;
+            Duration = "0:00";
+            Name = "New";
+            FileName = "new";
+            Unknown = 1;
+            RubyEzActivation = 1;
+            RubyNmActivation = 2;
+            RubyHdActivation = 3;
+            RubyShdActivation = 4;
+            StreetEzActivation = 1;
+            StreetNmActivation = 2;
+            StreetHdActivation = 3;
+            StreetShdActivation = 4;
+            ClubEzActivation = 1;
+            ClubNmActivation = 2;
+            ClubHdActivation = 3;
+            ClubShdActivation = 4;
+        }
+        
         public int GetExr(ModeType mode, DifficultyType difficulty)
         {
             switch (mode)

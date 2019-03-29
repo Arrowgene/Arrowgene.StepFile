@@ -4,7 +4,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 {
     public class Ez2OnBinFileTabMusic : Ez2OnBinFileTabViewItem
     {
-        private Ez2onModelMusic _modelMusic;
+        private Ez2OnModelMusic _modelMusic;
         private int _id;
         private int _e1;
         private string _name;
@@ -87,6 +87,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
         private int _e13;
         private int _e14;
 
+        public Ez2OnModelMusic Model => _modelMusic;
         public int Id { get { return _id; } set { _id = value; OnPropertyChanged("Id"); } }
         public int Unknown { get { return _e1; } set { _e1 = value; OnPropertyChanged("Unknown"); } }
         public string Name { get { return _name; } set { _name = value; OnPropertyChanged("Name"); } }
@@ -133,7 +134,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
         public int StreetEzNotes { get { return _streetEzNotes; } set { _streetEzNotes = value; OnPropertyChanged("StreetEzNotes"); } }
         public int StreetEzDjPoint { get { return _d26; } set { _d26 = value; OnPropertyChanged("StreetEzDjPoint"); } }
 
-        public int SteetNmActivation { get { return _d27; } set { _d27 = value; OnPropertyChanged("SteetNmActivation"); } }
+        public int StreetNmActivation { get { return _d27; } set { _d27 = value; OnPropertyChanged("StreetNmActivation"); } }
         public int StreetNmExr { get { return _streetNmExr; } set { _streetNmExr = value; OnPropertyChanged("StreetNmExr"); } }
         public int StreetNmUnknown { get { return _d29; } set { _d29 = value; OnPropertyChanged("StreetNmUnknown"); } }
         public int StreetNmNotes { get { return _streetNmNotes; } set { _streetNmNotes = value; OnPropertyChanged("StreetNmNotes"); } }
@@ -182,7 +183,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
         public int ClubShdUnlock { get { return _d61; } set { _d61 = value; OnPropertyChanged("ClubShdUnlock"); } }
         public int ClubShdDjPoint { get { return _e2; } set { _e2 = value; OnPropertyChanged("ClubShdDjPoint"); } }
 
-        public Ez2OnBinFileTabMusic(Ez2onModelMusic modelMusic)
+        public Ez2OnBinFileTabMusic(Ez2OnModelMusic modelMusic)
         {
             _modelMusic = modelMusic;
             Discard();
@@ -223,7 +224,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             _modelMusic.StreetEzUnlock = StreetEzUnlock;
             _modelMusic.StreetEzNotes = StreetEzNotes;
             _modelMusic.StreetEzDjPoint = StreetEzDjPoint;
-            _modelMusic.SteetNmActivation = SteetNmActivation;
+            _modelMusic.StreetNmActivation = StreetNmActivation;
             _modelMusic.StreetNmExr = StreetNmExr;
             _modelMusic.StreetNmUnknown = StreetNmUnknown;
             _modelMusic.StreetNmNotes = StreetNmNotes;
@@ -308,7 +309,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             StreetEzUnlock = _modelMusic.StreetEzUnlock;
             StreetEzNotes = _modelMusic.StreetEzNotes;
             StreetEzDjPoint = _modelMusic.StreetEzDjPoint;
-            SteetNmActivation = _modelMusic.SteetNmActivation;
+            StreetNmActivation = _modelMusic.StreetNmActivation;
             StreetNmExr = _modelMusic.StreetNmExr;
             StreetNmUnknown = _modelMusic.StreetNmUnknown;
             StreetNmNotes = _modelMusic.StreetNmNotes;

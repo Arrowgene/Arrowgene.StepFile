@@ -47,6 +47,13 @@
             <Button Command="{Binding DeleteCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Delete Entry">
                 <Image Source="pack://application:,,,/icons/PastelSVG/delete.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
+            <Separator Width="10" Background="Transparent"></Separator>
+            <Button Command="{Binding MoveUpCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Move Entry Up">
+                <Image Source="pack://application:,,,/icons/PastelSVG/arrow-up.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
+            <Button Command="{Binding MoveDownCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Move Entry Down">
+                <Image Source="pack://application:,,,/icons/PastelSVG/arrow-down.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
         </StackPanel>
         <ListView Grid.Row="2" x:Name="listViewItems" ItemsSource="{Binding Items}" View="{Binding ColumnConfig, Converter={StaticResource DynamicGridViewConverter}}"/>
     </Grid>
