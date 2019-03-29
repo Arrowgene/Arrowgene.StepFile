@@ -1,6 +1,7 @@
 ﻿<archiveTab:ArchiveTabUserControl x:Class="Arrowgene.StepFile.Gui.Control.Ez2On.BinFile.Ez2OnBinFileTabControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prop="clr-namespace:Arrowgene.StepFile.Gui.Properties"
              xmlns:archiveTab="clr-namespace:Arrowgene.StepFile.Gui.Control.ArchiveTab"
              xmlns:dynamicGridView="clr-namespace:Arrowgene.StepFile.Gui.Core.DynamicGridView"
             >
@@ -31,27 +32,27 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Button Command="{Binding OpenCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Open Bin File">
+            <Button Command="{Binding OpenCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.open_bin_file}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/folder-open.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding SaveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Save Bin File">
+            <Button Command="{Binding SaveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.save_bin_file}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/disk.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
             <Separator Width="10" Background="Transparent"></Separator>
-            <Button Command="{Binding EditCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Edit Selected Entry">
+            <Button Command="{Binding EditCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.edit_selected_entry}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/pencil.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding AddCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Add New Entry">
+            <Button Command="{Binding AddCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.add_new_entry}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/add.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding DeleteCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Delete Entry">
+            <Button Command="{Binding DeleteCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.delete_entry}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/delete.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
             <Separator Width="10" Background="Transparent"></Separator>
-            <Button Command="{Binding MoveUpCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Move Entry Up">
+            <Button Command="{Binding MoveUpCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.move_entry_down}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/arrow-down.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding MoveDownCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Move Entry Down">
+            <Button Command="{Binding MoveDownCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.move_entry_up}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/arrow-up.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
         </StackPanel>

@@ -61,11 +61,227 @@ namespace Arrowgene.StepFile.Gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Encryption.
+        /// </summary>
+        public static string add_encryption {
+            get {
+                return ResourceManager.GetString("add_encryption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add File.
+        /// </summary>
+        public static string add_file {
+            get {
+                return ResourceManager.GetString("add_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Folder.
+        /// </summary>
+        public static string add_folder {
+            get {
+                return ResourceManager.GetString("add_folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Entry.
+        /// </summary>
+        public static string add_new_entry {
+            get {
+                return ResourceManager.GetString("add_new_entry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Batch Add Encryption.
+        /// </summary>
+        public static string batch_add_encryption {
+            get {
+                return ResourceManager.GetString("batch_add_encryption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Batch Remove Encryption.
+        /// </summary>
+        public static string batch_remove_encryption {
+            get {
+                return ResourceManager.GetString("batch_remove_encryption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Entry.
+        /// </summary>
+        public static string delete_entry {
+            get {
+                return ResourceManager.GetString("delete_entry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Selection.
+        /// </summary>
+        public static string delete_selection {
+            get {
+                return ResourceManager.GetString("delete_selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Selected Entry.
+        /// </summary>
+        public static string edit_selected_entry {
+            get {
+                return ResourceManager.GetString("edit_selected_entry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extract Selection.
+        /// </summary>
+        public static string extract_selection {
+            get {
+                return ResourceManager.GetString("extract_selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate Encryption Key.
+        /// </summary>
+        public static string generate_encryption_key {
+            get {
+                return ResourceManager.GetString("generate_encryption_key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Entry Down.
+        /// </summary>
+        public static string move_entry_down {
+            get {
+                return ResourceManager.GetString("move_entry_down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Entry Up.
+        /// </summary>
+        public static string move_entry_up {
+            get {
+                return ResourceManager.GetString("move_entry_up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Archive.
+        /// </summary>
+        public static string new_archive {
+            get {
+                return ResourceManager.GetString("new_archive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Ez2On Archive.
         /// </summary>
         public static string new_ez2on_archive {
             get {
                 return ResourceManager.GetString("new_ez2on_archive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Ez2On BinFile.
+        /// </summary>
+        public static string new_ez2on_binfile {
+            get {
+                return ResourceManager.GetString("new_ez2on_binfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Ez2On StepFile.
+        /// </summary>
+        public static string new_ez2on_stepfile {
+            get {
+                return ResourceManager.GetString("new_ez2on_stepfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Archive.
+        /// </summary>
+        public static string open_archive {
+            get {
+                return ResourceManager.GetString("open_archive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Bin File.
+        /// </summary>
+        public static string open_bin_file {
+            get {
+                return ResourceManager.GetString("open_bin_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Encryption.
+        /// </summary>
+        public static string remove_encryption {
+            get {
+                return ResourceManager.GetString("remove_encryption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Archive.
+        /// </summary>
+        public static string save_archive {
+            get {
+                return ResourceManager.GetString("save_archive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Bin File.
+        /// </summary>
+        public static string save_bin_file {
+            get {
+                return ResourceManager.GetString("save_bin_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Bin File Entry.
+        /// </summary>
+        public static string save_bin_file_entry {
+            get {
+                return ResourceManager.GetString("save_bin_file_entry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string settings {
+            get {
+                return ResourceManager.GetString("settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Logs.
+        /// </summary>
+        public static string view_logs {
+            get {
+                return ResourceManager.GetString("view_logs", resourceCulture);
             }
         }
     }

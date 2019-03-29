@@ -37,16 +37,16 @@
             <Button Command="{Binding Ez2OnArchiveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.new_ez2on_archive}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/package.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding Ez2OnDotBinCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="New Ez2On BinFile">
+            <Button Command="{Binding Ez2OnDotBinCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.new_ez2on_binfile}">
                 <Image Source="pack://application:,,,/icons/VS2017/BinaryFile.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding Ez2OnStepFileCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="New Ez2On StepFile">
+            <Button Command="{Binding Ez2OnStepFileCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.new_ez2on_stepfile}">
                 <Image Source="pack://application:,,,/icons/VS2017/Media.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding SettingTabCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Settings">
+            <Button Command="{Binding SettingTabCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.settings}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/cog.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding LogTabCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="View Logs">
+            <Button Command="{Binding LogTabCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.view_logs}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/report.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
         </StackPanel>

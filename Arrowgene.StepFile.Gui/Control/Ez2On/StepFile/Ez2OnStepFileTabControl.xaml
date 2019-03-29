@@ -29,10 +29,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Button Command="{Binding OpenCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Open Archive">
+            <Button Command="{Binding OpenCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Open">
                 <Image Source="pack://application:,,,/icons/PastelSVG/folder-open.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding SaveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Save Archive">
+            <Button Command="{Binding SaveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Save">
                 <Image Source="pack://application:,,,/icons/PastelSVG/disk.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
         </StackPanel>

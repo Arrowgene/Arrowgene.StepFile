@@ -117,7 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="add_encryption" xml:space="preserve">
+    <value>Add Encryption</value>
+  </data>
+  <data name="add_file" xml:space="preserve">
+    <value>Add File</value>
+  </data>
+  <data name="add_folder" xml:space="preserve">
+    <value>Add Folder</value>
+  </data>
+  <data name="add_new_entry" xml:space="preserve">
+    <value>Add New Entry</value>
+  </data>
+  <data name="batch_add_encryption" xml:space="preserve">
+    <value>Batch Add Encryption</value>
+  </data>
+  <data name="batch_remove_encryption" xml:space="preserve">
+    <value>Batch Remove Encryption</value>
+  </data>
+  <data name="delete_entry" xml:space="preserve">
+    <value>Delete Entry</value>
+  </data>
+  <data name="delete_selection" xml:space="preserve">
+    <value>Delete Selection</value>
+  </data>
+  <data name="edit_selected_entry" xml:space="preserve">
+    <value>Edit Selected Entry</value>
+  </data>
+  <data name="extract_selection" xml:space="preserve">
+    <value>Extract Selection</value>
+  </data>
+  <data name="generate_encryption_key" xml:space="preserve">
+    <value>Generate Encryption Key</value>
+  </data>
+  <data name="move_entry_down" xml:space="preserve">
+    <value>Move Entry Down</value>
+  </data>
+  <data name="move_entry_up" xml:space="preserve">
+    <value>Move Entry Up</value>
+  </data>
+  <data name="new_archive" xml:space="preserve">
+    <value>New Archive</value>
+  </data>
   <data name="new_ez2on_archive" xml:space="preserve">
     <value>새로운 Ez2On 아카이브</value>
+  </data>
+  <data name="new_ez2on_binfile" xml:space="preserve">
+    <value>New Ez2On BinFile</value>
+  </data>
+  <data name="new_ez2on_stepfile" xml:space="preserve">
+    <value>New Ez2On StepFile</value>
+  </data>
+  <data name="open_archive" xml:space="preserve">
+    <value>Open Archive</value>
+  </data>
+  <data name="open_bin_file" xml:space="preserve">
+    <value>Open Bin File</value>
+  </data>
+  <data name="remove_encryption" xml:space="preserve">
+    <value>Remove Encryption</value>
+  </data>
+  <data name="save_archive" xml:space="preserve">
+    <value>Save Archive</value>
+  </data>
+  <data name="save_bin_file" xml:space="preserve">
+    <value>Save Bin File</value>
+  </data>
+  <data name="save_bin_file_entry" xml:space="preserve">
+    <value>Save Bin File Entry</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="view_logs" xml:space="preserve">
+    <value>View Logs</value>
   </data>
 </root>

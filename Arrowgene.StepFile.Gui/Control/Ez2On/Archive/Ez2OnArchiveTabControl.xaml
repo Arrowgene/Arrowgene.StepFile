@@ -1,6 +1,7 @@
 ﻿<archiveTab:ArchiveTabUserControl x:Class="Arrowgene.StepFile.Gui.Control.Ez2On.Archive.Ez2OnArchiveTabControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prop="clr-namespace:Arrowgene.StepFile.Gui.Properties"
              xmlns:archiveTab="clr-namespace:Arrowgene.StepFile.Gui.Control.ArchiveTab"
              xmlns:dynamicGridView="clr-namespace:Arrowgene.StepFile.Gui.Core.DynamicGridView"
             >
@@ -33,47 +34,47 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Button Command="{Binding NewArchiveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="New Archive">
+            <Button Command="{Binding NewArchiveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.new_archive}">
                 <Image Source="pack://application:,,,/icons/VS2017/NewCube.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding OpenArchiveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Open Archive">
+            <Button Command="{Binding OpenArchiveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.open_archive}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/folder-open.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding SaveArchiveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Save Archive">
+            <Button Command="{Binding SaveArchiveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.save_archive}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/disk.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
             <Separator Width="10" Background="Transparent"></Separator>
-            <Button Command="{Binding AddFileCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Add File">
+            <Button Command="{Binding AddFileCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.add_file}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/page-add.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding AddFolderCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Add Folder">
+            <Button Command="{Binding AddFolderCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.add_folder}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/folder-add.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
             <Separator Width="10" Background="Transparent"></Separator>
-            <Button Command="{Binding ExtractSelectionCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Extract Selection">
+            <Button Command="{Binding ExtractSelectionCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.extract_selection}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/package-go.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding DeleteSelectionCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Delete Selection">
+            <Button Command="{Binding DeleteSelectionCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.delete_selection}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/package-delete.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
             <Separator Width="10" Background="Transparent"></Separator>
-            <Button Command="{Binding AddEncryptionCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Add Encryption">
+            <Button Command="{Binding AddEncryptionCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.add_encryption}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/lock-add.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding RemoveEncryptionCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Remove Encryption">
+            <Button Command="{Binding RemoveEncryptionCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.remove_encryption}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/lock-delete.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding GenerateKeyCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Generate Encryption Key">
+            <Button Command="{Binding GenerateKeyCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.generate_encryption_key}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/key-disk.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
             <Separator Width="10" Background="Transparent"></Separator>
-            <Button Command="{Binding BatchAddEncryptionCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Batch Add Encryption">
+            <Button Command="{Binding BatchAddEncryptionCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.batch_add_encryption}">
                 <Grid>
                     <Image Source="pack://application:,,,/icons/PastelSVG/lock-add.png" Style="{StaticResource CustomMenuImageStyle}"/>
                     <Image Source="pack://application:,,,/icons/PastelSVG/lightning-add.png" Style="{StaticResource CustomMenuImageStyle}"/>
                 </Grid>
             </Button>
-            <Button Command="{Binding BatchRemoveEncryptionCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Batch Remove Encryption">
+            <Button Command="{Binding BatchRemoveEncryptionCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.batch_remove_encryption}">
                 <Grid>
                     <Image Source="pack://application:,,,/icons/PastelSVG/lock-delete.png" Style="{StaticResource CustomMenuImageStyle}"/>
                     <Image Source="pack://application:,,,/icons/PastelSVG/lightning-delete.png" Style="{StaticResource CustomMenuImageStyle}"/>
