@@ -131,12 +131,12 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive
             HashSet<string> ignored;
             if (_ignoreExtensions.ContainsKey(archiveType))
             {
-                ignored = new HashSet<string>();
-                _ignoreExtensions.Add(archiveType, ignored);
+                ignored = _ignoreExtensions[archiveType];
             }
             else
             {
-                ignored = _ignoreExtensions[archiveType];
+                ignored = new HashSet<string>();
+                _ignoreExtensions.Add(archiveType, ignored);
             }
             ignored.Add(extension.ToLower());
         }
