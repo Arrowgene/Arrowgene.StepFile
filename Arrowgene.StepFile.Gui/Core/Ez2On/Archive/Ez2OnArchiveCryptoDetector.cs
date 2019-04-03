@@ -5,15 +5,16 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive
     public class Ez2OnArchiveCryptoDetector
     {
         private Dictionary<string, List<byte[]>> _signatures;
-        private HashSet<string> _ignoreExtensions;
+        private Dictionary<Ez2OnArchiveType, HashSet<string>> _ignoreExtensions;
 
         public Ez2OnArchiveCryptoDetector()
         {
             _signatures = new Dictionary<string, List<byte[]>>();
-            _ignoreExtensions = new HashSet<string>();
+            _ignoreExtensions = new Dictionary<Ez2OnArchiveType, HashSet<string>>();
             LoadSignatures();
+            LoadIgnoredExtensions();
         }
-        
+
         public bool CanCrypt(string extension, Ez2OnArchiveType archiveType)
         {
             if (string.IsNullOrEmpty(extension))
@@ -21,13 +22,12 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive
                 return false;
             }
             extension = extension.ToLowerInvariant();
-            if (_ignoreExtensions.Contains(extension))
+            if (_ignoreExtensions.TryGetValue(archiveType, out HashSet<string> ignored))
             {
-                return false;
-            }
-            if (archiveType == Ez2OnArchiveType.Dat && extension == ".str")
-            {
-                return false;
+                if (ignored.Contains(extension))
+                {
+                    return false;
+                }
             }
             return true;
         }
@@ -67,9 +67,14 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive
             return true;
         }
 
+        /// <summary>
+        /// Ignored extensions will not be decrypted or encrypted
+        /// </summary>
         private void LoadIgnoredExtensions()
         {
-            _ignoreExtensions.Add(".bik");
+            AddIgnore(".bik", Ez2OnArchiveType.Dat);
+            AddIgnore(".bik", Ez2OnArchiveType.Tro);
+            AddIgnore(".str", Ez2OnArchiveType.Dat);
         }
 
         private void LoadSignatures()
@@ -121,5 +126,19 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Archive
             });
         }
 
+        private void AddIgnore(string extension, Ez2OnArchiveType archiveType)
+        {
+            HashSet<string> ignored;
+            if (_ignoreExtensions.ContainsKey(archiveType))
+            {
+                ignored = new HashSet<string>();
+                _ignoreExtensions.Add(archiveType, ignored);
+            }
+            else
+            {
+                ignored = _ignoreExtensions[archiveType];
+            }
+            ignored.Add(extension.ToLower());
+        }
     }
 }
