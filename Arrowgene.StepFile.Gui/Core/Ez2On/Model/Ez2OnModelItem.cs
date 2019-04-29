@@ -47,7 +47,7 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
         public int T { get; set; }
         public int U { get; set; }
         public int V { get; set; }
-        public int W { get; set; }
+        public int DjPointPlus { get; set; }
         public int X { get; set; }
     }
 }

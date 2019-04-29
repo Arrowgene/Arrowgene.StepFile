@@ -16,7 +16,6 @@
                 <ResourceDictionary Source="../../../ControlTemplate/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="../../../ControlTemplate/ListBoxStyle.xaml"/>
                 <ResourceDictionary Source="../../../ControlTemplate/CheckBoxStyle.xaml"/>
-                <ResourceDictionary Source="../../../ControlTemplate/TextBoxStyle.xaml"/>
                 <ResourceDictionary Source="../../../ControlTemplate/ProgressBarStyle.xaml"/>
                 <ResourceDictionary Source="../../../ControlTemplate/LabelStyle.xaml"/>
                 <ResourceDictionary Source="../../../ControlTemplate/TabControlStyle.xaml"/>
@@ -101,6 +100,6 @@
             <Label Grid.Row="3" Grid.Column="0" Content="Current Path:"/>
             <Label Grid.Row="3" Grid.Column="1" Content="{Binding FilePath}"/>
         </Grid>
-        <ListView Grid.Row="2" x:Name="listViewItems" ItemsSource="{Binding Items}" View="{Binding ColumnConfig, Converter={StaticResource DynamicGridViewConverter}}"/>
+        <ListView Grid.Row="2" x:Name="listViewItems" ItemsSource="{Binding SourceCollection}" View="{Binding ColumnConfig, Converter={StaticResource DynamicGridViewConverter}}"/>
     </Grid>
 </archiveTab:ArchiveTabUserControl>

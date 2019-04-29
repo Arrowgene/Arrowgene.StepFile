@@ -14,7 +14,6 @@
                 <ResourceDictionary Source="../../ControlTemplate/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="../../ControlTemplate/ListBoxStyle.xaml"/>
                 <ResourceDictionary Source="../../ControlTemplate/CheckBoxStyle.xaml"/>
-                <ResourceDictionary Source="../../ControlTemplate/TextBoxStyle.xaml"/>
                 <ResourceDictionary Source="../../ControlTemplate/ProgressBarStyle.xaml"/>
                 <ResourceDictionary Source="../../ControlTemplate/LabelStyle.xaml"/>
                 <ResourceDictionary Source="../../ControlTemplate/TabControlStyle.xaml"/>

@@ -253,15 +253,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="ControlTemplate\MenuTextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ControlTemplate\TextBlockStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ControlTemplate\TabControlStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ControlTemplate\TextBoxStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -368,6 +368,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Resource Include="icons\PastelSVG\funnel-delete.png" />
     <Resource Include="icons\PastelSVG\arrow-up.png" />
     <Resource Include="icons\PastelSVG\arrow-down.png" />
     <Resource Include="icons\VS2017\NewCube.png" />

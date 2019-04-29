@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Arrowgene.StepFile.Gui.Core.DynamicGridView;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System;
 
 namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 {
@@ -35,17 +36,18 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             _ez2OnBinFileTabControl.DeleteCommand = _cmdDelete = new CommandHandler(DeleteCommand, CanDelete);
             _ez2OnBinFileTabControl.MoveUpCommand = _cmdMoveUp = new CommandHandler(MoveUpCommand, CanMoveUp);
             _ez2OnBinFileTabControl.MoveDownCommand = _cmdMoveDown = new CommandHandler(MoveDownCommand, CanMoveDown);
+            _ez2OnBinFileTabControl.ClearFilterCommand = new CommandHandler(ClearFilterCommand, true);
 
             _ez2OnBinFileTabControl.ListViewItems.SelectionMode = SelectionMode.Single;
             _ez2OnBinFileTabControl.ListViewItems.MouseDoubleClick += ListViewItems_MouseDoubleClick;
             _ez2OnBinFileTabControl.ListViewItems.SelectionChanged += ListViewItems_SelectionChanged;
+
+            _ez2OnBinFileTabControl.TextBoxFilter.TextChanged += TextBoxFilter_TextChanged;
+            _ez2OnBinFileTabControl.Filter += _ez2OnBinFileTabControl_Filter;
         }
 
-        private void OpenCommand()
+        public void Open(FileInfo selected)
         {
-            FileInfo selected = new SelectFileBuilder()
-                .Filter("Ez2On StepFile(*.bin) | *.bin")
-                .SelectSingle();
             if (selected == null)
             {
                 return;
@@ -92,6 +94,8 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Duration", TextField = "Duration" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Coins", TextField = "Coins" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Level", TextField = "Level" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "X", TextField = "X" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "DjPointPlus", TextField = "DjPointPlus" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "ExpPlus", TextField = "ExpPlus" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "CoinPlus", TextField = "CoinPlus" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "HpPlus", TextField = "HpPlus" });
@@ -103,8 +107,6 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "N", TextField = "N" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "O", TextField = "O" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "V", TextField = "V" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "W", TextField = "W" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "X", TextField = "X" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Effect", TextField = "Effect" });
                 Ez2OnItemBinFile itemBinFile = (Ez2OnItemBinFile)_binFile;
                 foreach (Ez2OnModelItem modelItem in itemBinFile.Entries)
@@ -268,7 +270,31 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             }
             else if (_binFile is Ez2OnRadiomixBinFile)
             {
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Id", TextField = "Id" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "RadiomixId", TextField = "RadiomixId" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "B", TextField = "B" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "C", TextField = "C" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "D", TextField = "D" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "E", TextField = "E" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song1Id", TextField = "Song1Id" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song1RubyNotes", TextField = "Song1RubyNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song1StreetNotes", TextField = "Song1StreetNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song1ClubNotes", TextField = "Song1ClubNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song1Club8KNotes", TextField = "Song1Club8KNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song2Id", TextField = "Song2Id" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song2RubyNotes", TextField = "Song2RubyNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song2StreetNotes", TextField = "Song2StreetNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song2ClubNotes", TextField = "Song2ClubNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song2Club8KNotes", TextField = "Song2Club8KNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song3Id", TextField = "Song3Id" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song3RubyNotes", TextField = "Song3RubyNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song3StreetNotes", TextField = "Song3StreetNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song3ClubNotes", TextField = "Song3ClubNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song3Club8KNotes", TextField = "Song3Club8KNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song4Id", TextField = "Song4Id" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song4RubyNotes", TextField = "Song4RubyNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song4StreetNotes", TextField = "Song4StreetNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song4ClubNotes", TextField = "Song4ClubNotes" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Song4Club8KNotes", TextField = "Song4Club8KNotes" });
                 Ez2OnRadiomixBinFile radioMixBinFile = (Ez2OnRadiomixBinFile)_binFile;
                 foreach (Ez2OnModelRadiomix modelRadiomix in radioMixBinFile.Entries)
                 {
@@ -283,6 +309,13 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             }
 
             RaiseCmdChanged();
+        }
+        private void OpenCommand()
+        {
+            FileInfo selected = new SelectFileBuilder()
+                .Filter("Ez2On StepFile(*.bin) | *.bin")
+                .SelectSingle();
+            Open(selected);
         }
 
         private async void SaveCommand()
@@ -466,9 +499,9 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 
         private void MoveUpCommand()
         {
-            int selectedIndex = _ez2OnBinFileTabControl.Items.IndexOf(_selectedItem);
-            DynamicGridViewItem itemA = _ez2OnBinFileTabControl.Items[selectedIndex];
-            DynamicGridViewItem itemB = _ez2OnBinFileTabControl.Items[selectedIndex + 1];
+            int selectedIndex = _ez2OnBinFileTabControl.IndexOf(_selectedItem);
+            DynamicGridViewItem itemA = _ez2OnBinFileTabControl.GetItem(selectedIndex);
+            DynamicGridViewItem itemB = _ez2OnBinFileTabControl.GetItem(selectedIndex + 1);
             Swap(itemA, itemB);
         }
 
@@ -487,9 +520,9 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 
         private void MoveDownCommand()
         {
-            int selectedIndex = _ez2OnBinFileTabControl.Items.IndexOf(_selectedItem);
-            DynamicGridViewItem itemA = _ez2OnBinFileTabControl.Items[selectedIndex];
-            DynamicGridViewItem itemB = _ez2OnBinFileTabControl.Items[selectedIndex - 1];
+            int selectedIndex = _ez2OnBinFileTabControl.IndexOf(_selectedItem);
+            DynamicGridViewItem itemA = _ez2OnBinFileTabControl.GetItem(selectedIndex);
+            DynamicGridViewItem itemB = _ez2OnBinFileTabControl.GetItem(selectedIndex - 1);
             Swap(itemA, itemB);
         }
 
@@ -525,17 +558,144 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             }
         }
 
+        private void TextBoxFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _ez2OnBinFileTabControl.SourceCollection.Refresh();
+        }
+
+        private void ClearFilterCommand()
+        {
+            _ez2OnBinFileTabControl.TextBoxFilter.Text = string.Empty;
+        }
+
+        private void _ez2OnBinFileTabControl_Filter(object sender, System.Windows.Data.FilterEventArgs e)
+        {
+            string filter = _ez2OnBinFileTabControl.TextBoxFilter.Text;
+            if (string.IsNullOrEmpty(filter))
+            {
+                e.Accepted = true;
+                return;
+            }
+            e.Accepted = false;
+
+            if (e.Item is Ez2OnBinFileTabCard)
+            {
+                Ez2OnBinFileTabCard tabCard = (Ez2OnBinFileTabCard)e.Item;
+                if (tabCard.Text.ToLower().Contains(filter))
+                {
+                    e.Accepted = true;
+                    return;
+                }
+            }
+            else if (e.Item is Ez2OnBinFileTabIdFilter)
+            {
+                Ez2OnBinFileTabIdFilter tabFilter = (Ez2OnBinFileTabIdFilter)e.Item;
+                if (tabFilter.IdFilter.ToLower().Contains(filter))
+                {
+                    e.Accepted = true;
+                    return;
+                }
+            }
+            else if (e.Item is Ez2OnBinFileTabItem)
+            {
+                Ez2OnBinFileTabItem tabItem = (Ez2OnBinFileTabItem)e.Item;
+                if (tabItem.Name.ToLower().Contains(filter))
+                {
+                    e.Accepted = true;
+                    return;
+                }
+                if (tabItem.Image.ToLower().Contains(filter))
+                {
+                    e.Accepted = true;
+                    return;
+                }
+                if (tabItem.Effect.ToLower().Contains(filter))
+                {
+                    e.Accepted = true;
+                    return;
+                }
+            }
+            else if (e.Item is Ez2OnBinFileTabMusic)
+            {
+                Ez2OnBinFileTabMusic tabMusic = (Ez2OnBinFileTabMusic)e.Item;
+                if (tabMusic.Name.ToLower().Contains(filter))
+                {
+                    e.Accepted = true;
+                    return;
+                }
+                if (tabMusic.FileName.ToLower().Contains(filter))
+                {
+                    e.Accepted = true;
+                    return;
+                }
+                if (int.TryParse(filter, out int musicNumber))
+                {
+                    if (tabMusic.Id == musicNumber)
+                    {
+                        e.Accepted = true;
+                        return;
+                    }
+                }
+            }
+            else if (e.Item is Ez2OnBinFileTabQuest)
+            {
+                Ez2OnBinFileTabQuest tabQuest = (Ez2OnBinFileTabQuest)e.Item;
+                if (tabQuest.Title.ToLower().Contains(filter))
+                {
+                    e.Accepted = true;
+                    return;
+                }
+                if (tabQuest.Mission.ToLower().Contains(filter))
+                {
+                    e.Accepted = true;
+                    return;
+                }
+            }
+            else if (e.Item is Ez2OnBinFileTabRadiomix)
+            {
+                Ez2OnBinFileTabRadiomix tabRadiomix = (Ez2OnBinFileTabRadiomix)e.Item;
+                if (int.TryParse(filter, out int number))
+                {
+                    if (tabRadiomix.RadiomixId == number)
+                    {
+                        e.Accepted = true;
+                        return;
+                    }
+                    if (tabRadiomix.Song1Id == number)
+                    {
+                        e.Accepted = true;
+                        return;
+                    }
+                    if (tabRadiomix.Song2Id == number)
+                    {
+                        e.Accepted = true;
+                        return;
+                    }
+                    if (tabRadiomix.Song3Id == number)
+                    {
+                        e.Accepted = true;
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                e.Accepted = true;
+            }
+        }
+
         private void Swap(DynamicGridViewItem itemA, DynamicGridViewItem itemB)
         {
-            int idxA = _ez2OnBinFileTabControl.Items.IndexOf(itemA);
-            int idxB = _ez2OnBinFileTabControl.Items.IndexOf(itemB);
+            int idxA = _ez2OnBinFileTabControl.IndexOf(itemA);
+            int idxB = _ez2OnBinFileTabControl.IndexOf(itemB);
             object binModelA = _binFile.GetEntry(idxA);
             object binModelB = _binFile.GetEntry(idxB);
             _binFile.SetEntry(idxB, binModelA);
             _binFile.SetEntry(idxA, binModelB);
-            DynamicGridViewItem tmp = _ez2OnBinFileTabControl.Items[idxA];
-            _ez2OnBinFileTabControl.Items[idxA] = _ez2OnBinFileTabControl.Items[idxB];
-            _ez2OnBinFileTabControl.Items[idxB] = tmp;
+            DynamicGridViewItem tmpA = _ez2OnBinFileTabControl.GetItem(idxA);
+            DynamicGridViewItem tmpB = _ez2OnBinFileTabControl.GetItem(idxB);
+            _ez2OnBinFileTabControl.SetItem(idxA, tmpB);
+            _ez2OnBinFileTabControl.SetItem(idxB, tmpA);
             _ez2OnBinFileTabControl.ListViewItems.ScrollIntoView(itemA);
             _ez2OnBinFileTabControl.ListViewItems.SelectedIndex = idxB;
             RaiseCmdChanged();

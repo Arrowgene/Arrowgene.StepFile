@@ -30,7 +30,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
         private int _n;
         private int _o;
         private int _v;
-        private int _w;
+        private int _djPointPlus;
         private int _x;
         private string _effect;
 
@@ -59,7 +59,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
         public int N { get { return _n; } set { _n = value; OnPropertyChanged("N"); } }
         public int O { get { return _o; } set { _o = value; OnPropertyChanged("O"); } }
         public int V { get { return _v; } set { _v = value; OnPropertyChanged("V"); } }
-        public int W { get { return _w; } set { _w = value; OnPropertyChanged("W"); } }
+        public int DjPointPlus { get { return _djPointPlus; } set { _djPointPlus = value; OnPropertyChanged("DjPointPlus"); } }
         public int X { get { return _x; } set { _x = value; OnPropertyChanged("X"); } }
         public string Effect { get { return _effect; } set { _effect = value; OnPropertyChanged("Effect"); } }
 
@@ -95,7 +95,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             _modelItem.N = N;
             _modelItem.O = O;
             _modelItem.V = V;
-            _modelItem.W = W;
+            _modelItem.DjPointPlus = DjPointPlus;
             _modelItem.X = X;
             _modelItem.Effect = Effect;
         }
@@ -126,7 +126,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             N = _modelItem.N;
             O = _modelItem.O;
             V = _modelItem.V;
-            W = _modelItem.W;
+            DjPointPlus = _modelItem.DjPointPlus;
             X = _modelItem.X;
             Effect = _modelItem.Effect;
         }

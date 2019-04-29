@@ -82,6 +82,44 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             RaiseCmdChanged();
         }
 
+        public async Task Open(FileInfo selected)
+        {
+            if (selected == null)
+            {
+                return;
+            }
+            Header = selected.Name;
+            Ez2OnArchiveIO archiveIO = new Ez2OnArchiveIO();
+            archiveIO.ProgressChanged += ArchiveIO_ProgressChanged;
+            var task = Task.Run(() =>
+            {
+                Ez2OnArchive archive = archiveIO.Read(selected.FullName);
+                Ez2OnArchiveTabFolder root = new Ez2OnArchiveTabFolder(archive.RootFolder);
+                return new Tuple<Ez2OnArchive, Ez2OnArchiveTabFolder>(archive, root);
+            });
+            Tuple<Ez2OnArchive, Ez2OnArchiveTabFolder> result = await task;
+            _archive = result.Item1;
+            _root = result.Item2;
+            _currentFolder = _root;
+            if (_archive.CryptoType == Ez2OnArchive.CRYPTO_TYPE_NONE)
+            {
+                _ez2OnArchiveTabControl.Encryption = "None";
+            }
+            else
+            {
+                Ez2OnArchiveCrypto activeCrypto = GetArchiveCrypto(_archive.CryptoType);
+                _ez2OnArchiveTabControl.Encryption = activeCrypto == null ? "Unknown" : activeCrypto.Name;
+            }
+            _crypoKey = null;
+            _ez2OnArchiveTabControl.ArchiveType = _archive.ArchiveType;
+            _ez2OnArchiveTabControl.ClearItems();
+            _ez2OnArchiveTabControl.AddItemRange(_root.Folders);
+            _ez2OnArchiveTabControl.AddItemRange(_root.Files);
+            _ez2OnArchiveTabControl.ListViewItems.IsEnabled = true;
+
+            RaiseCmdChanged();
+            App.ResetProgress(this);
+        }
 
         private void NewArchiveCommand()
         {
@@ -114,41 +152,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             FileInfo selected = new SelectFileBuilder()
                 .Filter("Ez2On Archive files(*.dat, *.tro) | *.dat; *.tro")
                 .SelectSingle();
-            if (selected == null)
-            {
-                return;
-            }
-            Header = selected.Name;
-            Ez2OnArchiveIO archiveIO = new Ez2OnArchiveIO();
-            archiveIO.ProgressChanged += ArchiveIO_ProgressChanged;
-            var task = Task.Run(() =>
-             {
-                 Ez2OnArchive archive = archiveIO.Read(selected.FullName);
-                 Ez2OnArchiveTabFolder root = new Ez2OnArchiveTabFolder(archive.RootFolder);
-                 return new Tuple<Ez2OnArchive, Ez2OnArchiveTabFolder>(archive, root);
-             });
-            Tuple<Ez2OnArchive, Ez2OnArchiveTabFolder> result = await task;
-            _archive = result.Item1;
-            _root = result.Item2;
-            _currentFolder = _root;
-            if (_archive.CryptoType == Ez2OnArchive.CRYPTO_TYPE_NONE)
-            {
-                _ez2OnArchiveTabControl.Encryption = "None";
-            }
-            else
-            {
-                Ez2OnArchiveCrypto activeCrypto = GetArchiveCrypto(_archive.CryptoType);
-                _ez2OnArchiveTabControl.Encryption = activeCrypto == null ? "Unknown" : activeCrypto.Name;
-            }
-            _crypoKey = null;
-            _ez2OnArchiveTabControl.ArchiveType = _archive.ArchiveType;
-            _ez2OnArchiveTabControl.ClearItems();
-            _ez2OnArchiveTabControl.AddItemRange(_root.Folders);
-            _ez2OnArchiveTabControl.AddItemRange(_root.Files);
-            _ez2OnArchiveTabControl.ListViewItems.IsEnabled = true;
-
-            RaiseCmdChanged();
-            App.ResetProgress(this);
+           await Open(selected);
         }
 
         private async void SaveArchiveCommand()
@@ -224,7 +228,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
                 }
                 _archive.Files.Add(tabFile.File);
                 _currentFolder.AddFile(tabFile);
-                _ez2OnArchiveTabControl.Items.Add(tabFile);
+                _ez2OnArchiveTabControl.AddItems(tabFile);
             }
         }
 
@@ -263,7 +267,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             Ez2OnArchiveTabFolder tabFolder = CreateDirectory(selectedDestination, activeCrypto, _currentFolder, _archive.ArchiveType);
             _currentFolder.Folders.Add(tabFolder);
             _currentFolder.Folder.Folders.Add(tabFolder.Folder);
-            _ez2OnArchiveTabControl.Items.Add(tabFolder);
+            _ez2OnArchiveTabControl.AddItems(tabFolder);
             AddToCurrentArchive(tabFolder);
         }
 
@@ -282,7 +286,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             {
                 _currentFolder.RemoveFile(_currentFile);
                 _archive.Files.Remove(_currentFile.File);
-                _ez2OnArchiveTabControl.Items.Remove(_currentFile);
+                _ez2OnArchiveTabControl.RemoveItems(_currentFile);
                 _currentFile = null;
             }
         }
@@ -736,7 +740,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
                         }
                         _archive.Files.Add(tabFile.File);
                         _currentFolder.AddFile(tabFile);
-                        _ez2OnArchiveTabControl.Items.Add(tabFile);
+                        _ez2OnArchiveTabControl.AddItems(tabFile);
                     }
                     else if (Directory.Exists(drop))
                     {
@@ -744,7 +748,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
                         Ez2OnArchiveTabFolder tabFolder = CreateDirectory(directory, activeCrypto, _currentFolder, _archive.ArchiveType);
                         _currentFolder.Folders.Add(tabFolder);
                         _currentFolder.Folder.Folders.Add(tabFolder.Folder);
-                        _ez2OnArchiveTabControl.Items.Add(tabFolder);
+                        _ez2OnArchiveTabControl.AddItems(tabFolder);
                         AddToCurrentArchive(tabFolder);
                     }
                     else
@@ -776,7 +780,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.Archive
             if (selectedFolder.Parent != null)
             {
                 selectedFolder.Parent.UpNavigation = true;
-                _ez2OnArchiveTabControl.Items.Add(selectedFolder.Parent);
+                _ez2OnArchiveTabControl.AddItems(selectedFolder.Parent);
             }
             _ez2OnArchiveTabControl.AddItemRange(selectedFolder.Folders);
             _ez2OnArchiveTabControl.AddItemRange(selectedFolder.Files);

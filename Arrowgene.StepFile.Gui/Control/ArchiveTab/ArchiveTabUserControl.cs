@@ -2,7 +2,9 @@
 using Arrowgene.StepFile.Gui.Core.DynamicGridView;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace Arrowgene.StepFile.Gui.Control.ArchiveTab
 {
@@ -10,16 +12,19 @@ namespace Arrowgene.StepFile.Gui.Control.ArchiveTab
     {
         private DynamicGridViewColumnConfig _columnConfig;
         private ObservableCollection<DynamicGridViewItem> _items;
+        private CollectionViewSource _viewSource;
 
         public abstract ListView ListViewItems { get; }
-
         public DynamicGridViewColumnConfig ColumnConfig { get { return _columnConfig; } set { _columnConfig = value; OnPropertyChanged("ColumnConfig"); } }
-        public ObservableCollection<DynamicGridViewItem> Items { get { return _items; } set { _items = value; OnPropertyChanged("Items"); } }
+        public ICollectionView SourceCollection => _viewSource.View;
+        public event FilterEventHandler Filter { add { _viewSource.Filter += value; } remove { _viewSource.Filter -= value; } }
 
         public ArchiveTabUserControl()
         {
             _columnConfig = new DynamicGridViewColumnConfig();
             _items = new ObservableCollection<DynamicGridViewItem>();
+            _viewSource = new CollectionViewSource();
+            _viewSource.Source = _items;
         }
 
         public void AddColumn(DynamicGridViewColumn column)
@@ -50,6 +55,21 @@ namespace Arrowgene.StepFile.Gui.Control.ArchiveTab
             {
                 _items.Remove(item);
             }
+        }
+
+        public DynamicGridViewItem GetItem(int index)
+        {
+            return _items[index];
+        }
+
+        public void SetItem(int index, DynamicGridViewItem item)
+        {
+            _items[index] = item;
+        }
+
+        public int IndexOf(DynamicGridViewItem item)
+        {
+            return _items.IndexOf(item);
         }
 
         public void ClearItems()

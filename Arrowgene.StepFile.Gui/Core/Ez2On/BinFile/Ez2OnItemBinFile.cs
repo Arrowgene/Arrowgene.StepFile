@@ -23,6 +23,8 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             item.Duration = buffer.ReadInt32();
             item.Coins = buffer.ReadInt32();
             item.Level = buffer.ReadInt32();
+            item.X = buffer.ReadInt32();
+            item.DjPointPlus = buffer.ReadInt32();
             item.ExpPlus = buffer.ReadInt32();
             item.CoinPlus = buffer.ReadInt32();
             item.HpPlus = buffer.ReadInt32();
@@ -34,8 +36,6 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             item.N = buffer.ReadInt32();
             item.O = buffer.ReadInt32();
             item.V = buffer.ReadInt32();
-            item.W = buffer.ReadInt32();
-            item.X = buffer.ReadInt32();
             item.Effect = ReadString(buffer);
             return item;
         }
@@ -55,6 +55,8 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             buffer.WriteInt32(item.Duration);
             buffer.WriteInt32(item.Coins);
             buffer.WriteInt32(item.Level);
+            buffer.WriteInt32(item.X);
+            buffer.WriteInt32(item.DjPointPlus);
             buffer.WriteInt32(item.ExpPlus);
             buffer.WriteInt32(item.CoinPlus);
             buffer.WriteInt32(item.HpPlus);
@@ -66,8 +68,6 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             buffer.WriteInt32(item.N);
             buffer.WriteInt32(item.O);
             buffer.WriteInt32(item.V);
-            buffer.WriteInt32(item.W);
-            buffer.WriteInt32(item.X);
             WriteString(item.Effect, buffer);
         }
     }

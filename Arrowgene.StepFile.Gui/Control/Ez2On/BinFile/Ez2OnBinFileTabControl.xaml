@@ -15,11 +15,11 @@
                 <ResourceDictionary Source="../../../ControlTemplate/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="../../../ControlTemplate/ListBoxStyle.xaml"/>
                 <ResourceDictionary Source="../../../ControlTemplate/CheckBoxStyle.xaml"/>
-                <ResourceDictionary Source="../../../ControlTemplate/TextBoxStyle.xaml"/>
                 <ResourceDictionary Source="../../../ControlTemplate/ProgressBarStyle.xaml"/>
                 <ResourceDictionary Source="../../../ControlTemplate/LabelStyle.xaml"/>
                 <ResourceDictionary Source="../../../ControlTemplate/TabControlStyle.xaml"/>
                 <ResourceDictionary Source="../../../ControlTemplate/MenuImageStyle.xaml"/>
+                <ResourceDictionary Source="../../../ControlTemplate/MenuTextBoxStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </archiveTab:ArchiveTabUserControl.Resources>
@@ -52,10 +52,15 @@
             <Button Command="{Binding MoveUpCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.move_entry_down}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/arrow-down.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
-            <Button Command="{Binding MoveDownCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.move_entry_up}">
+            <Button Command="{Binding ClearFilterCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.move_entry_up}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/arrow-up.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
+            <Separator Width="10" Background="Transparent"></Separator>
+            <TextBox x:Name="textBoxFilter" Width="100px" Style="{StaticResource CustomMenuTextBoxStyle}"/>
+            <Button Command="{Binding ClearFilterCommand}" Style="{StaticResource CustomMenuButtonStyle}">
+                <Image Source="pack://application:,,,/icons/PastelSVG/funnel-delete.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
         </StackPanel>
-        <ListView Grid.Row="2" x:Name="listViewItems" ItemsSource="{Binding Items}" View="{Binding ColumnConfig, Converter={StaticResource DynamicGridViewConverter}}"/>
+        <ListView Grid.Row="2" x:Name="listViewItems" ItemsSource="{Binding SourceCollection}" View="{Binding ColumnConfig, Converter={StaticResource DynamicGridViewConverter}}"/>
     </Grid>
 </archiveTab:ArchiveTabUserControl>

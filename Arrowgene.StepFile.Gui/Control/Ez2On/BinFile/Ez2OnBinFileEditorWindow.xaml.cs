@@ -661,7 +661,139 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 
         private void Open(Ez2OnBinFileTabRadiomix binFileTabRadiomix)
         {
+            Width = 700;
+            Height = 250;
 
+            gridContent.ColumnDefinitions.Add(new ColumnDefinition()
+            {
+                Width = GridLength.Auto
+            });
+            gridContent.ColumnDefinitions.Add(new ColumnDefinition()
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            });
+            gridContent.ColumnDefinitions.Add(new ColumnDefinition()
+            {
+                Width = GridLength.Auto
+            });
+            gridContent.ColumnDefinitions.Add(new ColumnDefinition()
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            });
+            gridContent.ColumnDefinitions.Add(new ColumnDefinition()
+            {
+                Width = GridLength.Auto
+            });
+            gridContent.ColumnDefinitions.Add(new ColumnDefinition()
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            });
+            gridContent.ColumnDefinitions.Add(new ColumnDefinition()
+            {
+                Width = GridLength.Auto
+            });
+            gridContent.ColumnDefinitions.Add(new ColumnDefinition()
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            });
+            gridContent.ColumnDefinitions.Add(new ColumnDefinition()
+            {
+                Width = GridLength.Auto
+            });
+            gridContent.ColumnDefinitions.Add(new ColumnDefinition()
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            });
+
+            gridContent.RowDefinitions.Add(new RowDefinition()
+            {
+                Height = GridLength.Auto
+            });
+
+            gridContent.RowDefinitions.Add(new RowDefinition()
+            {
+                Height = GridLength.Auto
+            });
+
+            gridContent.RowDefinitions.Add(new RowDefinition()
+            {
+                Height = GridLength.Auto
+            });
+
+            gridContent.RowDefinitions.Add(new RowDefinition()
+            {
+                Height = GridLength.Auto
+            });
+
+            gridContent.RowDefinitions.Add(new RowDefinition()
+            {
+                Height = GridLength.Auto
+            });
+            gridContent.RowDefinitions.Add(new RowDefinition()
+            {
+                Height = GridLength.Auto
+            });
+
+            gridContent.Children.Add(CreateLabel(0, 0, "RadiomixId"));
+            gridContent.Children.Add(CreateTextBox(0, 1, "RadiomixId", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(0, 2, "B"));
+            gridContent.Children.Add(CreateTextBox(0, 3, "B", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(0, 4, "C"));
+            gridContent.Children.Add(CreateTextBox(0, 5, "C", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(0, 6, "D"));
+            gridContent.Children.Add(CreateTextBox(0, 7, "D", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(0, 8, "E"));
+            gridContent.Children.Add(CreateTextBox(0, 9, "E", binFileTabRadiomix));
+
+            gridContent.Children.Add(CreateLabel(1, 0, "Song1Id"));
+            gridContent.Children.Add(CreateTextBox(1, 1, "Song1Id", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(1, 2, "Song1RubyNotes"));
+            gridContent.Children.Add(CreateTextBox(1, 3, "Song1RubyNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(1, 4, "Song1StreetNotes"));
+            gridContent.Children.Add(CreateTextBox(1, 5, "Song1StreetNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(1, 6, "Song1ClubNotes"));
+            gridContent.Children.Add(CreateTextBox(1, 7, "Song1ClubNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(1, 8, "Song1Club8KNotes"));
+            gridContent.Children.Add(CreateTextBox(1, 9, "Song1Club8KNotes", binFileTabRadiomix));
+
+            gridContent.Children.Add(CreateLabel(2, 0, "Song2Id"));
+            gridContent.Children.Add(CreateTextBox(2, 1, "Song2Id", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(2, 2, "Song2RubyNotes"));
+            gridContent.Children.Add(CreateTextBox(2, 3, "Song2RubyNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(2, 4, "Song2StreetNotes"));
+            gridContent.Children.Add(CreateTextBox(2, 5, "Song2StreetNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(2, 6, "Song2ClubNotes"));
+            gridContent.Children.Add(CreateTextBox(2, 7, "Song2ClubNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(2, 8, "Song2Club8KNotes"));
+            gridContent.Children.Add(CreateTextBox(2, 9, "Song2Club8KNotes", binFileTabRadiomix));
+
+            gridContent.Children.Add(CreateLabel(3, 0, "Song3Id"));
+            gridContent.Children.Add(CreateTextBox(3, 1, "Song3Id", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(3, 2, "Song3RubyNotes"));
+            gridContent.Children.Add(CreateTextBox(3, 3, "Song3RubyNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(3, 4, "Song3StreetNotes"));
+            gridContent.Children.Add(CreateTextBox(3, 5, "Song3StreetNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(3, 6, "Song3ClubNotes"));
+            gridContent.Children.Add(CreateTextBox(3, 7, "Song3ClubNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(3, 8, "Song3Club8KNotes"));
+            gridContent.Children.Add(CreateTextBox(3, 9, "Song3Club8KNotes", binFileTabRadiomix));
+
+            gridContent.Children.Add(CreateLabel(4, 0, "Song4Id"));
+            gridContent.Children.Add(CreateTextBox(4, 1, "Song4Id", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(4, 2, "Song4RubyNotes"));
+            gridContent.Children.Add(CreateTextBox(4, 3, "Song4RubyNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(4, 4, "Song4StreetNotes"));
+            gridContent.Children.Add(CreateTextBox(4, 5, "Song4StreetNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(4, 6, "Song4ClubNotes"));
+            gridContent.Children.Add(CreateTextBox(4, 7, "Song4ClubNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(4, 8, "Song4Club8KNotes"));
+            gridContent.Children.Add(CreateTextBox(4, 9, "Song4Club8KNotes", binFileTabRadiomix));
+
+            gridContent.Children.Add(CreateLabel(5, 0, "Total"));
+            gridContent.Children.Add(CreateLabel(5, 3, "TotalRubyNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(5, 5, "TotalStreetNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(5, 7, "TotalClubNotes", binFileTabRadiomix));
+            gridContent.Children.Add(CreateLabel(5, 9, "TotalCLub8KNotes", binFileTabRadiomix));
         }
 
         private Label CreateLabel(int row, int column, string text)
@@ -670,6 +802,17 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             label.SetValue(Grid.RowProperty, row);
             label.SetValue(Grid.ColumnProperty, column);
             label.Content = $"{text}:";
+            return label;
+        }
+
+        private Label CreateLabel(int row, int column, string bindingPath, object bindingSource)
+        {
+            Label label = new Label();
+            label.SetValue(Grid.RowProperty, row);
+            label.SetValue(Grid.ColumnProperty, column);
+            Binding binding = new Binding(bindingPath);
+            binding.Source = bindingSource;
+            label.SetBinding(Label.ContentProperty, binding);
             return label;
         }
 
