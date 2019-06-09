@@ -165,7 +165,7 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
             buffer.WriteInt32(song.StreetHdActivation);
             buffer.WriteInt32(song.StreetHdExr);
             buffer.WriteInt32(song.StreetHdUnknown);
-            buffer.WriteInt32(song.ClubHdNotes);
+            buffer.WriteInt32(song.StreetHdNotes);
             buffer.WriteInt32(song.StreetHdUnlock);
             buffer.WriteInt32(song.StreetHdDjPoint);
 
