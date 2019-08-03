@@ -214,6 +214,15 @@ namespace Arrowgene.StepFile.Gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Ez2On StrmFile.
+        /// </summary>
+        public static string new_ez2on_strmfile {
+            get {
+                return ResourceManager.GetString("new_ez2on_strmfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open Archive.
         /// </summary>
         public static string open_archive {

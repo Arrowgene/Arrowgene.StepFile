@@ -168,6 +168,9 @@
   <data name="new_ez2on_stepfile" xml:space="preserve">
     <value>New Ez2On StepFile</value>
   </data>
+  <data name="new_ez2on_strmfile" xml:space="preserve">
+    <value>New Ez2On StrmFile</value>
+  </data>
   <data name="open_archive" xml:space="preserve">
     <value>Open Archive</value>
   </data>

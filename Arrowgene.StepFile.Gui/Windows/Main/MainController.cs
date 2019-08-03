@@ -1,10 +1,12 @@
 ﻿using Arrowgene.StepFile.Gui.Control.Ez2On.Archive;
 using Arrowgene.StepFile.Gui.Control.Ez2On.BinFile;
 using Arrowgene.StepFile.Gui.Control.Ez2On.StepFile;
+using Arrowgene.StepFile.Gui.Control.Ez2On.StrmFile;
 using Arrowgene.StepFile.Gui.Control.LogTab;
 using Arrowgene.StepFile.Gui.Control.SettingTab;
 using Arrowgene.StepFile.Gui.Control.Tab;
 using Arrowgene.StepFile.Gui.Core;
+using System;
 using System.IO;
 using System.Windows;
 
@@ -18,12 +20,18 @@ namespace Arrowgene.StepFile.Gui.Windows.Main
         {
             mainWindow.Ez2OnArchiveCommand = new CommandHandler(OpenEz2OnArchiveTab, true);
             mainWindow.Ez2OnDotBinCommand = new CommandHandler(OpenDotBinTab, true);
+            mainWindow.Ez2OnDotStrmCommand = new CommandHandler(OpenDotStrmTab, true);
             mainWindow.Ez2OnStepFileCommand = new CommandHandler(OpenEz2OnStepFileTab, true);
             mainWindow.LogTabCommand = new CommandHandler(OpenLogTab, true);
             mainWindow.SettingTabCommand = new CommandHandler(OpenSettingTab, true);
             _tabManager = new TabManager(mainWindow.TabControl);
             mainWindow.TabControl.AllowDrop = true;
             mainWindow.TabControl.Drop += TabControl_Drop;
+        }
+
+        private void OpenDotStrmTab()
+        {
+            _tabManager.OpenTab(new Ez2OnStrmFileTabController());
         }
 
         private void OpenEz2OnArchiveTab()

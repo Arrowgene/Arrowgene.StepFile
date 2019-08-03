@@ -383,6 +383,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Resource Include="icons\PastelSVG\application-view-tile.png" />
     <Resource Include="icons\PastelSVG\funnel-delete.png" />
     <Resource Include="icons\PastelSVG\arrow-up.png" />
     <Resource Include="icons\PastelSVG\arrow-down.png" />

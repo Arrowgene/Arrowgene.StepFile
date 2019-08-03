@@ -39,6 +39,9 @@
             <Button Command="{Binding Ez2OnDotBinCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.new_ez2on_binfile}">
                 <Image Source="pack://application:,,,/icons/VS2017/BinaryFile.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
+            <Button Command="{Binding Ez2OnDotStrmCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.new_ez2on_strmfile}">
+                <Image Source="pack://application:,,,/icons/PastelSVG/application-view-tile.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
             <Button Command="{Binding Ez2OnStepFileCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.new_ez2on_stepfile}">
                 <Image Source="pack://application:,,,/icons/VS2017/Media.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
