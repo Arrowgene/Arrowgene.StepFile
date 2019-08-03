@@ -35,6 +35,11 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 Ez2OnBinFileTabCard binFileTabCard = (Ez2OnBinFileTabCard)item;
                 Open(binFileTabCard);
             }
+            else if (item is Ez2OnBinFileTabStr)
+            {
+                Ez2OnBinFileTabStr binFileTabStr = (Ez2OnBinFileTabStr)item;
+                Open(binFileTabStr);
+            }
             else if (item is Ez2OnBinFileTabIdFilter)
             {
                 Ez2OnBinFileTabIdFilter binFileTabIdFilter = (Ez2OnBinFileTabIdFilter)item;
@@ -90,6 +95,31 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             gridContent.Children.Add(CreateTextBox(0, 1, "Id", binFileTabCard));
             gridContent.Children.Add(CreateLabel(1, 0, "Text"));
             gridContent.Children.Add(CreateTextBox(1, 1, "Text", binFileTabCard));
+        }
+        private void Open(Ez2OnBinFileTabStr binFileTabStr)
+        {
+            Width = 400;
+            Height = 200;
+            gridContent.ColumnDefinitions.Add(new ColumnDefinition()
+            {
+                Width = GridLength.Auto
+            });
+            gridContent.ColumnDefinitions.Add(new ColumnDefinition()
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            });
+            gridContent.RowDefinitions.Add(new RowDefinition()
+            {
+                Height = GridLength.Auto
+            });
+            gridContent.RowDefinitions.Add(new RowDefinition()
+            {
+                Height = GridLength.Auto
+            });
+            gridContent.Children.Add(CreateLabel(0, 0, "Id"));
+            gridContent.Children.Add(CreateTextBox(0, 1, "Id", binFileTabStr));
+            gridContent.Children.Add(CreateLabel(1, 0, "Text"));
+            gridContent.Children.Add(CreateTextBox(1, 1, "Text", binFileTabStr));
         }
 
         private void Open(Ez2OnBinFileTabIdFilter binFileTabIdFilter)

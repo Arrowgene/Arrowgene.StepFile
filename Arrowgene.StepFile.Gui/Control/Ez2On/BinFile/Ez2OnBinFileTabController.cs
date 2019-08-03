@@ -68,6 +68,18 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 }
                 Header = "Card";
             }
+            else if (_binFile is Ez2OnStrBinFile)
+            {
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Id", TextField = "Id" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Text", TextField = "Text" });
+                Ez2OnStrBinFile strBindFile = (Ez2OnStrBinFile)_binFile;
+                foreach (Ez2OnModelStr modelStr in strBindFile.Entries)
+                {
+                    Ez2OnBinFileTabStr binFileTabStr = new Ez2OnBinFileTabStr(modelStr);
+                    _ez2OnBinFileTabControl.AddItems(binFileTabStr);
+                }
+                Header = "Game String";
+            }
             else if (_binFile is Ez2OnIdFilterBinFile)
             {
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "IdFilter", TextField = "IdFilter" });
@@ -348,6 +360,15 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 _ez2OnBinFileTabControl.AddItems(binFileTabCard);
                 newItem = binFileTabCard;
             }
+            else if (_binFile is Ez2OnStrBinFile)
+            {
+                Ez2OnStrBinFile strBindFile = (Ez2OnStrBinFile)_binFile;
+                Ez2OnModelStr modelStr = new Ez2OnModelStr();
+                Ez2OnBinFileTabStr binFileTabStr = new Ez2OnBinFileTabStr(modelStr);
+                strBindFile.Entries.Add(modelStr);
+                _ez2OnBinFileTabControl.AddItems(binFileTabStr);
+                newItem = binFileTabStr;
+            }
             else if (_binFile is Ez2OnIdFilterBinFile)
             {
                 Ez2OnIdFilterBinFile idFilterBinFile = (Ez2OnIdFilterBinFile)_binFile;
@@ -445,6 +466,13 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 Ez2OnCardBinFile cardBindFile = (Ez2OnCardBinFile)_binFile;
                 cardBindFile.Entries.Remove(binFileTabCard.Model);
                 _ez2OnBinFileTabControl.RemoveItems(binFileTabCard);
+            }
+            else if (_selectedItem is Ez2OnBinFileTabStr && _binFile is Ez2OnStrBinFile)
+            {
+                Ez2OnBinFileTabStr binFileTabStr = (Ez2OnBinFileTabStr)_selectedItem;
+                Ez2OnStrBinFile strBindFile = (Ez2OnStrBinFile)_binFile;
+                strBindFile.Entries.Remove(binFileTabStr.Model);
+                _ez2OnBinFileTabControl.RemoveItems(binFileTabStr);
             }
             else if (_selectedItem is Ez2OnBinFileTabIdFilter && _binFile is Ez2OnIdFilterBinFile)
             {

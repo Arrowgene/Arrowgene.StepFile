@@ -21,6 +21,9 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
                 case "M_CARD":
                     file = new Ez2OnCardBinFile();
                     break;
+                case "M_GSTR":
+                    file = new Ez2OnStrBinFile();
+                    break;
                 case "M_ID_FILTER":
                     file = new Ez2OnIdFilterBinFile();
                     break;
