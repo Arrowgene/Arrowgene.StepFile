@@ -82,7 +82,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
             else if (_binFile is Ez2OnItemBinFile)
             {
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Id", TextField = "Id" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Q", TextField = "Q" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Enabled", TextField = "Enabled" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Type", TextField = "Type" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "S", TextField = "S" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "T", TextField = "T" });
@@ -90,9 +90,9 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Image", TextField = "Image" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "A", TextField = "A" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Name", TextField = "Name" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "B", TextField = "B" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Currency", TextField = "Currency" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Duration", TextField = "Duration" });
-                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Coins", TextField = "Coins" });
+                _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Price", TextField = "Price" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "Level", TextField = "Level" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "X", TextField = "X" });
                 _ez2OnBinFileTabControl.AddColumn(new DynamicGridViewColumn { Header = "DjPointPlus", TextField = "DjPointPlus" });

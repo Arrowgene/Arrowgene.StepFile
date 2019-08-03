@@ -82,7 +82,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Control\Ez2On\StrmFile\Ez2OnStrmFileTabViewItem.cs" />
+    <Compile Include="Control\Ez2On\StrmFile\Ez2OnStrmFileTabController.cs" />
+    <Compile Include="Control\Ez2On\StrmFile\Ez2OnStrmFileTabControl.xaml.cs">
+      <DependentUpon>Ez2OnStrmFileTabControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Core\BindingErrorTraceListener.cs" />
+    <Compile Include="Core\Ez2On\Model\ItemCurrencyType.cs" />
+    <Compile Include="Core\Ez2On\StrmFile\Ez2OnStrmFileIO.cs" />
+    <Compile Include="Core\Ez2On\StrmFile\Ez2OnStrmFile.cs" />
     <Compile Include="Core\Language.cs" />
     <Compile Include="Control\ArchiveTab\ArchiveTabItemName.xaml.cs">
       <DependentUpon>ArchiveTabItemName.xaml</DependentUpon>
@@ -282,6 +290,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Control\Ez2On\StepFile\Ez2OnStepFileTabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\Ez2On\StrmFile\Ez2OnStrmFileTabControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

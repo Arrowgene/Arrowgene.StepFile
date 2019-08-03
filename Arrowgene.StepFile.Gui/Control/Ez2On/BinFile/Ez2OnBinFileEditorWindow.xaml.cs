@@ -181,8 +181,8 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 
             gridContent.Children.Add(CreateLabel(0, 0, "Id"));
             gridContent.Children.Add(CreateTextBox(0, 1, "Id", binFileTabItem));
-            gridContent.Children.Add(CreateLabel(0, 2, "Q"));
-            gridContent.Children.Add(CreateTextBox(0, 3, "Q", binFileTabItem));
+            gridContent.Children.Add(CreateLabel(0, 2, "Enabled"));
+            gridContent.Children.Add(CreateTextBox(0, 3, "Enabled", binFileTabItem));
             gridContent.Children.Add(CreateLabel(0, 4, "Type"));
             gridContent.Children.Add(CreateComboBox(0, 5, "Type", binFileTabItem, typeof(ItemType)));
             gridContent.Children.Add(CreateLabel(0, 6, "S"));
@@ -199,12 +199,12 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.BinFile
 
             gridContent.Children.Add(CreateLabel(2, 0, "Name"));
             gridContent.Children.Add(CreateTextBox(2, 1, "Name", binFileTabItem));
-            gridContent.Children.Add(CreateLabel(2, 2, "B"));
-            gridContent.Children.Add(CreateTextBox(2, 3, "B", binFileTabItem));
+            gridContent.Children.Add(CreateLabel(2, 2, "Currency"));
+            gridContent.Children.Add(CreateComboBox(2, 3, "Currency", binFileTabItem, typeof(ItemCurrencyType)));
             gridContent.Children.Add(CreateLabel(2, 4, "Duration"));
             gridContent.Children.Add(CreateTextBox(2, 5, "Duration", binFileTabItem));
-            gridContent.Children.Add(CreateLabel(2, 6, "Coins"));
-            gridContent.Children.Add(CreateTextBox(2, 7, "Coins", binFileTabItem));
+            gridContent.Children.Add(CreateLabel(2, 6, "Price"));
+            gridContent.Children.Add(CreateTextBox(2, 7, "Price", binFileTabItem));
 
             gridContent.Children.Add(CreateLabel(3, 0, "Level"));
             gridContent.Children.Add(CreateTextBox(3, 1, "Level", binFileTabItem));

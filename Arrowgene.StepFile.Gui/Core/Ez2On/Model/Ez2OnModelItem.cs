@@ -13,9 +13,9 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
         public string Image { get; set; }
         public int A { get; set; }
         public string Name { get; set; }
-        public int B { get; set; }
+        public ItemCurrencyType Currency { get; set; }
         public int Duration { get; set; }
-        public int Coins { get; set; }
+        public int Price { get; set; }
         public int Level { get; set; }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.Model
         public int O { get; set; }
         public string Effect { get; set; }
         public int Id { get; set; }
-        public int Q { get; set; }
+        public int Enabled { get; set; }
         public ItemType Type { get; set; }
         public int S { get; set; }
         public int T { get; set; }

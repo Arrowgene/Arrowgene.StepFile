@@ -11,17 +11,17 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
         {
             Ez2OnModelItem item = new Ez2OnModelItem();
             item.Id = buffer.ReadInt32();
-            item.Q = buffer.ReadInt32();
-            item.Type = (ItemType) buffer.ReadInt32();
+            item.Enabled = buffer.ReadInt32();
+            item.Type = (ItemType)buffer.ReadInt32();
             item.S = buffer.ReadInt32();
             item.T = buffer.ReadInt32();
             item.U = buffer.ReadInt32();
             item.Image = ReadString(buffer);
             item.A = buffer.ReadInt32();
             item.Name = ReadString(buffer);
-            item.B = buffer.ReadInt32();
+            item.Currency = (ItemCurrencyType)buffer.ReadInt32();
             item.Duration = buffer.ReadInt32();
-            item.Coins = buffer.ReadInt32();
+            item.Price = buffer.ReadInt32();
             item.Level = buffer.ReadInt32();
             item.X = buffer.ReadInt32();
             item.DjPointPlus = buffer.ReadInt32();
@@ -43,17 +43,17 @@ namespace Arrowgene.StepFile.Gui.Core.Ez2On.BinFile
         public override void WriteEntry(Ez2OnModelItem item, IBuffer buffer)
         {
             buffer.WriteInt32(item.Id);
-            buffer.WriteInt32(item.Q);
-            buffer.WriteInt32((int) item.Type);
+            buffer.WriteInt32(item.Enabled);
+            buffer.WriteInt32((int)item.Type);
             buffer.WriteInt32(item.S);
             buffer.WriteInt32(item.T);
             buffer.WriteInt32(item.U);
             WriteString(item.Image, buffer);
             buffer.WriteInt32(item.A);
             WriteString(item.Name, buffer);
-            buffer.WriteInt32(item.B);
+            buffer.WriteInt32((int)item.Currency);
             buffer.WriteInt32(item.Duration);
-            buffer.WriteInt32(item.Coins);
+            buffer.WriteInt32(item.Price);
             buffer.WriteInt32(item.Level);
             buffer.WriteInt32(item.X);
             buffer.WriteInt32(item.DjPointPlus);
