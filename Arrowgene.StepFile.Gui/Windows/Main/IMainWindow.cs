@@ -14,6 +14,7 @@ namespace Arrowgene.StepFile.Gui.Windows.Main
         ICommand SettingTabCommand { get; set; }
         ICommand Ez2OnDotBinCommand { get; set; }
         ICommand Ez2OnDotStrmCommand { get; set; }
+        ICommand BuildCommand { get; set; }
         int ProgressBarValue { get; set; }
         string ProgressBarText { get; set; }
     }

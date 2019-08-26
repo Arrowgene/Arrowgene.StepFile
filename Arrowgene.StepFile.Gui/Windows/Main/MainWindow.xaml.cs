@@ -13,6 +13,7 @@ namespace Arrowgene.StepFile.Gui.Windows.Main
         private ICommand _ez2OnDotStrmCommand;
         private ICommand _logTabCommand;
         private ICommand _settingTabCommand;
+        private ICommand _buildCommand;
         private int _progressBarValue;
         private string _progressBarText;
 
@@ -27,6 +28,7 @@ namespace Arrowgene.StepFile.Gui.Windows.Main
         public ICommand Ez2OnStepFileCommand { get { return _ez2OnStepFileCommand; } set { _ez2OnStepFileCommand = value; OnPropertyChanged("Ez2OnStepFileCommand"); } }
         public ICommand LogTabCommand { get { return _logTabCommand; } set { _logTabCommand = value; OnPropertyChanged("LogTabCommand"); } }
         public ICommand SettingTabCommand { get { return _settingTabCommand; } set { _settingTabCommand = value; OnPropertyChanged("SettingTabCommand"); } }
+        public ICommand BuildCommand { get { return _buildCommand; } set { _buildCommand = value; OnPropertyChanged("BuildCommand"); } }
 
         public MainWindow()
         {

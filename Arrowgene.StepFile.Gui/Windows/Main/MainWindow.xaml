@@ -51,6 +51,9 @@
             <Button Command="{Binding LogTabCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="{x:Static prop:strings.view_logs}">
                 <Image Source="pack://application:,,,/icons/PastelSVG/report.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
+            <Button Command="{Binding BuildCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Build">
+                <Image Source="pack://application:,,,/icons/PastelSVG/building.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
         </StackPanel>
         <TabControl Grid.Row="1" x:Name="tabControl" Style="{StaticResource CustomTabControlStyle}">
             <TabControl.ItemTemplate>

@@ -1,5 +1,6 @@
 ﻿using Arrowgene.StepFile.Gui.Control.Ez2On.Archive;
 using Arrowgene.StepFile.Gui.Control.Ez2On.BinFile;
+using Arrowgene.StepFile.Gui.Control.Ez2On.Build;
 using Arrowgene.StepFile.Gui.Control.Ez2On.StepFile;
 using Arrowgene.StepFile.Gui.Control.Ez2On.StrmFile;
 using Arrowgene.StepFile.Gui.Control.LogTab;
@@ -24,6 +25,7 @@ namespace Arrowgene.StepFile.Gui.Windows.Main
             mainWindow.Ez2OnStepFileCommand = new CommandHandler(OpenEz2OnStepFileTab, true);
             mainWindow.LogTabCommand = new CommandHandler(OpenLogTab, true);
             mainWindow.SettingTabCommand = new CommandHandler(OpenSettingTab, true);
+            mainWindow.BuildCommand = new CommandHandler(OpenBuildTab, true);
             _tabManager = new TabManager(mainWindow.TabControl);
             mainWindow.TabControl.AllowDrop = true;
             mainWindow.TabControl.Drop += TabControl_Drop;
@@ -56,6 +58,10 @@ namespace Arrowgene.StepFile.Gui.Windows.Main
         private void OpenDotBinTab()
         {
             _tabManager.OpenTab(new Ez2OnBinFileTabController());
+        }
+        private void OpenBuildTab()
+        {
+            new Ez2OnBuildTabController().Build();
         }
 
         private async void TabControl_Drop(object sender, DragEventArgs e)

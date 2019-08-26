@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabStr.cs" />
+    <Compile Include="Control\Ez2On\Build\Ez2OnBuildTabController.cs" />
     <Compile Include="Control\Ez2On\StrmFile\Ez2OnStrmFileTabViewItem.cs" />
     <Compile Include="Control\Ez2On\StrmFile\Ez2OnStrmFileTabController.cs" />
     <Compile Include="Control\Ez2On\StrmFile\Ez2OnStrmFileTabControl.xaml.cs">
@@ -383,6 +384,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Resource Include="icons\PastelSVG\building.png" />
     <Resource Include="icons\PastelSVG\application-view-tile.png" />
     <Resource Include="icons\PastelSVG\funnel-delete.png" />
     <Resource Include="icons\PastelSVG\arrow-up.png" />
