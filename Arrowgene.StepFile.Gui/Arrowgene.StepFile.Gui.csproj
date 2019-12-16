@@ -93,6 +93,7 @@
     <Compile Include="Core\Ez2On\BinFile\Ez2OnStrBinFile.cs" />
     <Compile Include="Core\Ez2On\Model\Ez2OnModelStr.cs" />
     <Compile Include="Core\Ez2On\Model\ItemCurrencyType.cs" />
+    <Compile Include="Core\Ez2On\Model\PtEntry.cs" />
     <Compile Include="Core\Ez2On\StrmFile\Ez2OnStrmFileIO.cs" />
     <Compile Include="Core\Ez2On\StrmFile\Ez2OnStrmFile.cs" />
     <Compile Include="Core\Language.cs" />
@@ -384,6 +385,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Resource Include="icons\PastelSVG\page-export.png" />
     <Resource Include="icons\PastelSVG\building.png" />
     <Resource Include="icons\PastelSVG\application-view-tile.png" />
     <Resource Include="icons\PastelSVG\funnel-delete.png" />

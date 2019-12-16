@@ -34,6 +34,12 @@
             <Button Command="{Binding SaveCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Save">
                 <Image Source="pack://application:,,,/icons/PastelSVG/disk.png" Style="{StaticResource CustomMenuImageStyle}"/>
             </Button>
+            <Button Command="{Binding Pt2EzCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Pt2Ez">
+                <Image Source="pack://application:,,,/icons/PastelSVG/page-export.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
+            <Button Command="{Binding Pt2EzFolderCommand}" Style="{StaticResource CustomMenuButtonStyle}" ToolTip="Pt2Ez">
+                <Image Source="pack://application:,,,/icons/PastelSVG/page-export.png" Style="{StaticResource CustomMenuImageStyle}"/>
+            </Button>
         </StackPanel>
     </Grid>
 </tab:TabUserControl>

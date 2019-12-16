@@ -48,6 +48,12 @@ namespace Arrowgene.StepFile.Gui.Core
             return this;
         }
 
+        public SaveFileBuilder FileName(string fileName)
+        {
+            _ofd.FileName = fileName;
+            return this;
+        }
+
         public SaveFileBuilder DefaultExt(string defaultExt)
         {
             _ofd.DefaultExt = defaultExt;
