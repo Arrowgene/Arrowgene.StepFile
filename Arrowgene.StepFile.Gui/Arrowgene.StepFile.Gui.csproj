@@ -83,7 +83,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Control\Ez2On\BinFile\Ez2OnBinFileTabStr.cs" />
-    <Compile Include="Control\Ez2On\Build\Ez2OnBuildTabController.cs" />
+    <Compile Include="Control\Ez2On\EzBuild\Ez2OnBuildTabController.cs" />
     <Compile Include="Control\Ez2On\StrmFile\Ez2OnStrmFileTabViewItem.cs" />
     <Compile Include="Control\Ez2On\StrmFile\Ez2OnStrmFileTabController.cs" />
     <Compile Include="Control\Ez2On\StrmFile\Ez2OnStrmFileTabControl.xaml.cs">
