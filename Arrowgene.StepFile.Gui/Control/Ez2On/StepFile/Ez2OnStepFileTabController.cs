@@ -121,21 +121,9 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.StepFile
             for (int i = 0; i < oggSections; i++)
             {
                 PtSoundEntry entry = new PtSoundEntry();
-                entry.Id = ptBuffer.ReadUInt16();
-                entry.OggFile = ptBuffer.ReadFixedString(14);
-                entry.Unknown5 = ptBuffer.ReadUInt32();
-                entry.Unknown6 = ptBuffer.ReadUInt32();
-                entry.Unknown7 = ptBuffer.ReadUInt32();
-                entry.Unknown8 = ptBuffer.ReadUInt32();
-                entry.Unknown9 = ptBuffer.ReadUInt32();
-                entry.Unknown10 = ptBuffer.ReadUInt32();
-                entry.Unknown11 = ptBuffer.ReadUInt32();
-                entry.Unknown12 = ptBuffer.ReadUInt32();
-                entry.Unknown13 = ptBuffer.ReadUInt32();
-                entry.Unknown14 = ptBuffer.ReadUInt32();
-                entry.Unknown15 = ptBuffer.ReadUInt32();
-                entry.Unknown16 = ptBuffer.ReadUInt32();
-                entry.Unknown17 = ptBuffer.ReadUInt16();
+                entry.Id = ptBuffer.ReadByte();
+                entry.Unknown = ptBuffer.ReadByte();
+                entry.OggFile = ptBuffer.ReadFixedString(64);
                 entries.Add(entry);
             }
             byte[] eztrData = ptBuffer.ReadBytes(ptBuffer.Size - ptBuffer.Position);
@@ -155,7 +143,7 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.StepFile
             int idx = 0;
             foreach (PtSoundEntry ptSound in entries)
             {
-                string prefix = GetEziPrefix(idx);
+                string prefix = GetEziPrefix(ptSound);
                 if (prefix == null)
                 {
                     break;
@@ -168,29 +156,24 @@ namespace Arrowgene.StepFile.Gui.Control.Ez2On.StepFile
         }
 
 
-        private string GetEziPrefix(int index)
+        private string GetEziPrefix(PtSoundEntry ptSound)
         {
-            if(index == 0)
-            {
-                return $"C#0 1";
-            }
-            index++;
-            int note = index % 12;
-            int noteNumber = index / 12;
+            int note = ptSound.Id % 12;
+            int noteNumber = ptSound.Id / 12;
             switch (note)
             {
-                case 0: return $"C{noteNumber} 0";
-                case 1: return $"C#{noteNumber} 0";
-                case 2: return $"D{noteNumber} 0";
-                case 3: return $"D#{noteNumber} 0";
-                case 4: return $"E{noteNumber} 0";
-                case 5: return $"F{noteNumber} 0";
-                case 6: return $"F#{noteNumber} 0";
-                case 7: return $"G{noteNumber} 0";
-                case 8: return $"G#{noteNumber} 0";
-                case 9: return $"A{noteNumber} 0";
-                case 10: return $"A#{noteNumber} 0";
-                case 11: return $"B{noteNumber} 0";
+                case 0: return $"C{noteNumber} {ptSound.Unknown}";
+                case 1: return $"C#{noteNumber} {ptSound.Unknown}";
+                case 2: return $"D{noteNumber} {ptSound.Unknown}";
+                case 3: return $"D#{noteNumber} {ptSound.Unknown}";
+                case 4: return $"E{noteNumber} {ptSound.Unknown}";
+                case 5: return $"F{noteNumber} {ptSound.Unknown}";
+                case 6: return $"F#{noteNumber} {ptSound.Unknown}";
+                case 7: return $"G{noteNumber} {ptSound.Unknown}";
+                case 8: return $"G#{noteNumber} {ptSound.Unknown}";
+                case 9: return $"A{noteNumber} {ptSound.Unknown}";
+                case 10: return $"A#{noteNumber} {ptSound.Unknown}";
+                case 11: return $"B{noteNumber} {ptSound.Unknown}";
             }
             return null;
         }
